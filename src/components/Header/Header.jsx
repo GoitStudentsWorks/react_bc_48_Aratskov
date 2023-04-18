@@ -1,13 +1,17 @@
-import { NavLink } from "react-router-dom";
+import st from './Header.module.css';
+import Logo from 'components/Logo/Logo';
+import Navigation from 'components/Navigation/Navigation';
+import UserBar from 'components/UserBar/UserBar';
 
 const Header = () => {
-    return (
-    <header>
-      header
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Register</NavLink>
-      </header>
-);
-  };
-  
-  export default Header;
+  return (
+    <header className={st.list}>
+      <h1>HEADER</h1>
+      <Logo />
+      <Navigation />
+      {true && <UserBar />}
+    </header>
+  );
+};
+
+export default Header;
