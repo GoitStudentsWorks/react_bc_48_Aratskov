@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import HomePage from 'pages/HomePage/HomePage';
-import SharedLayout from './ShaderLayout/SharedLayout';
+import SharedLayout from './SharedLayout/SharedLayout';
 import ModalLogin from './ModalLogin/ModalLogin';
 import ModalRegister from './ModalRegister/ModalRegister';
 import Header from './Header/Header';
