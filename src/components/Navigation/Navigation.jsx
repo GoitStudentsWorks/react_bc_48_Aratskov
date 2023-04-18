@@ -1,6 +1,13 @@
+import AuthNav from "components/AuthNav/AuthNav";
+import UserNav from "components/UserNav/UserNav";
+
+
 const Navigation = () =>{
     return(
-        <>Navigation</>
+        <>Navigation
+        <AuthNav />
+        {true&&<UserNav />}
+        </>
     )
 }
 
