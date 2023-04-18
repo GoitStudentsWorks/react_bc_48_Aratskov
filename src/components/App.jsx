@@ -1,18 +1,19 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
-import HomePage from 'pages/HomePage';
+import HomePage from 'pages/HomePage/HomePage';
+import ShaderLayout from './ShaderLayout/ShaderLayout';
 
-const CashflowPage = lazy(() => import('../pages/CashflowPage'));
-const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage'));
-const DynamicsPage = lazy(() => import('../pages/DynamicsPage'));
-const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-const LoginPage = lazy(() => import('../pages/LoginPage'));
+const CashflowPage = lazy(() => import('../pages/CashflowPage/CashflowPage'));
+const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage/OwnPlanPage'));
+const DynamicsPage = lazy(() => import('../pages/DynamicsPage/DynamicsPage'));
+const StatisticsPage = lazy(() => import('../pages/StatisticsPage/StatisticsPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<>ShaderLayout</>}>
+      <Route path="/" element={<ShaderLayout/>}>
         <Route index element={<HomePage />} />
         <Route path="plan" element={<OwnPlanPage />} />
         <Route path="cash-flow" element={<CashflowPage />} />
