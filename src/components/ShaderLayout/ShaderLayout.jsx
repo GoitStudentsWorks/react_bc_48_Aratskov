@@ -1,11 +1,5 @@
-
-
 const ShaderLayout = () => {
-return(
-    <>
-       
-    </>
-    )
-}
+  return <></>;
+};
 
-export default ShaderLayout
+export default ShaderLayout;
