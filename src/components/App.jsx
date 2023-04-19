@@ -40,7 +40,7 @@ export const App = () => {
           <Route path="transactions" element={<ExpensesList />} />
           <Route path="categories" element={<CategoriesList />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/plan" />} />
       </Route>
     </Routes>
   );
