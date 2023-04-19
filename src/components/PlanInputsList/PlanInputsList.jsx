@@ -1,7 +1,8 @@
 import Input from 'components/Input/Input';
-import css from './PlanInputsList.module.css'
+import css from './PlanInputsList.module.css';
 
 const PlanInputsList = ({
+  onChange,
   salary,
   passiveIncome,
   savings,
@@ -13,50 +14,62 @@ const PlanInputsList = ({
     <ul>
       <li className={css.item}>
         <Input
-          name={salary}
+          id="salary"
+          name="salary"
           value={salary}
           placeholder="Enter text"
           label="1. RFP of both spouses,"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
         <Input
-          name={passiveIncome}
+          id="passiveIncome"
+          name="passiveIncome"
           value={passiveIncome}
           placeholder="Enter text"
           label="2. Passive income, months,"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
         <Input
-          name={savings}
+          id="savings"
+          name="savings"
           value={savings}
           placeholder="Enter text"
           label="3. Savings,"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
         <Input
-          name={cost}
+          id="cost"
+          name="cost"
           value={cost}
           placeholder="Enter text"
           label="4. Specify the cost of your future apartment,"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
         <Input
-          name={footage}
+          id="footage"
+          name="footage"
           value={footage}
           placeholder="Enter text"
           label="5. Specify the number of sq.m. of your future apartment"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
         <Input
-          name={procent}
+          id="procent"
+          name="procent"
           value={procent}
           placeholder="Enter text"
           label="6. Accumulation, %"
+          onChange={onChange}
         />
         <p className={css.description}>
           Specify the percentage that you would like to accumulate per month

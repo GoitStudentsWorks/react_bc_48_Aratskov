@@ -1,7 +1,7 @@
 import Input from 'components/Input/Input';
-import css from './TransactionDataList.module.css'
+import css from './TransactionDataList.module.css';
 
-const TransactionDataList = ({ category, comment, sum }) => {
+const TransactionDataList = ({ onChange, category, comment, sum }) => {
   return (
     <ul>
       <li className={css.item}>
@@ -14,22 +14,30 @@ const TransactionDataList = ({ category, comment, sum }) => {
       </li>
       <li className={css.item}>
         <Input
-          name={category}
+          name="category"
           value={category}
           placeholder="Other"
           label="Per category"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
         <Input
-          name={comment}
+          name="comment"
           value={comment}
           placeholder="Concert tickets"
           label="Expense comment"
+          onChange={onChange}
         />
       </li>
       <li className={css.item}>
-        <Input name={sum} value={sum} placeholder="00.00" label="Sum" />
+        <Input
+          name="sum"
+          value={sum}
+          placeholder="00.00"
+          label="Sum"
+          onChange={onChange}
+        />
       </li>
     </ul>
   );
