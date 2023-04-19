@@ -1,12 +1,15 @@
-.list{
+.buttons{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 32px;
+    gap: 12px;
 }
 
-.item{
-    font-size: 14px;
-    font-weight: 700;
+.buttonLogin{
+    width: 80px;
+}
+
+.buttonReg{
+    width: 132px;
 }
