@@ -1,5 +1,11 @@
+import PlanInputsList from 'components/PlanInputsList/PlanInputsList';
+
 const OwnPlanPage = () => {
-  return <></>;
+  return (
+    <form>
+      <PlanInputsList />
+    </form>
+  );
 };
 
 export default OwnPlanPage;

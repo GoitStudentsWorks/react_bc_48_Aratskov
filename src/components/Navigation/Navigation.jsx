@@ -1,12 +1,15 @@
 import AuthNav from "components/AuthNav/AuthNav";
 import UserNav from "components/UserNav/UserNav";
+import { useState } from "react";
 
 
 const Navigation = () =>{
+    const [isAuth] = useState(true);
+    // setIsAuth(false)
     return(
-        <>Navigation
-        <AuthNav />
-        {true&&<UserNav />}
+        <>
+        {!isAuth&&<AuthNav />}
+        {isAuth&&<UserNav />}
         </>
     )
 }
