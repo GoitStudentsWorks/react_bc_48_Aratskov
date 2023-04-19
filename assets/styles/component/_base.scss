@@ -49,6 +49,11 @@ img {
   width: 100%;
 }
 
+a{
+text-decoration: none;
+color:var(--main-text)
+}
+
 button,
 a {
   cursor: pointer;
