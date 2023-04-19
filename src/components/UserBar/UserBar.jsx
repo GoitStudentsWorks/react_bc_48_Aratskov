@@ -1,6 +1,6 @@
 import st from './UserBar.module.css';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'components/Button/Button';
+// import { Button } from 'components/Button/Button';
 import icons from '../../icons/sprite.svg';
 import { ButtonLogout } from 'components/ButtonLogout/ButtonLogout';
 
