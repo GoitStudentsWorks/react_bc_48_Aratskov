@@ -1,0 +1,28 @@
+.input {
+  width: 343px;
+  /*336,370 - tab,desc*/
+  height: 74px;
+  padding: 14px 18px 18px 18px;
+
+  /*font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  align-items: center;*/
+
+  font-size: 16px;
+  line-height: 1.19;
+  color: #f3f3f3;
+}
+
+.label {
+  /* font-family: 'Lato';
+        font-style: normal;
+        font-weight: 400; */
+  /* display: flex;
+        align-items: center; */
+
+  font-size: 12px;
+  line-height: 1.17;
+  color: rgba(243, 243, 243, 0.4);
+}

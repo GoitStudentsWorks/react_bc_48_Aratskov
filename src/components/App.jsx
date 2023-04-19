@@ -4,12 +4,16 @@ import HomePage from 'pages/HomePage/HomePage';
 import SharedLayout from './SharedLayout/SharedLayout';
 import ModalLogin from './ModalLogin/ModalLogin';
 import ModalRegister from './ModalRegister/ModalRegister';
+import ExpensesList from './Statistics/ExpensesList/ExpensesList';
 
 const CashflowPage = lazy(() => import('../pages/CashflowPage/CashflowPage'));
 const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage/OwnPlanPage'));
 const DynamicsPage = lazy(() => import('../pages/DynamicsPage/DynamicsPage'));
 const StatisticsPage = lazy(() =>
   import('../pages/StatisticsPage/StatisticsPage')
+);
+const CategoriesList = lazy(() =>
+  import('./Statistics/CategoriesList/CategoriesList')
 );
 
 export const App = () => {
@@ -23,8 +27,8 @@ export const App = () => {
         <Route path="cash-flow" element={<CashflowPage />} />
         <Route path="dynamics" element={<DynamicsPage />} />
         <Route path="statistics" element={<StatisticsPage />}>
-          <Route path="transactions" element={<div>Expenses</div>} />
-          <Route path="categories" element={<div>Categories</div>} />
+          <Route path="transactions" element={<ExpensesList />} />
+          <Route path="categories" element={<CategoriesList />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
