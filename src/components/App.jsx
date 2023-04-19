@@ -7,6 +7,8 @@ import ModalRegister from './ModalRegister/ModalRegister';
 import ExpensesList from './Statistics/ExpensesList/ExpensesList';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from 'redux/Auth/authOperations';
+import { PublicRoute } from './Route/PublicRoute';
+import { PrivateRoute } from './Route/PrivateRoute';
 
 const CashflowPage = lazy(() => import('../pages/CashflowPage/CashflowPage'));
 const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage/OwnPlanPage'));
@@ -28,13 +30,13 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="login" element={<ModalLogin />} />
-        <Route path="register" element={<ModalRegister />} />
-        <Route path="plan" element={<OwnPlanPage />} />
-        <Route path="cash-flow" element={<CashflowPage />} />
-        <Route path="dynamics" element={<DynamicsPage />} />
-        <Route path="statistics" element={<StatisticsPage />}>
+        <Route index element={<PublicRoute component={<HomePage />}/>} />
+        <Route path="login" element={<PublicRoute component={<ModalLogin />}/>} />
+        <Route path="register" element={<PublicRoute component={<ModalRegister />}/>} />
+        <Route path="plan" element={<PrivateRoute component={<OwnPlanPage />}/>} />
+        <Route path="cash-flow" element={<PrivateRoute component={<CashflowPage />}/>} />
+        <Route path="dynamics" element={<PrivateRoute component={<DynamicsPage />}/>} />
+        <Route path="statistics" element={<PrivateRoute component={<StatisticsPage />}/>}>
           <Route path="transactions" element={<ExpensesList />} />
           <Route path="categories" element={<CategoriesList />} />
         </Route>
