@@ -1,0 +1,36 @@
+@import '/assets/styles/mixin';
+
+.primary {
+  background-color: rgb(58, 106, 245);
+  color: var(--main-text);
+}
+
+.primary:hover {
+  background-color: rgb(243, 243, 243);
+  color: rgba(36, 36, 36, 1);
+}
+
+.secondary {
+  background-color: rgb(243, 243, 243);
+  color: rgba(36, 36, 36, 1);
+}
+
+.secondary:hover {
+  background-color: rgb(58, 106, 245);
+  color: var(--main-text);
+}
+
+.button {
+  width: 100%;
+  height: 36px;
+  padding: 8px;
+  border: none;
+  border-radius: 60px;
+
+  @include font(700, 14px, 1.43);
+  font-feature-settings: 'liga' off;
+
+  transition-property: 'color, background-color';
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
