@@ -1,10 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import HomePage from 'pages/HomePage/HomePage';
 import SharedLayout from './SharedLayout/SharedLayout';
 import ModalLogin from './ModalLogin/ModalLogin';
 import ModalRegister from './ModalRegister/ModalRegister';
 import ExpensesList from './Statistics/ExpensesList/ExpensesList';
+import { useDispatch } from 'react-redux';
+import { getCurrentUser } from 'redux/Auth/authOperations';
 
 const CashflowPage = lazy(() => import('../pages/CashflowPage/CashflowPage'));
 const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage/OwnPlanPage'));
@@ -17,6 +19,12 @@ const CategoriesList = lazy(() =>
 );
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
