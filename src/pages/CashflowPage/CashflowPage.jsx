@@ -1,5 +1,9 @@
+import TransactionDataList from "components/TransactionDataList/TransactionDataList";
+
 const CashflowPage = () => {
-  return <></>;
+  return (
+    <TransactionDataList/>
+  )
 };
 
 export default CashflowPage;
