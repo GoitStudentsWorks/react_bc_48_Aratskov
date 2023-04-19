@@ -1,28 +1,25 @@
-@import "../../../assets/styles/mixin";
-
 .style {
   display: flex;
   justify-content: space-between;
-
   margin: 0 auto;
-
-  @include mobile {
+}
+@media screen and (min-width: 480px) {
+  .style {
     align-items: flex-start;
     flex-direction: column-reverse;
-
     width: 343px;
     color: yellow;
-  };
-
-  @include tablet {
-    // width: max(100% - 32px, 769px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .style {
     width: 704px;
     color: red;
-  };
-
-  @include desktop {
-    // width: max(100% - 255px, 769px);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .style {
     width: 769px;
     color: green;
-  };
-}
+  }
+}/*# sourceMappingURL=Statistics.module.css.map */

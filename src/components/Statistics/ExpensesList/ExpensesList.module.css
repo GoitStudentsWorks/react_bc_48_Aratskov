@@ -1,0 +1,28 @@
+.style {
+  height: 476px;
+  margin: 0 auto;
+  background-color: #252C41;
+  box-shadow: 0px 11px 38px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 16px 16px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+@media screen and (min-width: 480px) {
+  .style {
+    width: 343px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .style {
+    width: 704px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .style {
+    width: 769px;
+  }
+}/*# sourceMappingURL=ExpensesList.module.css.map */
