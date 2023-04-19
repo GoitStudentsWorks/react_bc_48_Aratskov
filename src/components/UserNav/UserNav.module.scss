@@ -1,0 +1,19 @@
+@import '/assets/styles/mixin';
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    @include desktop{
+        flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    }
+}
+
+.item{
+    font-size: 14px;
+    font-weight: 700;
+}
