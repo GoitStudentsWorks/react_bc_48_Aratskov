@@ -1,4 +1,4 @@
-import st from './Header.module.css';
+import st from './Header.module.scss';
 import Logo from 'components/Logo/Logo';
 import Navigation from 'components/Navigation/Navigation';
 import UserBar from 'components/UserBar/UserBar';
@@ -9,6 +9,8 @@ const Header = () => {
   // setIsAuth(false);
   return (
     <header className={st.header}>
+    <div className="container">
+    <div className={st.wrapper}>
     {isAuth&&(<>
       <Navigation />
       <Logo />
@@ -20,7 +22,8 @@ const Header = () => {
       <Navigation />
       
     </>)}
-      
+    </div>
+    </div>
     </header>
   );
 };

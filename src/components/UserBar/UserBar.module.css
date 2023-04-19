@@ -18,8 +18,15 @@
     height: 40px;
 }
 
+.diagram{
+    width: 40px;
+    height: 40px;
+}
+
 .avatar{
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
