@@ -1,26 +1,20 @@
 .style {
+  overflow: scroll;
+  overflow-x: hidden;
   height: 476px;
   margin: 0 auto;
-  padding: 0 15px;
+  width: 343px;
   background-color: #252C41;
   box-shadow: 0px 11px 38px rgba(0, 0, 0, 0.2);
-  border-radius: 0px 0px 16px 16px;
-}
-@media screen and (min-width: 480px) {
-  .style {
-    width: 343px;
-    color: yellow;
-  }
+  border-radius: 0px 16px 16px 16px;
 }
 @media screen and (min-width: 768px) {
   .style {
     width: 704px;
-    color: red;
   }
 }
 @media screen and (min-width: 1280px) {
   .style {
     width: 769px;
-    color: green;
   }
 }/*# sourceMappingURL=CategoriesList.module.css.map */

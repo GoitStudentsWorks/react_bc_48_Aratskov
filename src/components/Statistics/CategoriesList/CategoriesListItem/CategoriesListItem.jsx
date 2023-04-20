@@ -1,19 +1,16 @@
+import s from './CategoriesListItem.module.css';
 const CategoriesListItem = ({ item }) => {
   return (
     <>
-      <li>
-        <ul
-          style={{
-            display: 'flex',
-            gap: '50px',
-            paddingBottom: '30px',
-            paddingLeft: '30px',
-          }}
-        >
+      <li className={s.main}>
+        <ul className={s.li}>
           <li>{item.categorie}</li>
-          <li>{item.cost}</li>
-          <li>persent</li>
+          <li>{item.cost} UAH</li>
         </ul>
+
+        <div className={s.persent}>
+          <p>9%</p>
+        </div>
       </li>
     </>
   );
