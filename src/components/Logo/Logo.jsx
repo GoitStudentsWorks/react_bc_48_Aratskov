@@ -1,5 +1,5 @@
 import icons from '../../icons/sprite.svg';
-import st from './Logo.module.css';
+import st from './Logo.module.scss';
 
 const LogoIcon = () => {
   return (

@@ -1,4 +1,4 @@
-import st from './AuthNav.module.css';
+import st from './AuthNav.module.scss';
 import { NavLink} from 'react-router-dom';
 import { Button } from 'components/Button/Button';
 
@@ -8,12 +8,12 @@ const AuthNav = () => {
       <div className={st.buttons}>
         <div className={st.buttonLogin}>
           <NavLink to="/login">
-            <Button variant="secondary" children={'Login'} nativeProps={{ style: { width: 80 } }}></Button>
+            <Button variant="secondary" children={'Login'} ></Button>
           </NavLink>
         </div>
         <div className={st.buttonReg}>
           <NavLink to="/register">
-            <Button variant="secondary" children={'Registration'} nativeProps={{ style: { width: 132 } }}></Button>
+            <Button variant="secondary" children={'Registration'} ></Button>
           </NavLink>
         </div>
       </div>

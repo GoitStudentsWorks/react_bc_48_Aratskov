@@ -15,7 +15,7 @@ const IconDiagram = () => {
 const IconBurger = () => {
     return (
       <svg className={st.diagram}>
-        <use href={`${icons}#icon-rectangle`}></use>
+        <use href={`${icons}#icon-burger-menu`}></use>
       </svg>
     );
   };
