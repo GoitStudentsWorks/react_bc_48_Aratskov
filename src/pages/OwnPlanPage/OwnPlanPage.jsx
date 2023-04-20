@@ -1,4 +1,6 @@
 import PlanInputsList from 'components/PlanInputsList/PlanInputsList';
+import { Button } from 'components/Button/Button';
+import css from './OwnPlanPage.module.css'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -38,7 +40,7 @@ const OwnPlanPage = () => {
   console.log(formik.errors.salary);
   return (
     <form onSubmit={formik.handleSubmit}>
-      <button type="submit">Pre Plan</button>
+      <Button nativeProps={{ style: { width: 150, marginBottom: 20 } }} type="submit">Pre Plan</Button>
       <PlanInputsList
         onChange={formik.handleChange}
         salary={formik.values.salary}
