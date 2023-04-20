@@ -5,6 +5,7 @@ import ModalBurger from 'components/ModalBurger/ModalBurger';
 import icons from 'assets/icons/sprite.svg';
 // import iconsBurg from '../../icons/menu.svg';
 import { ButtonLogout } from 'components/ButtonLogout/ButtonLogout';
+import { usePopup } from 'hooks/usePopup';
 
 const IconDiagram = () => {
   return (
@@ -14,19 +15,17 @@ const IconDiagram = () => {
   );
 };
 
-const handlerBurger = () =>{
-  return(
-    <ModalBurger />
-  )
-}
-
 const IconBurger = () => {
-    return (
-      <svg className={st.diagram} onClick={handlerBurger}>
+  const { showPopup, closePopup, show } = usePopup();
+  return (
+    <>
+      <svg className={st.diagram} onClick={showPopup}>
         <use href={`${icons}#icon-burger-menu`}></use>
       </svg>
-    );
-  };
+      <ModalBurger show={show} onClose={closePopup} />
+    </>
+  );
+};
 
 const UserBar = () => {
   return (
@@ -41,15 +40,12 @@ const UserBar = () => {
           <span className={st.avatar}>N</span>
         </li>
         <li className={st.itemBurger}>
-          
-            <IconBurger />
-          
+          <IconBurger />
         </li>
         <li className={st.itemButton}>
           <ButtonLogout />
         </li>
       </ul>
-      
     </>
   );
 };
