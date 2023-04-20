@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import s from './Button.module.scss';
 import PropTypes from 'prop-types';
 
@@ -5,15 +6,15 @@ export const Button = ({
   variant = 'primary',
   type = 'button',
   onClick,
+  className,
   nativeProps,
   children,
 }) => {
-  const className = `${s.button} ${s[variant]}`;
   return (
     <button
       type={type}
       onClick={onClick}
-      className={className}
+      className={clsx(className, s.button, s[variant])}
       {...nativeProps}
     >
       {children}

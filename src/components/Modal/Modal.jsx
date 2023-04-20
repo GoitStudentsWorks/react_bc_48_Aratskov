@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
-import s from './Modal.module.css';
+import s from './Modal.module.scss';
 import { useEffect } from 'react';
+import clsx from 'clsx';
+import icons from '../../assets/icons/sprite.svg';
 
 export default function Modal({
   show,
   showCloseBtn = true,
   onClose,
+  className,
   children,
 }) {
   useEffect(() => {
@@ -29,10 +32,12 @@ export default function Modal({
             e.stopPropagation();
           }}
         >
-          <div className={s.popup}>
+          <div className={clsx(className, s.popup)}>
             {showCloseBtn && (
-              <button type="button" onClick={onClose} className={s.btnClose}>
-                X
+              <button className={s.btnClose} onClick={onClose}>
+                <svg className={s.iconClose}>
+                  <use href={`${icons}#icon-close`}></use>
+                </svg>
               </button>
             )}
             {children}
