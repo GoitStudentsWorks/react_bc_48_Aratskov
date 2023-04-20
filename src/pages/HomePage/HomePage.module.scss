@@ -1,0 +1,112 @@
+@import '/assets/styles/mixin';
+
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+
+//   @include desktop {
+//     flex-direction: row;
+//     padding-top: 53px;
+//   }
+// }
+.titleWrapper {
+  font-family: var(--second-fonts);
+  font-weight: 500;
+  padding-top: 60px;
+
+  
+  text-transform: uppercase;
+  font-feature-settings: 'liga' off;
+  color: var(--main-text);
+
+  @include mobile{
+    padding-top: 60px;
+
+  }
+
+  @include tablet {
+    margin-top: 72px;
+    margin-bottom: 124px;
+  }
+
+  @include desktop {
+    margin-top: 89px;
+    padding-top: 53px;
+  }
+}
+
+.titleBlue {
+  background-color: var(--accent-color-normal-state);
+  border-radius: 60px;
+  width: fit-content;
+  padding: 10px 24px;
+ 
+  font-size: 28px;
+  line-height: 1;
+  @include mobile{
+    font-size: 28px;
+  }
+  @include tablet{
+    font-size: 48px;
+  }
+  @include desktop{
+    font-size: 48px;
+  }
+}
+
+.title{
+  padding: 10px;
+  font-size: 24px;
+  line-height: 1.42;
+
+  @include mobile{
+    font-size: 24px;
+  line-height: 1.42;
+
+  }
+  @include tablet{
+    font-size: 48px;
+    line-height: 1;
+  }
+  @include desktop{
+    font-size: 48px;
+    line-height: 1;
+
+  }
+}
+
+.text {
+  // font-family: var(--second-fonts);
+  // font-weight: 500;
+  font-size: 24px;
+  line-height: 1.42;
+  letter-spacing: -0.02em;
+
+
+  @include tablet {
+    font-size: 44px;
+    line-height: 1.28;
+  }
+
+  @include desktop {
+    font-size: 44px;
+    line-height: 1.28;
+  }
+}
+
+.image {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  @include tablet {
+    transform: translateY(4%);
+    padding-left: 56px;
+    padding-right: 56px;
+  }
+  @include desktop {
+    width: 616px;
+    transform: translate(109%, 4%);
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

@@ -57,5 +57,8 @@
 <path fill="none" stroke="#f3f3f3" style="stroke: var(--color1, #f3f3f3)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M4 16h24"></path>
 <path fill="none" stroke="#f3f3f3" style="stroke: var(--color1, #f3f3f3)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M4 22.667h24"></path>
 </symbol>
+<symbol id="icon-burger-close" viewBox="0 0 32 32">
+<path fill="#f3f3f3" style="fill: var(--color1, #f3f3f3)" d="M25.333 8.547l-1.88-1.88-7.453 7.453-7.453-7.453-1.88 1.88 7.453 7.453-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.453z"></path>
+</symbol>
 </defs>
 </svg>

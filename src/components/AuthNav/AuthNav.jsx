@@ -13,7 +13,7 @@ const AuthNav = () => {
         </div>
         <div className={st.buttonReg}>
           <NavLink to="/register">
-            <Button variant="secondary" children={'Registration'} ></Button>
+            <Button variant="primary" children={'Registration'} ></Button>
           </NavLink>
         </div>
       </div>
