@@ -1,5 +1,6 @@
-import st from './UserBar.module.css';
+import st from './UserBar.module.scss';
 import { NavLink } from 'react-router-dom';
+import ModalBurger from 'components/ModalBurger/ModalBurger';
 
 import icons from 'assets/icons/sprite.svg';
 // import iconsBurg from '../../icons/menu.svg';
@@ -13,9 +14,15 @@ const IconDiagram = () => {
   );
 };
 
+const handlerBurger = () =>{
+  return(
+    <ModalBurger />
+  )
+}
+
 const IconBurger = () => {
     return (
-      <svg className={st.diagram}>
+      <svg className={st.diagram} onClick={handlerBurger}>
         <use href={`${icons}#icon-burger-menu`}></use>
       </svg>
     );
@@ -33,7 +40,7 @@ const UserBar = () => {
         <li className={st.item}>
           <span className={st.avatar}>N</span>
         </li>
-        <li className={st.item}>
+        <li className={st.itemBurger}>
           
             <IconBurger />
           

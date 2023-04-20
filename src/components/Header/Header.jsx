@@ -17,7 +17,7 @@ const Header = () => {
           {/* <button style={isAuth?{backgroundColor: "green"}:{backgroundColor: "#ffffff"}} onClick={()=>setIsAuth(!isAuth)}>AUTH</button> */}
           {isAuth && (
             <>
-              <Navigation isAuth={isAuth} />
+              <Navigation  />
               <Logo />
               <UserBar />
             </>
@@ -25,7 +25,7 @@ const Header = () => {
           {!isAuth && (
             <>
               <Logo />
-              <Navigation auth={isAuth} />
+              <Navigation  />
             </>
           )}
         </div>
