@@ -1,0 +1,28 @@
+@import "../../../assets/styles/mixin";
+
+.style {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 auto;
+
+  @include mobile {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+
+    width: 343px;
+    color: yellow;
+  };
+
+  @include tablet {
+    // width: max(100% - 32px, 769px);
+    width: 704px;
+    color: red;
+  };
+
+  @include desktop {
+    // width: max(100% - 255px, 769px);
+    width: 769px;
+    color: green;
+  };
+}

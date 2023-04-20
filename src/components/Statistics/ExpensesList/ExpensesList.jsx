@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ExpensesListItem from './ExpensesListItem/ExpensesListItem';
+import s from './ExpensesList.module.css';
 
 const initialState = [
   {
@@ -23,8 +24,7 @@ const ExpensesList = () => {
   const [expenses] = useState(initialState);
 
   return (
-    <div>
-      <h2 style={{ paddingBottom: '20px' }}>Expenses</h2>
+    <div className={s.style}>
       <ul>
         {expenses.map(item => (
           <ExpensesListItem item={item} />
