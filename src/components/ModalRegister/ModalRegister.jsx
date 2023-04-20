@@ -15,6 +15,15 @@ const ModalRegister = () => {
   return (
     <BackdropModal closeModal={() => navigate('/')}>
       <Form title={'Registration'} titleBtn={'Sign In'} onSubmit={handleSubmit}>
+        <label htmlFor="name">
+          Name
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+          />
+        </label>
         <label htmlFor="email">
           Email
           <input
@@ -24,22 +33,13 @@ const ModalRegister = () => {
             placeholder="Enter your email"
           />
         </label>
-        <label htmlFor="name">
-          Name
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Enter your email"
-          />
-        </label>
         <label htmlFor="password">
           Password
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="Enter your email"
+            placeholder="Enter your password"
           />
         </label>
       </Form>
