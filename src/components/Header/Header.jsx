@@ -5,7 +5,7 @@ import UserBar from 'components/UserBar/UserBar';
 import { useState } from 'react';
 
 const Header = () => {
-  const [isAuth,setIsAuth] = useState(true);
+  // const [isAuth,setIsAuth] = useState(true);
   // setIsAuth(false);
   return (
     <header className={st.header}>
