@@ -1,9 +1,11 @@
-import st from './UserBar.module.css';
+import st from './UserBar.module.scss';
 import { NavLink } from 'react-router-dom';
+import ModalBurger from 'components/ModalBurger/ModalBurger';
 
 import icons from 'assets/icons/sprite.svg';
 // import iconsBurg from '../../icons/menu.svg';
 import { ButtonLogout } from 'components/ButtonLogout/ButtonLogout';
+import { usePopup } from 'hooks/usePopup';
 
 const IconDiagram = () => {
   return (
@@ -14,12 +16,16 @@ const IconDiagram = () => {
 };
 
 const IconBurger = () => {
-    return (
-      <svg className={st.diagram}>
+  const { showPopup, closePopup, show } = usePopup();
+  return (
+    <>
+      <svg className={st.diagram} onClick={showPopup}>
         <use href={`${icons}#icon-burger-menu`}></use>
       </svg>
-    );
-  };
+      <ModalBurger show={show} onClose={closePopup} />
+    </>
+  );
+};
 
 const UserBar = () => {
   return (
@@ -33,16 +39,13 @@ const UserBar = () => {
         <li className={st.item}>
           <span className={st.avatar}>N</span>
         </li>
-        <li className={st.item}>
-          
-            <IconBurger />
-          
+        <li className={st.itemBurger}>
+          <IconBurger />
         </li>
         <li className={st.itemButton}>
           <ButtonLogout />
         </li>
       </ul>
-      
     </>
   );
 };

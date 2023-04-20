@@ -1,3 +1,5 @@
+@import '/assets/styles/mixin';
+
 .list{
     display: flex;
     flex-direction: row;
@@ -10,12 +12,26 @@
 .item{
     display: inline-block;
     vertical-align: middle;
+}
 
+.itemBurger{
+    display: inline-block;
+    vertical-align: middle;
+@include desktop{
+    display: none;
+}
+&:hover{
+    cursor: pointer;
+}
 }
 
 .itemButton{
     width: 119px;
     height: 40px;
+    display: none;
+    @include desktop{
+        display: block;
+    }
 }
 
 .diagram{
