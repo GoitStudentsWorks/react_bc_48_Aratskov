@@ -1,4 +1,4 @@
-export const getAuthStatus = state => state.auth.isLoggedIn;
+export const getAuthStatus = state => Boolean(state.auth.token);
 
 export const getErrorStatus = state => Boolean(state.auth.error);
 

@@ -1,16 +1,23 @@
-// import CategoriesList from '../CategoriesList/CategoriesList';
-// import ExpensesList from '../ExpensesList/ExpensesList';
 import { NavLink } from 'react-router-dom';
+import s from './StatisticPageNav.module.css';
+import clsx from 'clsx';
 
 const StatisticPageNav = () => {
+  const getACtiveClass = ({ isActive }) => clsx(s.btn, !isActive && s.NoActive);
+
   return (
-    <>
-      {/* <ExpensesList /> */}
-      {/* <CategoriesList /> */}
-      <NavLink to="transactions">Expenses</NavLink>
-      <NavLink to="categories">Categories</NavLink> 
-      
-    </>
+    <div className={s.style}>
+      <div>
+        <NavLink to="transactions" className={getACtiveClass}>
+          Expenses
+        </NavLink>
+      </div>
+      <div>
+        <NavLink to="categories" className={getACtiveClass}>
+          Categories
+        </NavLink>
+      </div>
+    </div>
   );
 };
 

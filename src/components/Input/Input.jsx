@@ -1,17 +1,21 @@
-import css from './Input.module.css'
+import css from './Input.module.css';
 
-const Input = ({ label, value, placeholder,name }) => {
+const Input = ({ id,label, value, placeholder, name, onChange }) => {
   return (
-      <label className={css.label}>
-          {label}
+    <div className={css.wrapp}>
+      <label className={css.label} htmlFor={name}>
+        {label}
+      </label>
       <input
+        id={id}
         className={css.input}
         type="text"
         name={name}
         placeholder={placeholder}
         value={value}
+        onChange={onChange}
       />
-    </label>
+    </div>
   );
 };
 

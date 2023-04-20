@@ -1,0 +1,15 @@
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+/* .buttonLogin{
+    width: 80px;
+}
+
+.buttonReg{
+    width: 132px;
+} */

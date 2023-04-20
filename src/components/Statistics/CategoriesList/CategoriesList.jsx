@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CategoriesListItem from './CategoriesListItem/CategoriesListItem';
+import s from './CategoriesList.module.css';
 
 const initialState1 = [
   {
@@ -19,8 +20,7 @@ const initialState1 = [
 const CategoriesList = () => {
   const [expenses] = useState(initialState1);
   return (
-    <div>
-      <h2 style={{ paddingBottom: '20px' }}>Categories</h2>
+    <div className={s.style}>
       <ul>
         {expenses.map(item => (
           <CategoriesListItem item={item} />

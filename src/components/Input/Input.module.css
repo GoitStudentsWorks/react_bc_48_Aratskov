@@ -2,27 +2,40 @@
   width: 343px;
   /*336,370 - tab,desc*/
   height: 74px;
-  padding: 14px 18px 18px 18px;
+  padding: 33px 18px 18px 18px;
+  border: transparent;
 
-  /*font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  display: flex;
-  align-items: center;*/
-
+  background: rgba(37, 44, 65, 0.5);
+  border-radius: 16px;
   font-size: 16px;
   line-height: 1.19;
   color: #f3f3f3;
 }
 
+.input::placeholder {
+  font-size: 16px;
+  line-height: 1.19;
+  color: #f3f3f3;
+}
+
+.input:focus {
+  outline: 1px solid #3a6af5;
+}
+
 .label {
-  /* font-family: 'Lato';
-        font-style: normal;
-        font-weight: 400; */
-  /* display: flex;
-        align-items: center; */
+  position: absolute;
+  top: 14px;
+  left: 18px;
 
   font-size: 12px;
   line-height: 1.17;
   color: rgba(243, 243, 243, 0.4);
+}
+
+.input:focus .label {
+    color: #3a6af5;
+}
+
+.wrapp {
+  position: relative;
 }
