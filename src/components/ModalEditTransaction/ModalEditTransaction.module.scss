@@ -2,7 +2,7 @@
   width: 137px;
 }
 
-.inputWrapper div:not(:last-child) {
+.inputWrapper > div:not(:last-child) {
   margin-bottom: 18px;
 }
 
