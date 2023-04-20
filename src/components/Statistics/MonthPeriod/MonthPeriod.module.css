@@ -1,22 +1,15 @@
 .style {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
   position: relative;
   width: 217px;
   height: 56px;
-  bottom: 18px;
-  display: flex;
-  align-items: center;
+  bottom: 28px;
   background: rgba(37, 44, 65, 0.5);
   border-radius: 16px;
-}
-@media screen and (min-width: 768px) {
-  .style {
-    bottom: 8px;
-  }
-}
-
-.name {
-  padding: 14px 18px;
-  padding-right: 0;
+  border: none;
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
@@ -24,14 +17,40 @@
   line-height: 19px;
   color: #F3F3F3;
 }
+@media screen and (min-width: 768px) {
+  .style {
+    bottom: 8px;
+  }
+}
 
 .icon {
-  padding-left: 60px;
-  width: 80px;
+  width: 22px;
   height: 22px;
 }
 
-.test {
+.calendar {
+  background-color: #F3F3F3;
+  padding: 0;
+}
+
+.calendarHeader {
+  padding: 10px;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #242424;
+}
+
+.v {
+  height: 20px;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .v {
+    height: 40px;
+  }
 }/*# sourceMappingURL=MonthPeriod.module.css.map */
