@@ -72,6 +72,7 @@ const DynamicsPage = () => {
           useBorderRadius: true,
           borderRadius: 5.5,
           textAlign: 'left',
+          
         },
       },
     },
@@ -79,6 +80,7 @@ const DynamicsPage = () => {
       bar: {
         borderWidth: 2,
         borderRadius: 10,
+        indexAxis: 'y',
       },
     },
     
