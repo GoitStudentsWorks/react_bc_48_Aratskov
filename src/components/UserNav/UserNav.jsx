@@ -1,4 +1,4 @@
-import st from './UserNav.module.css';
+import st from './UserNav.module.scss';
 import { NavLink } from 'react-router-dom';
 
 const UserNav = () => {

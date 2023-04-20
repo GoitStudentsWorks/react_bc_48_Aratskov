@@ -28,10 +28,11 @@ const authSlice = createSlice({
         };
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
+        const { name, email } = payload.user;
         return {
           ...state,
           ...payload,
+          user: { name, email },
           token: payload.token,
           isLoggedIn: true,
         };
