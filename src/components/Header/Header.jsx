@@ -5,21 +5,22 @@ import UserBar from 'components/UserBar/UserBar';
 import { useState } from 'react';
 
 const Header = () => {
-  const [isAuth] = useState(true);
+  const [isAuth,setIsAuth] = useState(true);
   // setIsAuth(false);
   return (
     <header className={st.header}>
     <div className="container">
     <div className={st.wrapper}>
+    <button style={isAuth?{backgroundColor: "green"}:{backgroundColor: "#ffffff"}} onClick={()=>setIsAuth(!isAuth)}>ToogleAuth</button>
     {isAuth&&(<>
-      <Navigation />
+      <Navigation isAuth={isAuth}/>
       <Logo />
       <UserBar />
       </>
     )}
     {!isAuth&&(<>
       <Logo />
-      <Navigation />
+      <Navigation auth={isAuth}/>
       
     </>)}
     </div>
