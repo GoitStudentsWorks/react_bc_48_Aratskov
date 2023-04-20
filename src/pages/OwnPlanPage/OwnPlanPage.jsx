@@ -1,6 +1,6 @@
 import PlanInputsList from 'components/PlanInputsList/PlanInputsList';
 import { Button } from 'components/Button/Button';
-import css from './OwnPlanPage.module.css'
+// import css from './OwnPlanPage.module.css'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 

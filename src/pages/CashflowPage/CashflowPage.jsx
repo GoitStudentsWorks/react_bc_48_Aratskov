@@ -8,7 +8,7 @@ import { ModalAddBalance } from 'components/ModalAddBalance/ModalAddBalance';
 
 const CashflowPage = () => {
    const { show, showPopup, closePopup } = usePopup();
-  const formik = useFormik({
+  useFormik({
     initialValues: {
       category: '',
       comment: '',
