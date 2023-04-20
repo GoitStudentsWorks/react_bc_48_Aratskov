@@ -1,7 +1,21 @@
+// @import '../../../assets/fonts';
+// @import '../../../assets/styles/';
+
 .containerSelect {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 46px;
+}
+
+.react-select {
+  &__indicator-separator {
+    background-color: transparent !important;
+  }
+}
+
+@mixin media-desktop {
+  @media (min-widht: 700px) {
+  }
 }

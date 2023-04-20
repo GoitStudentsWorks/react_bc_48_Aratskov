@@ -1,4 +1,5 @@
 import style from './AccumulateMore.module.scss';
+import device from '../../../assets/img/device-2x.png';
 
 const Accumulate = () => {
   return (
@@ -8,7 +9,7 @@ const Accumulate = () => {
         <p>14 000 &#8372;</p>
       </div>
       <div>
-        <img src="#" alt="accumulate" />
+        <img src={device} alt="accumulate" />
       </div>
     </div>
   );
