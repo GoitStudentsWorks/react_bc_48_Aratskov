@@ -80,7 +80,6 @@ const DynamicsPage = () => {
       bar: {
         borderWidth: 2,
         borderRadius: 10,
-        indexAxis: 'y',
       },
     },
     
