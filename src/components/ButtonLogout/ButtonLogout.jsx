@@ -1,6 +1,6 @@
 import s from './ButtonLogout.module.scss';
 import PropTypes from 'prop-types';
-import icons from '../../icons/sprite.svg';
+import icons from '../../assets/icons/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from 'redux/Auth/authOperations';
 
