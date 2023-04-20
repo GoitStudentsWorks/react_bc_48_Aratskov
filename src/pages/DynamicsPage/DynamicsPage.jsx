@@ -52,22 +52,49 @@ const DynamicsPage = () => {
       },
       {
         label: 'Income',
-        data: [
-          1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-          1000,
-        ],
+        data: [800, 500, 800, 450, 750, 850, 950, 1000, 450, 600, 1000, 750],
         backgroundColor: 'rgba(243, 243, 243, 1)',
       },
     ],
   };
 
-  const options = {};
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'start',
+        
+        labels: {
+          // pointStyle: 'circle',
+          boxWidth: 11,
+          boxHeight: 11,
+          useBorderRadius: true,
+          borderRadius: 5.5,
+          textAlign: 'left',
+        },
+      },
+    },
+    elements: {
+      bar: {
+        borderWidth: 2,
+        borderRadius: 10,
+      },
+    },
+    
+  };
+
+  const chartjsStyle = {
+    width: 'auto',
+    height: '270px',
+    margin: 'auto auto',
+  };
 
   return (
     <>
       <h2>Dynamics of expenses and savings</h2>
       <div>
-        <Bar data={data} options={options} />
+        <Bar style={chartjsStyle} data={data} options={options} />
       </div>
       <div className={style.containerSelect}>
         <DynamicsSelect />
