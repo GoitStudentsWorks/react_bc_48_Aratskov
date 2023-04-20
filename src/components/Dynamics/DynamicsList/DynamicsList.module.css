@@ -1,0 +1,18 @@
+.list {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 14px;
+}
+
+.list_block {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 12px 10px;
+
+  background: rgba(31, 37, 52, 0.5);
+  border-radius: 16px;
+}
