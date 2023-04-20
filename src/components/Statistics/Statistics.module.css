@@ -1,25 +1,25 @@
 .style {
   display: flex;
-  justify-content: space-between;
   margin: 0 auto;
+  width: 343px;
+  margin-top: 124px;
 }
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 767px) {
   .style {
     align-items: flex-start;
     flex-direction: column-reverse;
-    width: 343px;
-    color: yellow;
   }
 }
 @media screen and (min-width: 768px) {
   .style {
+    justify-content: space-between;
     width: 704px;
-    color: red;
+    margin-top: 66px;
   }
 }
 @media screen and (min-width: 1280px) {
   .style {
+    justify-content: space-between;
     width: 769px;
-    color: green;
   }
 }/*# sourceMappingURL=Statistics.module.css.map */

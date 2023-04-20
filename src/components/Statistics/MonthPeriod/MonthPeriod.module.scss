@@ -1,0 +1,42 @@
+@import "../../../../assets/styles/mixin";
+
+.style {
+    position: relative;
+    width: 217px;
+    height: 56px;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+
+    @include tablet {
+        bottom: 8px;
+    }
+
+
+    background: rgba(37, 44, 65, 0.5);
+    border-radius: 16px;
+}
+
+.name {
+    padding: 14px 18px;
+    padding-right: 0;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+
+    color: #F3F3F3;
+}
+
+.icon {
+    padding-left: 60px;
+    width: 80px;
+    height: 22px;
+}
+
+.test {
+    display: flex;
+    align-items: center;
+}
