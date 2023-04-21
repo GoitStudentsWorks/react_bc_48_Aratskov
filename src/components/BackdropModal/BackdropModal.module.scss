@@ -1,17 +1,24 @@
 @import '/assets/styles/mixin';
 
+.wrapper {
+  @media screen and (max-width: 768px) {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
 .backdrop {
   @media screen and (max-width: 768px) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     background-color: #3a6af5;
     width: 100vw;
     height: 70vh;
-    position: absolute;
-    bottom: 0;
     border-radius: 40px 40px 0px 0px;
-    margin-left: auto;
-    margin-right: auto;
   }
   @include tablet {
     position: absolute;
