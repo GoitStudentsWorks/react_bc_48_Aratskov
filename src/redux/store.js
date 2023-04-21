@@ -24,6 +24,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import dinamicsReducer from './Dynamics/dinamicsSlice';
 
 const persistContactsConfig = {
   key: 'auth',
@@ -40,6 +41,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedContactsReducer,
     plan: planReducer,
+    dinamics: dinamicsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

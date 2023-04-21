@@ -113,13 +113,11 @@ const DynamicsPage = () => {
   const chartjsStyle = {
     width: '422px',
     height: '219px',
-    margin: 'auto auto',
   };
 
   const chartjsStyleHorizontal = {
     width: '436px',
     height: '222px',
-    margin: 'auto auto',
   };
 
   return (
