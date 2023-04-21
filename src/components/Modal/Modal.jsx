@@ -3,6 +3,9 @@ import s from './Modal.module.scss';
 import { useEffect } from 'react';
 import clsx from 'clsx';
 import icons from '../../assets/icons/sprite.svg';
+import { createPortal } from 'react-dom';
+
+const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({
   show,
@@ -24,7 +27,7 @@ export default function Modal({
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     show && (
       <div className={s.backdrop} onClick={onClose}>
         <div
@@ -44,7 +47,8 @@ export default function Modal({
           </div>
         </div>
       </div>
-    )
+    ),
+    modalRoot
   );
 }
 
