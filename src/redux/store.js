@@ -42,8 +42,10 @@ export const store = configureStore({
   reducer: {
     auth: persistedContactsReducer,
     plan: planReducer,
+
     burger: burgerReducer,
     dinamics: dinamicsReducer,
+
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
