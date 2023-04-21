@@ -4,7 +4,7 @@ import s from './LabledInput.module.scss';
 
 export const LabledInput = ({ label, value, className, inputClassName }) => {
   return (
-    <div className={className}>
+    <div className={clsx(className, s.wrapper)}>
       <p className={s.label}>{label}</p>
       <BasicInput
         value={value}
