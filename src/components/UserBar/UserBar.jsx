@@ -1,11 +1,12 @@
 import st from './UserBar.module.scss';
 import { NavLink } from 'react-router-dom';
-import ModalBurger from 'components/ModalBurger/ModalBurger';
 
 import icons from 'assets/icons/sprite.svg';
-// import iconsBurg from '../../icons/menu.svg';
 import { ButtonLogout } from 'components/ButtonLogout/ButtonLogout';
-import { usePopup } from 'hooks/usePopup';
+// import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getName } from 'redux/Auth/authSelectors';
+import { toogleOpen } from 'redux/BurgerMenu/burgerSlice';
 
 const IconDiagram = () => {
   return (
@@ -15,19 +16,24 @@ const IconDiagram = () => {
   );
 };
 
-const IconBurger = () => {
-  const { showPopup, closePopup, show } = usePopup();
-  return (
-    <>
-      <svg className={st.diagram} onClick={showPopup}>
-        <use href={`${icons}#icon-burger-menu`}></use>
-      </svg>
-      <ModalBurger show={show} onClose={closePopup} />
-    </>
-  );
-};
-
 const UserBar = () => {
+  // const [burg, setBurg] = useState(true);
+  const user = useSelector(getName);
+  const burg = useSelector(state => state.burger);
+  const dispatch = useDispatch();
+
+  const handlerOpen = () => {
+    // setBurg(false);
+    dispatch(toogleOpen(true));
+    // console.log('open');
+  };
+
+  const handlerClose = () => {
+    // setBurg(true);
+    dispatch(toogleOpen(false));
+    // console.log('close');
+  };
+
   return (
     <>
       <ul className={st.list}>
@@ -37,15 +43,25 @@ const UserBar = () => {
           </NavLink>
         </li>
         <li className={st.item}>
-          <span className={st.avatar}>N</span>
+          <span className={st.avatar}>{user ? user.slice(0, 1) : 'N'}</span>
         </li>
         <li className={st.itemBurger}>
-          <IconBurger />
+          {!burg && (
+            <svg className={st.diagram} onClick={handlerOpen}>
+              <use href={`${icons}#icon-burger-menu`}></use>
+            </svg>
+          )}
+          {burg && (
+            <svg className={st.diagram} onClick={handlerClose}>
+              <use href={`${icons}#icon-burger-close`}></use>
+            </svg>
+          )}
         </li>
         <li className={st.itemButton}>
           <ButtonLogout />
         </li>
       </ul>
+      {/* <ModalBurger show={show}  /> */}
     </>
   );
 };

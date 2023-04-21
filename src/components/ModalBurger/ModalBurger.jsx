@@ -1,14 +1,21 @@
-import Modal from 'components/Modal/Modal';
 import st from './ModalBurger.module.scss';
 import UserNav from 'components/UserNav/UserNav';
 import { ButtonLogout } from 'components/ButtonLogout/ButtonLogout';
 
-const ModalBurger = ({ show, onClose }) => {
+const ModalBurger = () => {
   return (
-    <Modal show={show} onClose={onClose} className={st.popup}>
-      <UserNav />
-      <ButtonLogout />
-    </Modal>
+    <>
+    <div className='container'>
+      <div className={st.burger}>
+        <UserNav />
+        <div className={st.logoutWrap}>
+        <div className={st.logout}>
+        <ButtonLogout />
+        </div>
+        </div>
+      </div>
+      </div>
+    </>
   );
 };
 
