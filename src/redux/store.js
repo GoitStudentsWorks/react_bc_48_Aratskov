@@ -12,6 +12,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './Auth/authSlice';
 import planReducer from './PersonalPlan/personalPlanSlice'
+import { burgerReducer } from './BurgerMenu/burgerSlice';
 
 import {
   persistStore,
@@ -41,7 +42,10 @@ export const store = configureStore({
   reducer: {
     auth: persistedContactsReducer,
     plan: planReducer,
+
+    burger: burgerReducer,
     dinamics: dinamicsReducer,
+
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
