@@ -6,32 +6,32 @@ const DynamicsList = () => {
       <ul className={style.list}>
         <li>
           <div className={style.list_block}>
-            <p>Income, &#8372;</p>
-            <p>600</p>
+            <p className={style.label}>Income, &#8372;</p>
+            <p className={style.amount}>600</p>
           </div>
         </li>
         <li>
           <div className={style.list_block}>
-            <p>Expenses, &#8372;</p>
-            <p>300</p>
+            <p className={style.label}>Expenses, &#8372;</p>
+            <p className={style.amount}>300</p>
           </div>
         </li>
         <li>
           <div className={style.list_block}>
-            <p>Accumulated, &#8372;</p>
-            <p>300</p>
+            <p className={style.label}>Accumulated, &#8372;</p>
+            <p className={style.amount}>300</p>
           </div>
         </li>
         <li>
           <div className={style.list_block}>
-            <p>Plan, &#8372;</p>
-            <p>450</p>
+            <p className={style.label}>Plan, &#8372;</p>
+            <p className={style.amount}>450</p>
           </div>
         </li>
         <li>
           <div className={style.list_block}>
-            <p>Plan, %</p>
-            <p>70%</p>
+            <p className={style.label}>Plan, %</p>
+            <p className={style.amount}>70%</p>
           </div>
         </li>
       </ul>
