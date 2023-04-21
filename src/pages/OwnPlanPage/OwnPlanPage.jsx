@@ -1,12 +1,23 @@
 // import PlanInputsList from 'components/PlanInputsList/PlanInputsList';
 import { Button } from 'components/Button/Button';
 import Input from 'components/Input/Input';
+import ResultForm from 'components/ResultForm/ResultForm';
+import {
+  selectYear,
+  selectMonth,
+  selectPersonalPlan,
+} from 'redux/PersonalPlan/personalPlanSelectors';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { postPlanPre } from 'redux/PersonalPlan/personalPlanOperationg';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  postPersonalPlanPre,
+  postPersonalPlan,
+  getPersonalPlan,
+} from 'redux/PersonalPlan/personalPlanOperationg';
 import style from './OwnPlanPage.module.scss';
+import { useEffect } from 'react';
 
 const validation = yup
   .number('It`s must be a number')
@@ -21,10 +32,16 @@ const initialValues = {
   cost: '',
   footage: '',
   procent: '',
+  month: '',
+  year: '',
 };
 
 const OwnPlanPage = () => {
   const dispatch = useDispatch();
+
+  const plan = useSelector(selectPersonalPlan);
+  const year = useSelector(selectYear);
+  const month = useSelector(selectMonth);
 
   const formik = useFormik({
     initialValues,
@@ -38,9 +55,38 @@ const OwnPlanPage = () => {
     }),
 
     onSubmit: values => {
-      dispatch(postPlanPre(values));
+      const { salary, passiveIncome, savings, cost, footage, procent } = values;
+      dispatch(
+        postPersonalPlanPre({
+          salary,
+          passiveIncome,
+          savings,
+          cost,
+          footage,
+          procent,
+        })
+      );
     },
   });
+
+  const handleClick = () => {
+    const { salary, passiveIncome, savings, cost, footage, procent } = plan;
+    dispatch(
+      postPersonalPlan({
+        salary,
+        passiveIncome,
+        savings,
+        cost,
+        footage,
+        procent,
+      })
+    );
+  };
+
+  useEffect(() => {
+    dispatch(getPersonalPlan());
+  
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -131,12 +177,15 @@ const OwnPlanPage = () => {
               </p>
             </li>
           </ul>
-          <Button
-            nativeProps={{ style: { width: 150, marginTop: 20 } }}
-            type="submit"
-          >
+          <Button type="submit" className={style.prevPlanButton}>
             Pre Plan
           </Button>
+          <ResultForm
+            title="You will have an apartment in:"
+            year={year}
+            month={month}
+            onClick={handleClick}
+          />
         </form>
       </div>
     </div>

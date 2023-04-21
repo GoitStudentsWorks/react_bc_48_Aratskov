@@ -4,7 +4,7 @@ import s from './ResultForm.module.scss';
 import { ModalAddBalance } from 'components/ModalAddBalance/ModalAddBalance';
 import { usePopup } from 'hooks/usePopup';
 
-const ResultForm = ({ title }) => {
+const ResultForm = ({ title, year, month, onClick }) => {
   const { show, showPopup, closePopup } = usePopup();
   return (
     <div className={s.wrapper}>
@@ -12,18 +12,25 @@ const ResultForm = ({ title }) => {
       <div className={s.innerWrapper}>
         <LabledInput
           label="Number of years"
-          value="0 years"
+          placeholder="0 year"
+          value={year}
           className={s.firstInput}
           inputClassName={s.input}
         />
         <LabledInput
           label="Number of months"
-          value="0 month"
+          value={month}
+          placeholder="0 month"
           className={s.secondInput}
           inputClassName={s.input}
         />
         <div className={s.btnWrapper}>
-          <Button variant="neutral" type="submit" className={s.submitButton}>
+          <Button
+            onClick={onClick}
+            variant="neutral"
+            type="submit"
+            className={s.submitButton}
+          >
             Fits
           </Button>
           <Button variant="link" onClick={showPopup}>
