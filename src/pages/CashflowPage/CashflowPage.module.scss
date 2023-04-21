@@ -1,1 +1,13 @@
- 
+@import '../../../assets/styles/mixin';
+
+.wrapper {
+  padding: 50px 0;
+
+  @include tablet {
+    padding: 100px 0;
+  }
+
+  @include desktop {
+    padding: 66px 0;
+  }
+}
