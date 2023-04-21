@@ -41,7 +41,7 @@ function ModalRegister() {
       >
         {({ isSubmitting }) => (
           <Form className={s.form}>
-            <b className={s.title}>Log In</b>
+            <b className={s.title}>Registration</b>
 
             <div className={s.wrap}>
               <label htmlFor="email" className={s.label}>
@@ -83,7 +83,7 @@ function ModalRegister() {
               </label>
             </div>
             <button type="submit" disabled={isSubmitting} className={s.btn}>
-              Log In
+              Sign In
             </button>
           </Form>
         )}
