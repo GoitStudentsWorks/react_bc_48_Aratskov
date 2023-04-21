@@ -1,4 +1,4 @@
-import s from './MonthPeriod.module.css';
+import s from './MonthPeriod.module.scss';
 import icons from '../../../assets/icons/sprite.svg';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -18,6 +18,14 @@ const MonthPeriod = () => {
   ));
   const years = Range(2020, getYear(new Date()) + 1, 1);
 
+  // const monthStyles = {
+  //   margin: 8,
+  //   padding: '12px 16px',
+  //   borderRadius: 4,
+  //   backgroundColor: 'gray',
+  //   color: 'white',
+  // };
+
   return (
     <>
       <div>
@@ -31,7 +39,8 @@ const MonthPeriod = () => {
           calendarClassName={s.calendar}
           popperClassName={s.d}
           wrapperClassName={s.v}
-          popperModifiers={s.a}
+          // dayModifiers={s.a}
+          // monthClassName={s.a}
           ////////////////////////////////////
           showPopperArrow={false}
           renderCustomHeader={({
