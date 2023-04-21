@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import './DynamicsSelect.module.css';
+import './DynamicsSelect.module.scss';
 
 const options = [
   { value: 'january', label: 'January 2023' },

@@ -12,6 +12,8 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import Accumulate from 'components/Dynamics/AccumulateMore/AccumulateMore';
+import InfoDynamics from 'components/Dynamics/InfoDynamics/InfoDynamics';
+import DynamicTitle from 'components/Dynamics/DynamicsTitle/DynamicsTitle';
 
 ChartJS.register(
   CategoryScale,
@@ -59,20 +61,19 @@ const DynamicsPage = () => {
   };
 
   const options = {
+    indexAxis: 'x',
     responsive: true,
     plugins: {
       legend: {
         position: 'top',
         align: 'start',
-        
         labels: {
-          // pointStyle: 'circle',
           boxWidth: 11,
           boxHeight: 11,
           useBorderRadius: true,
           borderRadius: 5.5,
           textAlign: 'left',
-          
+          padding: 50,
         },
       },
     },
@@ -82,27 +83,71 @@ const DynamicsPage = () => {
         borderRadius: 10,
       },
     },
-    
+  };
+
+  const optionsHorizontal = {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'start',
+        labels: {
+          boxWidth: 11,
+          boxHeight: 11,
+          useBorderRadius: true,
+          borderRadius: 5.5,
+          textAlign: 'left',
+          // padding: 50,
+        },
+      },
+    },
+    elements: {
+      bar: {
+        borderWidth: 2,
+        borderRadius: 10,
+      },
+    },
   };
 
   const chartjsStyle = {
-    width: 'auto',
-    height: '270px',
+    width: '422px',
+    height: '219px',
+    margin: 'auto auto',
+  };
+
+  const chartjsStyleHorizontal = {
+    width: '436px',
+    height: '222px',
     margin: 'auto auto',
   };
 
   return (
     <>
-      <h2>Dynamics of expenses and savings</h2>
+      <div  className={style.container}>
+
       <div>
-        <Bar style={chartjsStyle} data={data} options={options} />
-      </div>
-      <div className={style.containerSelect}>
-        <DynamicsSelect />
-        <DynamicsList />
+        <DynamicTitle />
+          {window.innerWidth > 481 ? (
+            <Bar style={chartjsStyle} data={data} options={options} />
+          ) : (
+            <Bar
+              style={chartjsStyleHorizontal}
+              data={data}
+              options={optionsHorizontal}
+            />
+          )}
+        <div className={style.containerSelect}>
+          <DynamicsSelect />
+          <DynamicsList />
+        </div>
       </div>
       <div>
-        <Accumulate />
+        <div>
+          <InfoDynamics />
+          <Accumulate />
+        </div>
+      </div>
       </div>
     </>
   );
