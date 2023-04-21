@@ -24,7 +24,6 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoggedIn = true;
         state.error = null;
         state.isLoading = false;
@@ -60,7 +59,6 @@ const authSlice = createSlice({
         action =>
           action.type.startsWith('user') && action.type.endsWith('/rejected'),
         (state, { payload }) => {
-          console.log(payload);
           state.isLoading = false;
           state.error = payload;
         }
