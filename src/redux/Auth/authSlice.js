@@ -10,44 +10,41 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isLoading: false,
   error: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    logOut() {
+      return { ...initialState };
+    }},
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, { payload }) => {
-        console.log(payload)
-        state.isLoggedIn = true
-        state.error = null
-        state.isLoading = false
-        state.user = {...payload}
-        // return {
-        //   ...state,
-        //   error: null,
-        //   user:{...payload},
-        //   token: payload.token,
-        //   isLoggedIn: true,
-        // };
+        state.isLoggedIn = true;
+        state.error = null;
+        state.isLoading = false;
+        state.user = { ...payload };
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         const { name, email } = payload.user;
-        return {
-          ...state,
-          ...payload,
-          user: { name, email },
-          token: payload.token,
-          isLoggedIn: true,
-        };
+
+        state.error = null;
+        state.isLoading = false;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+        state.user = { name, email };
       })
       .addCase(logoutUser.fulfilled, state => {
         return initialState;
       })
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         const { name, email } = payload.user;
+        state.error = null;
+        state.isLoading = false;
         state.user = { name, email };
         state.isLoggedIn = true;
       })
@@ -69,4 +66,6 @@ const authSlice = createSlice({
   },
 });
 
+
+export const { logOut } = authSlice.actions;
 export default authSlice.reducer;

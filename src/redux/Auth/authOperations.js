@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix';
+
+import { logOut } from './authSlice';
 
 axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
@@ -21,13 +24,20 @@ export const registerUser = createAsyncThunk(
       dispatch(loginUser({ email, password }));
       return res.data;
     } catch (error) {
+      const { status } = error.response.request;
+      if (status === 409) {
+        Notify.failure(`${credentials.email} already exists`);
+      } else if (status === 500) {
+        Notify.failure(`${credentials.name} already exists`);
+      }
+
       return rejectWithValue(error.message);
     }
   }
 );
 
 export const loginUser = createAsyncThunk(
-  '/user/login',
+  'user/login',
   async (credentials, { rejectWithValue }) => {
     try {
       const res = await axios.post('/user/login', credentials);
@@ -36,6 +46,15 @@ export const loginUser = createAsyncThunk(
       const userData = { ...user.data, token: res.data.token };
       return userData;
     } catch (error) {
+      const { status } = error.response.request;
+      if (status === 401) {
+        Notify.failure(`Email or password is wrong`);
+      } else if (status === 400) {
+        Notify.failure(`Error`);
+      } else if (status === 500) {
+        Notify.failure('Server error');
+      }
+
       return rejectWithValue(error.message);
     }
   }
@@ -55,21 +74,26 @@ export const logoutUser = createAsyncThunk(
 );
 
 export const getCurrentUser = createAsyncThunk(
-  'user/refresh',
+  'user/current',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistToken = state.auth.token;
-
-    if (persistToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
 
     try {
       token.set(persistToken);
       const res = await axios.get('/user/info');
       return res.data;
     } catch (error) {
+      setTimeout(() => {
+        thunkAPI.dispatch(logOut());
+      }, 0);
       return thunkAPI.rejectWithValue(error.message);
     }
+  },
+  {
+    condition(_, { getState }) {
+      const { token } = getState().auth;
+      return Boolean(token);
+    },
   }
 );

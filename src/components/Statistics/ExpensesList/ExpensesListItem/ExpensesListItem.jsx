@@ -1,7 +1,12 @@
 import s from './ExpensesListItem.module.css';
 import icons from '../../../../assets/icons/sprite.svg';
+// import { useState } from 'react';
+import { ModalEditTransaction } from 'components/ModalEditTransaction/ModalEditTransaction';
+import { usePopup } from 'hooks/usePopup';
 
-const ExpensesListItem = ({ item }) => {
+const ExpensesListItem = ({ item, onDeleteItem }) => {
+  const { show, showPopup, closePopup } = usePopup();
+
   console.log();
   return (
     <>
@@ -30,14 +35,19 @@ const ExpensesListItem = ({ item }) => {
           <li>
             <ul className={s.colum_icons}>
               <li>
-                <svg className={s.icon}>
-                  <use href={`${icons}#icon-pen`}></use>
-                </svg>
+                <div onClick={showPopup}>
+                  <svg className={s.icon}>
+                    <use href={`${icons}#icon-pen`}></use>
+                  </svg>
+                  <ModalEditTransaction show={show} onClose={closePopup} />
+                </div>
               </li>
               <li className={s.iconPos}>
-                <svg className={s.icon}>
-                  <use href={`${icons}#icon-trash`}></use>
-                </svg>
+                <div onClick={() => onDeleteItem(item.id)}>
+                  <svg className={s.icon}>
+                    <use href={`${icons}#icon-trash`}></use>
+                  </svg>
+                </div>
               </li>
             </ul>
           </li>
