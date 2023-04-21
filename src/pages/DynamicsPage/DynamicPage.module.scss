@@ -1,5 +1,4 @@
-// @import '../../../assets/fonts';
-// @import '../../../assets/styles/';
+@import '../../../assets/styles/mixin';
 
 .containerSelect {
   display: flex;
@@ -15,7 +14,6 @@
   }
 }
 
-@mixin media-desktop {
-  @media (min-widht: 700px) {
-  }
+.container {
+  display: flex;
 }
