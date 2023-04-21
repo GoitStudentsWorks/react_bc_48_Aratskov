@@ -7,15 +7,15 @@ export const Button = ({
   type = 'button',
   onClick,
   className,
-  nativeProps,
   children,
+  ...props
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
       className={clsx(className, s.button, s[variant])}
-      {...nativeProps}
+      {...props}
     >
       {children}
     </button>
