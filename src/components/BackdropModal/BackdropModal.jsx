@@ -23,8 +23,10 @@ const BackdropModal = ({ children, closeModal }) => {
   }, [handleClose]);
 
   return createPortal(
-    <div className={s.backdrop} onClick={handleClose}>
+    <div className={s.wrapper}>
+      <div className={s.backdrop} onClick={handleClose}>
       {children}
+    </div>
     </div>,
     modalRoot
   );

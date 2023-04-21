@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix';
 
 import { logOut } from './authSlice';
 
@@ -24,13 +25,13 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       const { status } = error.response.request;
-      // if (status === 409) {
-      //   alert(`${credentials.email} такой зарегестрирован`);
-      // }else if(status===500){
-      // alert(`${credentials.name} такой юзер есть`)
-      // }
+      if (status === 409) {
+        Notify.failure(`${credentials.email} already exists`);
+      } else if (status === 500) {
+        Notify.failure(`${credentials.name} already exists`);
+      }
 
-      return rejectWithValue(status);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -45,6 +46,12 @@ export const loginUser = createAsyncThunk(
       const userData = { ...user.data, token: res.data.token };
       return userData;
     } catch (error) {
+      const { status } = error.response.request;
+      if (status === 401) {
+        Notify.failure(`Email or password is wrong`);
+      } else if (status === 400) {
+        Notify.failure(`Error`);
+      }
       return rejectWithValue(error.message);
     }
   }
