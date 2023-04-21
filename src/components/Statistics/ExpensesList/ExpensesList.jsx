@@ -6,12 +6,42 @@ const initialState = [
   {
     name: 'Products',
     prise: '4800',
-    categorie: 'House',
+    categorie: 'Houseweafawef',
+  },
+  {
+    name: 'Products',
+    prise: '4800',
+    categorie: 'Houseweafawef',
+  },
+  {
+    name: 'Products',
+    prise: '4800',
+    categorie: 'Houseweafawef',
+  },
+  {
+    name: 'Products',
+    prise: '4800',
+    categorie: 'Houseweafawef',
   },
   {
     name: 'Products1',
     prise: '4811',
     categorie: 'House1',
+  },
+  {
+    name: 'Products2',
+    prise: '4822',
+    categorie: 'House2',
+  },
+  {
+    name: 'Products2wqedawed',
+    prise: '4822',
+    categorie: 'House2',
+  },
+  {
+    name: 'Products2',
+    prise: '4822',
+    categorie: 'House2',
   },
   {
     name: 'Products2',

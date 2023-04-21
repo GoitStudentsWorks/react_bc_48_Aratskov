@@ -1,20 +1,30 @@
-import css from './Input.module.css';
+import style from './Input.module.scss';
 
-const Input = ({ id,label, value, placeholder, name, onChange }) => {
+const Input = ({
+  id,
+  label,
+  value,
+  placeholder,
+  name,
+  onChange,
+  classNameWrapp = `${style.wrapp}`,
+  classNameInput = `${style.input}`,
+  classNameLabel = `${style.label}`,
+}) => {
   return (
-    <div className={css.wrapp}>
-      <label className={css.label} htmlFor={name}>
-        {label}
-      </label>
+    <div className={classNameWrapp}>
       <input
         id={id}
-        className={css.input}
+        className={classNameInput}
         type="text"
         name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
+      <label className={classNameLabel} htmlFor={name}>
+        {label}
+      </label>
     </div>
   );
 };

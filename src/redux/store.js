@@ -11,7 +11,7 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './Auth/authSlice';
-
+import planReducer from './PersonalPlan/personalPlanSlice'
 
 import {
   persistStore,
@@ -39,6 +39,7 @@ const persistedContactsReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     auth: persistedContactsReducer,
+    plan: planReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

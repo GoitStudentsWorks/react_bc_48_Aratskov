@@ -5,7 +5,7 @@ import s from './ModalAddIncome.module.scss';
 
 export const ModalAddIncome = ({ show, onClose }) => {
   const addIncome = value => {
-    console.log('add income: ', value);
+    // console.log('add income: ', value);
   };
 
   const handleSubmit = e => {

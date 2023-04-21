@@ -1,13 +1,12 @@
 @import "../../../../assets/styles/mixin";
 
 .style {
+    overflow: scroll;
+    overflow-x: hidden;
 
     height: 476px;
     margin: 0 auto;
-    // padding: 0 15px;
-    @include mobile {
-        width: 343px;
-    }
+    width: 343px;
 
     @include tablet {
         width: 704px;
@@ -15,9 +14,10 @@
     @include desktop {
         width: 769px;
     };
+
     background-color: #252C41;;
     box-shadow: 0px 11px 38px rgba(0, 0, 0, 0.2);
-    border-radius: 0px 0px 16px 16px;
+    border-radius: 0px 16px 16px 16px;
 
     font-family: 'Lato';
     font-style: normal;

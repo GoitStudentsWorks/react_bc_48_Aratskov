@@ -30,7 +30,7 @@
   @include font(700, 14px, 1.43);
   font-feature-settings: 'liga' off;
 
-  transition-property: 'color, background-color';
+  transition-property: color, background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -2,27 +2,24 @@
 
 .style {
   display: flex;
-  justify-content: space-between;
-
   margin: 0 auto;
+  width: 343px;
+  margin-top: 124px;
 
-  @include mobile {
+  @media screen and (max-width: 767px) {
     align-items: flex-start;
     flex-direction: column-reverse;
-
-    width: 343px;
-    color: yellow;
+    
   };
 
   @include tablet {
-    // width: max(100% - 32px, 769px);
+    justify-content: space-between;
     width: 704px;
-    color: red;
+    margin-top: 66px;
   };
 
   @include desktop {
-    // width: max(100% - 255px, 769px);
+    justify-content: space-between;
     width: 769px;
-    color: green;
   };
 }

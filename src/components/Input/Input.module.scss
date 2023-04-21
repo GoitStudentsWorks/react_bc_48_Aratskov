@@ -1,6 +1,6 @@
 .input {
-  width: 343px;
-  /*336,370 - tab,desc*/
+  width: 100%;
+   /*336,370 - tab,desc*/
   height: 74px;
   padding: 33px 18px 18px 18px;
   border: transparent;
@@ -10,16 +10,20 @@
   font-size: 16px;
   line-height: 1.19;
   color: #f3f3f3;
-}
 
-.input::placeholder {
-  font-size: 16px;
-  line-height: 1.19;
-  color: #f3f3f3;
-}
+  &::placeholder {
+    font-size: 16px;
+    line-height: 1.19;
+    color: #f3f3f3;
+  }
 
-.input:focus {
-  outline: 1px solid #3a6af5;
+  &:focus {
+    outline: 1px solid #3a6af5;
+  }
+
+  &:focus + .label {
+    color: #3a6af5;
+  }
 }
 
 .label {
@@ -30,10 +34,6 @@
   font-size: 12px;
   line-height: 1.17;
   color: rgba(243, 243, 243, 0.4);
-}
-
-.input:focus .label {
-    color: #3a6af5;
 }
 
 .wrapp {

@@ -15,6 +15,30 @@ const initialState1 = [
     cost: '4822',
     categorie: 'House2',
   },
+  {
+    cost: '4822',
+    categorie: 'Houseqwsqws2',
+  },
+  {
+    cost: '4822',
+    categorie: 'House2',
+  },
+  {
+    cost: '4822',
+    categorie: 'Houseqwsqws2',
+  },
+  {
+    cost: '4822',
+    categorie: 'House2',
+  },
+  {
+    cost: '4822',
+    categorie: 'Houseqwsqws2',
+  },
+  {
+    cost: '4822',
+    categorie: 'House2',
+  },
 ];
 
 const CategoriesList = () => {
