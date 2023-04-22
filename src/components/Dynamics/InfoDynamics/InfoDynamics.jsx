@@ -1,42 +1,26 @@
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import style from './InfoDynamics.module.scss';
+import floorPlan from '../../../assets/img/floor_plan-x1.png';
+import { uploadImage } from 'redux/Dynamics/dinamicsOperation';
 
 const InfoDynamics = () => {
-// state => state.contacts.items;
-  const [image, setImage] = useState(null);
-  // const image = useSelector(state => state.dinamics.image)
-  // const dispatch = useDispatch();
+  const [image, setImage] = useState(floorPlan);
+  const formData = new FormData();
+  const dispatch = useDispatch();
+  const asd = useSelector(state=>state.dinamics);
+  console.log("InfoDynamics  asd:", asd)
 
-  // const onImageChange = event => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     let img = event.target.files[0];
-  //     this.setState({
-  //       image: URL.createObjectURL(img)
-  //     });
-  //   }
-  // };
+  formData.append('image', image);
 
   const handleLoadImg = event => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL?.createObjectURL(event.target?.files[0]));
-    }
+    setImage(event.target?.files[0]);
     console.dir(event.target?.files);
   };
-console.log(image);
-  // function FileUploadSingle() {
-  // const [file, setFile] = useState<File>();
 
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files) {
-  //     setFile(e.target.files[0]);
-  //   }
-  // };
-
-  // const handleUploadClick = () => {
-  //   if (!file) {
-  //     return;
-  //   }
+  const handleSubmitImage = () => {
+    dispatch(uploadImage());
+  };
 
   return (
     <div className={style.containerInfo}>
@@ -47,19 +31,27 @@ console.log(image);
             Accumulated, %: <span className={style.accumulatValue}>28%</span>
           </p>
           <p className={style.accumulatText}>
-            Accumulated, UAH: <span className={style.accumulatValue}>60 000 &#8372;</span>
+            Accumulated, UAH:{' '}
+            <span className={style.accumulatValue}>60 000 &#8372;</span>
           </p>
           <p className={style.accumulatText}>
             And this: <span className={style.accumulatValue}>22 кв. м</span>
           </p>
         </div>
-          <p className={style.accumulatBar}>
-            <span>22</span> out of <span>60</span> sq.m accumulated
-          </p>
+        <p className={style.accumulatBar}>
+          <span>22</span> out of <span>60</span> sq.m accumulated
+        </p>
       </div>
-      <div className={style.picture} >
-        <input type="file" onClick={handleLoadImg}/>
-      </div>
+      <label htmlFor="" className={style.picture}>
+        <img src={image} alt="" />
+        <input
+          // style={{ visibility: 'hidden' }}
+          type="file"
+          name="user_img"
+          onChange={handleLoadImg}
+        />
+        <button onClick={handleSubmitImage}>Submit Image</button>
+      </label>
     </div>
   );
 };

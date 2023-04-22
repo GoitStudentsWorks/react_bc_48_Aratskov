@@ -6,7 +6,7 @@ import { logOut } from './authSlice';
 
 axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.Authorization = `Bearer ${token}`;
   },

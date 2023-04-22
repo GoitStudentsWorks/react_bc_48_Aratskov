@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { dinamicsOperation } from './dinamicsOperation';
+import { uploadImage } from './dinamicsOperation';
 
 const dinamicsSlice = createSlice({
   name: 'dinamics',
@@ -11,9 +11,12 @@ const dinamicsSlice = createSlice({
       state.image = payload;
     },
   },
-  //   extraReducers: builder => {
-  //     builder
-  //   },
+    extraReducers: builder => {
+      builder
+        .addCase(uploadImage.fulfilled, (state, { payload }) => {
+        console.log(payload);
+      })
+    },
 });
 
 const dinamicsReducer = dinamicsSlice.reducer;

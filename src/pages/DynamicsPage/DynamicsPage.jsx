@@ -122,27 +122,29 @@ const DynamicsPage = () => {
 
   return (
     <>
-      <div className={style.container}>
-        <div className={style.diagramContainer}>
-          <DynamicTitle />
-          {window.innerWidth > 481 ? (
-            <Bar style={chartjsStyle} data={data} options={options} />
-          ) : (
-            <Bar
-              style={chartjsStyleHorizontal}
-              data={data}
-              options={optionsHorizontal}
-            />
-          )}
-          <div className={style.containerSelect}>
-            <DynamicsSelect />
-            <DynamicsList />
+      <div className="container">
+        <div className={style.container}>
+          <div className={style.diagramContainer}>
+            <DynamicTitle />
+            {window.innerWidth > 481 ? (
+              <Bar style={chartjsStyle} data={data} options={options} />
+            ) : (
+              <Bar
+                style={chartjsStyleHorizontal}
+                data={data}
+                options={optionsHorizontal}
+              />
+            )}
+            <div className={style.containerSelect}>
+              <DynamicsSelect />
+              <DynamicsList />
+            </div>
           </div>
-        </div>
-        <div>
           <div>
-            <InfoDynamics />
-            <Accumulate />
+            <div>
+              <InfoDynamics />
+              <Accumulate />
+            </div>
           </div>
         </div>
       </div>
