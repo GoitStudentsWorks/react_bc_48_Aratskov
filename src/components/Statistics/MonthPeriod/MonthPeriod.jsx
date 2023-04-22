@@ -7,7 +7,19 @@ import { getYear } from 'date-fns';
 import { Range } from 'immutable';
 
 const MonthPeriod = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
+
+  // const date = new Date('Wed Apr 19 2023 20:06:29');
+  // const dayOfMonth = date.getDate();
+  const monthNumber = date.getMonth() + 1;
+  // const monthName = date.toLocaleString('en-US', { month: 'short' });
+  const year = date.getFullYear();
+  // console.log(`Day: ${dayOfMonth}`);
+  console.log(`Month: ${monthNumber}`);
+  // console.log(`Month: ${monthName}`);
+  console.log(`Year: ${year}`);
+
+  console.log('startDate', date);
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button className={s.style} onClick={onClick} ref={ref}>
       {value}
@@ -16,25 +28,19 @@ const MonthPeriod = () => {
       </svg>
     </button>
   ));
-  const years = Range(2020, getYear(new Date()) + 1, 1);
-
-  // const monthStyles = {
-  //   margin: 8,
-  //   padding: '12px 16px',
-  //   borderRadius: 4,
-  //   backgroundColor: 'gray',
-  //   color: 'white',
-  // };
+  // const years = Range(2020, getYear(new Date()) + 1, 1);
 
   return (
     <>
       <div>
         <DatePicker
           customInput={<ExampleCustomInput />}
-          selected={startDate}
-          onChange={date => setStartDate(date)}
+          selected={date}
+          onChange={date => setDate(date)}
           dateFormat="MMMM, yyyy"
           showMonthYearPicker
+          id="12"
+          monthsShown="1"
           ////////////////////////////////////
           calendarClassName={s.calendar}
           popperClassName={s.d}
@@ -45,7 +51,7 @@ const MonthPeriod = () => {
           showPopperArrow={false}
           renderCustomHeader={({
             date,
-            changeYear,
+            // changeYear,
             decreaseYear,
             increaseYear,
             prevMonthButtonDisabled,
@@ -60,7 +66,7 @@ const MonthPeriod = () => {
                 {'<'}
               </button>
 
-              <select
+              {/* <select
                 style={{ border: 'none', backgroundColor: '#F3F3F3' }}
                 value={getYear(date)}
                 onChange={({ target: { value } }) => changeYear(value)}
@@ -70,7 +76,9 @@ const MonthPeriod = () => {
                     {option}
                   </option>
                 ))}
-              </select>
+              </select> */}
+
+              {getYear(date)}
 
               <button
                 onClick={increaseYear}
