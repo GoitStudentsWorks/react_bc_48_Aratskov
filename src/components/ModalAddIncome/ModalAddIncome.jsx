@@ -5,7 +5,7 @@ import s from './ModalAddIncome.module.scss';
 
 export const ModalAddIncome = ({ show, onClose }) => {
   const addIncome = value => {
-    // console.log('add income: ', value);
+    console.log('add income: ', value);
   };
 
   const handleSubmit = e => {
@@ -19,23 +19,18 @@ export const ModalAddIncome = ({ show, onClose }) => {
   };
 
   return (
-    <div>
-      {/* <Button onClick={showPopup} nativeProps={{ style: { width: 150 } }}>
-        Add income
-      </Button> */}
-      <Modal show={show} showCloseBtn={true} onClose={onClose}>
-        <form action="" onSubmit={handleSubmit}>
-          <BasicInput name="input" placeholder="Enter income" />
-          <div className={s.btnBox}>
-            <Button variant="primary" type="submit">
-              Add
-            </Button>
-            <Button variant="secondary" onClick={onClose}>
-              Cancel
-            </Button>
-          </div>
-        </form>
-      </Modal>
-    </div>
+    <Modal show={show} showCloseBtn={true} onClose={onClose}>
+      <form action="" onSubmit={handleSubmit}>
+        <BasicInput name="input" placeholder="Enter income" />
+        <div className={s.btnBox}>
+          <Button variant="primary" type="submit">
+            Add
+          </Button>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </Modal>
   );
 };

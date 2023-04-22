@@ -8,14 +8,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 13px;
+    padding-bottom: 13px;
     @include tablet{
-        padding-top: 16px;
-        padding-bottom: 16px;  
+        padding-top: 15px;
+        padding-bottom: 15px;  
     }
     @include desktop{
-        padding-top: 16px;
-    padding-bottom: 16px;
+        padding-top: 15px;
+    padding-bottom: 15px;
     }
 }

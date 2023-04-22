@@ -19,23 +19,18 @@ export const ModalAddBalance = ({ show, onClose }) => {
   };
 
   return (
-    <div>
-      {/* <Button onClick={showPopup} nativeProps={{ style: { width: 150 } }}>
-        Add income
-      </Button> */}
-      <Modal show={show} showCloseBtn={true} onClose={onClose}>
-        <form action="" onSubmit={handleSubmit}>
-          <BasicInput name="input" placeholder="Enter balance" />
-          <div className={s.btnBox}>
-            <Button variant="primary" type="submit">
-              Add
-            </Button>
-            <Button variant="secondary" onClick={onClose}>
-              Cancel
-            </Button>
-          </div>
-        </form>
-      </Modal>
-    </div>
+    <Modal show={show} showCloseBtn={true} onClose={onClose}>
+      <form action="" onSubmit={handleSubmit}>
+        <BasicInput name="input" placeholder="Enter balance" />
+        <div className={s.btnBox}>
+          <Button variant="primary" type="submit">
+            Add
+          </Button>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </Modal>
   );
 };

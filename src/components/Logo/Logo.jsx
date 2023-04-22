@@ -1,4 +1,4 @@
-import icons from '../../icons/sprite.svg';
+import icons from '../../assets/icons/sprite.svg';
 import st from './Logo.module.scss';
 
 const LogoIcon = () => {

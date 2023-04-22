@@ -51,7 +51,10 @@ export const loginUser = createAsyncThunk(
         Notify.failure(`Email or password is wrong`);
       } else if (status === 400) {
         Notify.failure(`Error`);
+      } else if (status === 500) {
+        Notify.failure('Server error');
       }
+
       return rejectWithValue(error.message);
     }
   }
