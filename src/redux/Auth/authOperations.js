@@ -25,10 +25,21 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       const { status } = error.response.request;
-      if (status === 409) {
-        Notify.failure(`${credentials.email} already exists`);
-      } else if (status === 500) {
-        Notify.failure(`${credentials.name} already exists`);
+      // if (status === 409) {
+      //   Notify.failure(`${credentials.email} already exists`);
+      // } else if (status === 500) {
+      //   Notify.failure(`${credentials.name} already exists`);
+      // }
+
+      switch (status) {
+        case 500:
+          Notify.failure('Sorry, server error occured👻');
+          break;
+        case 401:
+          Notify.failure('Sorry, you are not authorized👻');
+          break;
+        default:
+          Notify.failure('Sorry, bad reqest👻');
       }
 
       return rejectWithValue(error.message);
