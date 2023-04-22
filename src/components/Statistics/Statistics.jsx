@@ -14,7 +14,14 @@ const Statistics = () => {
         <StatisticPageNav />
         <MonthPeriod />
       </div>
-      <div style={{ position: 'absolute', width: '100%', bottom: '0' }}>
+      <div
+        style={{
+          position: 'absolute',
+          width: '100%',
+          bottom: '0',
+          zIndex: '-5',
+        }}
+      >
         <picture>
           <source
             srcSet={`${wave_desktop} 1x, ${wave_desktop2} 2x`}

@@ -4,12 +4,17 @@ import { getCategories, getTransactions } from './StatisticsOperations';
 const statiaticsSlice = createSlice({
   name: 'statistics',
   initialState: {
+    date: [],
     transactions: [],
     categories: [],
     isLoading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addDate: (state, action) => {
+      state.date.push(action.payload);
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getTransactions.pending, state => {
