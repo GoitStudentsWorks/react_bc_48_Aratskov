@@ -97,3 +97,22 @@ export const getCurrentUser = createAsyncThunk(
     },
   }
 );
+
+export const getBalanceUser = createAsyncThunk(
+  'user/balance',
+  async (balance, { rejectWithValue }) => {
+    try {
+      const res = await axios.put('/user/addBalance', { balance });
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { balance } = getState().auth.user;
+      if (balance) return false;
+      return true;
+    },
+  }
+);
