@@ -5,7 +5,7 @@ import wave_desktop from '../../assets/img/wave_desktop.png';
 import wave_desktop2 from '../../assets/img/wave_desktop-2x.png';
 import wave_tablet from '../../assets/img/wave_tablet.png';
 import wave_tablet2 from '../../assets/img/wave_tablet-2x.png';
-import { bottom } from '@popperjs/core';
+// import { bottom } from '@popperjs/core';
 
 const Statistics = () => {
   return (
