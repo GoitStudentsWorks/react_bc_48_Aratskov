@@ -2,12 +2,17 @@ import { useDropzone } from 'react-dropzone';
 import { useEffect, useState } from 'react';
 import style from './InfoDynamics.module.scss';
 import floorPlan from '../../../assets/img/floor_plan-x1.png';
+import { useDispatch } from 'react-redux';
+import { uploadImage } from 'redux/Dynamics/dinamicsOperation';
+import { ProgressBar } from 'react-toastify/dist/components';
 
 const InfoDynamics = () => {
   const [image] = useState(floorPlan);
+  const dispatch = useDispatch();
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: {
-      'image/png': ['.png', '.jpg'],
+      'image/png': [],
+      'image/jpg': [],
     },
   });
   // const file = acceptedFiles;
@@ -18,6 +23,7 @@ const InfoDynamics = () => {
       const formData = new FormData();
       formData.append('image', acceptedFiles[0]);
       console.log(formData);
+      dispatch(uploadImage(formData));
     }
   }, [acceptedFiles]);
 
@@ -40,7 +46,11 @@ const InfoDynamics = () => {
         <p className={style.accumulatBar}>
           <span>22</span> out of <span>60</span> sq.m accumulated
         </p>
+        {/* <div style={{ width: '200px', height: '8px' }}>
+          <ProgressBar planInProcent={55} />
+        </div> */}
       </div>
+
       <div className={style.picture}>
         <div {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />

@@ -14,6 +14,8 @@ import { Bar } from 'react-chartjs-2';
 import Accumulate from 'components/Dynamics/AccumulateMore/AccumulateMore';
 import InfoDynamics from 'components/Dynamics/InfoDynamics/InfoDynamics';
 import DynamicTitle from 'components/Dynamics/DynamicsTitle/DynamicsTitle';
+import { useDispatch, useSelector } from 'react-redux';
+import { userChartInfo } from 'redux/Dynamics/dinamicsOperation';
 
 ChartJS.register(
   CategoryScale,
@@ -25,6 +27,10 @@ ChartJS.register(
 );
 
 const DynamicsPage = () => {
+  const dispatch = useDispatch();
+  const selector = useSelector(state => state.chartData)
+  console.log("DynamicsPage  selector:", selector)
+  dispatch(userChartInfo())
   const data = {
     labels: [
       'Oct',
@@ -120,6 +126,10 @@ const DynamicsPage = () => {
     height: '222px',
   };
 
+  const handleFetchFromBack = () => {
+    console.log('fetch');
+  }
+
   return (
     <>
       <div className="container">
@@ -148,6 +158,7 @@ const DynamicsPage = () => {
           </div>
         </div>
       </div>
+      <button onClick={handleFetchFromBack}>Axios Get</button>
     </>
   );
 };
