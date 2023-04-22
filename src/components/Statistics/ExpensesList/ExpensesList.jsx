@@ -1,10 +1,10 @@
-// import { useEffect, useState } from 'react';
-// import ExpensesListItem from './ExpensesListItem/ExpensesListItem';
-import s from './ExpensesList.module.css';
-
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ExpensesListItem from './ExpensesListItem/ExpensesListItem';
 import { getTransactionsSelector } from 'redux/Statistics/StatisticsSelectors';
 import { getTransactions } from 'redux/Statistics/StatisticsOperations';
+import s from './ExpensesList.module.css';
+
 
 // import {
 //   selectIsLoading,
@@ -86,6 +86,7 @@ const ExpensesList = () => {
   useEffect(() => {
     if (transactions.length) return;
     dispatch(getTransactions({ month: 2, year: 2023 }));
+    // eslint-disable-next-line
   }, []);
 
   if (!transactions.length) {

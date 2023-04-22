@@ -15,7 +15,7 @@ const ExpensesListItem = ({ category, comment, sum, date, id }) => {
   const onDeleteTransactionHandler = useCallback(id => {
     console.log(id, 'qwe');
     dispatch(deleteTransaction(id));
-  }, []);
+  }, [dispatch]);
 
   console.log();
   return (
