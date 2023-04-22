@@ -1,36 +1,43 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTransaction } from './StatisticsOperations';
+import { getCategories, getTransactions } from './StatisticsOperations';
 
-const transactionsSlice = createSlice({
-  name: 'transactions',
+const statiaticsSlice = createSlice({
+  name: 'statistics',
   initialState: {
-    items: [],
+    transactions: [],
+    categories: [],
     isLoading: false,
     error: null,
   },
   reducers: {},
   extraReducers: builder => {
     builder
-      //   .addCase(getTransaction.pending, state => {
-      //     state.isLoading = true;
-      //     state.error = null;
-      //   })
-      // .addCase(getTransaction.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.items = action.payload;
-      // })
-      .addCase(getTransaction.fulfilled, (state, { payload }) => {
-        return {
-          ...state,
-          isLoading: false,
-          items: [...payload],
-        };
-        // })
-        // .addCase(getTransaction.rejected, (state, action) => {
-        //   state.isLoading = false;
-        //   state.error = action.error.message;
+      .addCase(getTransactions.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getTransactions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.transactions = action.payload;
+      })
+      .addCase(getTransactions.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+
+      .addCase(getCategories.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.categories = action.payload;
+      })
+      .addCase(getCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export default transactionsSlice.reducer;
+export default statiaticsSlice.reducer;

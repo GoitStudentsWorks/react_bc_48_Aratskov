@@ -1,53 +1,32 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import CategoriesListItem from './CategoriesListItem/CategoriesListItem';
 import s from './CategoriesList.module.css';
-
-const initialState1 = [
-  {
-    cost: '4800',
-    categorie: 'House',
-  },
-  {
-    cost: '4811',
-    categorie: 'House1',
-  },
-  {
-    cost: '4822',
-    categorie: 'House2',
-  },
-  {
-    cost: '4822',
-    categorie: 'Houseqwsqws2',
-  },
-  {
-    cost: '4822',
-    categorie: 'House2',
-  },
-  {
-    cost: '4822',
-    categorie: 'Houseqwsqws2',
-  },
-  {
-    cost: '4822',
-    categorie: 'House2',
-  },
-  {
-    cost: '4822',
-    categorie: 'Houseqwsqws2',
-  },
-  {
-    cost: '4822',
-    categorie: 'House2',
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoriesSelector } from 'redux/Statistics/StatisticsSelectors';
+import { getCategories } from 'redux/Statistics/StatisticsOperations';
 
 const CategoriesList = () => {
-  const [expenses] = useState(initialState1);
+  const dispatch = useDispatch();
+  const categories = useSelector(getCategoriesSelector);
+
+  useEffect(() => {
+    if (categories.length) return;
+    dispatch(getCategories({ month: 2, year: 2023 }));
+  }, []);
+
+  if (!categories.length) {
+    return <div>No date</div>;
+  }
+
   return (
     <div className={s.style}>
       <ul>
-        {expenses.map(item => (
-          <CategoriesListItem item={item} />
+        {categories.map(({ category, amount, percentage }) => (
+          <CategoriesListItem
+            category={category}
+            amount={amount}
+            percentage={percentage}
+          />
         ))}
       </ul>
     </div>

@@ -1,3 +1,8 @@
+
+// import { configureStore } from '@reduxjs/toolkit';
+// import authReducer from './Auth/authSlice';
+// import planReducer from './PersonalPlan/personalPlanSlice';
+
 // import { configureStore } from '@reduxjs/toolkit';
 // import authReducer from './Auth/authSlice';
 
@@ -14,6 +19,7 @@ import planReducer from './PersonalPlan/personalPlanSlice';
 import { burgerReducer } from './BurgerMenu/burgerSlice';
 import cashflowSlice from './Cashflow/cashflowSlice';
 
+
 import {
   persistStore,
   persistReducer,
@@ -26,6 +32,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import dinamicsReducer from './Dynamics/dinamicsSlice';
+import statisticsReducer from './Statistics/StatisticsSlise';
 
 const persistContactsConfig = {
   key: 'auth',
@@ -46,6 +53,7 @@ export const store = configureStore({
 
     burger: burgerReducer,
     dinamics: dinamicsReducer,
+    statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
