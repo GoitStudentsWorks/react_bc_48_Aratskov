@@ -43,7 +43,7 @@ export const addTransaction = createAsyncThunk(
           Notify.failure('Sorry, you are not authorized👻');
           break;
         default:
-          Notify.failure('Sorry, bad reqest👻');
+          Notify.failure('Sorry, bad reqest');
       }
       return rejectWithValue(error.message);
     }
