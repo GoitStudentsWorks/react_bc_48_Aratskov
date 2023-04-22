@@ -6,6 +6,8 @@ import {
   getCurrentUser,
   getBalanceUser,
 } from './authOperations';
+import { addTransaction } from 'redux/Cashflow/cashflowOperations';
+
 
 const initialState = {
   user: { name: null, email: null, balance: 0 },
@@ -49,6 +51,9 @@ const authSlice = createSlice({
       })
       .addCase(getBalanceUser.fulfilled, (state, { payload }) => {
         state.user.balance = payload;
+      })
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.user.balance = payload.newBalance;
       })
       .addMatcher(
         action =>

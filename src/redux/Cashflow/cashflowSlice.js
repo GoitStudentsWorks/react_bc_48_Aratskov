@@ -1,8 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCategoryList } from './cashflowOperations';
+import {
+  addTransaction,
+  getCategoryList,
+  getPresevingDate,
+} from './cashflowOperations';
 
 const initialState = {
   category: [],
+  presaving: {
+    monthLimit: 0,
+    dailyLimit: 0,
+    totalByMounth: 0,
+    totalByDay: 0,
+  },
 };
 
 const cashflowSlice = createSlice({
@@ -12,6 +22,17 @@ const cashflowSlice = createSlice({
     builder
       .addCase(getCategoryList.fulfilled, (state, { payload }) => {
         state.category = payload;
+      })
+      .addCase(getPresevingDate.fulfilled, (state, { payload }) => {
+        state.presaving = payload;
+      })
+      .addCase(addTransaction, (state, { payload }) => {
+        const { sum, type } = payload;
+        if (type === 'expense') {
+          state.presaving.dailyLimit -= sum;
+        } else {
+          return state;
+        }
       })
       .addMatcher(
         action =>

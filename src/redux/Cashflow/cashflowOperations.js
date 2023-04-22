@@ -13,4 +13,27 @@ export const getCategoryList = createAsyncThunk(
   }
 );
 
-// /api/cashflow/category
+export const getPresevingDate = createAsyncThunk(
+  'cashflow/presaving',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('/cashflow/presaving');
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addTransaction = createAsyncThunk(
+  'cashflow/transaction',
+  async (sum, { rejectWithValue }) => {
+    console.log(sum)
+    try {
+      const { data } = await axios.post('/cashflow', sum);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

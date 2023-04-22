@@ -4,9 +4,13 @@ import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
 import { useSelector } from 'react-redux';
 import { selectCategories } from 'redux/Cashflow/cashflowSelectors';
 import { useState } from 'react';
+import { getCurrentBalance } from 'redux/Auth/authSelectors';
+
 
 const TransactionDataList = ({ onChange, category, comment, sum }) => {
   const categories = useSelector(selectCategories);
+  const balance = useSelector(getCurrentBalance);
+console.log(balance)
   const [selectedCategory, setSelectedCategory] = useState({
     name: 'other',
     title: 'Other',
@@ -21,7 +25,7 @@ const TransactionDataList = ({ onChange, category, comment, sum }) => {
       <li className={style.item}>
         <Input
           name={category}
-          value={category}
+          value={`${balance} UAH`}
           placeholder="Account balance: UAH 80,000"
           label="From account"
         />
