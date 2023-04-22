@@ -1,9 +1,9 @@
 import { usePopup } from 'hooks/usePopup';
 import { LabledInput } from 'components/LabledInput/LabledInput';
 import { Button } from 'components/Button/Button';
-import { ModalAddBalance } from 'components/ModalAddBalance/ModalAddBalance';
 import clsx from 'clsx';
 import s from './ExpensesLimits.module.scss';
+import { ModalAddIncome } from 'components/ModalAddIncome/ModalAddIncome';
 
 const ExpensesLimits = () => {
   const { show, showPopup, closePopup } = usePopup();
@@ -31,7 +31,7 @@ const ExpensesLimits = () => {
           </Button>
         </div>
       </div>
-      <ModalAddBalance show={show} onClose={closePopup} />
+      <ModalAddIncome show={show} onClose={closePopup} />
     </div>
   );
 };
