@@ -39,53 +39,29 @@
 
 
 .calendar {
-    background-color: #F3F3F3;
-    padding: 0;
-    
-
+    border: 16px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
-// .calendar > div  {
-//     padding: 16px;
-// }
-
 .calendarHeader {
-
     padding: 10px;
     display: flex;
     justify-content: space-between;
-    // background-color: blue;
 
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-
-    color: #242424;
-
-    // border-bottom: solid 10px red;
 }
 
-// .d {
-//     // popper
 
-//     // background-color: yellow;
-//     padding: 0;
-//     margin: 0;
-// }
 
 .v {
     height: 20px;
     width: 100%;
     @include tablet {
-        height: 40px;
-        
+        height: 40px;        
     }
 }
-
-// .a {
-
-//     background-color:  red;
-//     color: red;
-// }
