@@ -1,7 +1,7 @@
 import Select, { components } from 'react-select';
 import s from './SelectWithLabel.module.scss';
 
-export const SelectWithLabel = ({ label, value, ...props }) => {
+export const SelectWithLabel = ({ label, ...props }) => {
   const ValueContainer = ({ children, ...props }) => (
     <div>
       <p className={s.label}>{label}</p>
@@ -11,17 +11,16 @@ export const SelectWithLabel = ({ label, value, ...props }) => {
     </div>
   );
 
-  const Option = ({ children, ...props }) => (
-    <components.Option {...props}>
-      {/* <img src="" alt="img" /> */}
-      {children}
-    </components.Option>
+  const customOptionLabel = data => (
+    <div>
+      <span>{data.title}</span>
+    </div>
   );
 
   return (
     <Select
-      defaultValue={value}
-      components={{ ValueContainer, Option }}
+      components={{ ValueContainer }}
+      formatOptionLabel={customOptionLabel}
       styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,
