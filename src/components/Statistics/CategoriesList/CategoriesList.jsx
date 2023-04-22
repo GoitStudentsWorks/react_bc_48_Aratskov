@@ -12,6 +12,7 @@ const CategoriesList = () => {
   useEffect(() => {
     if (categories.length) return;
     dispatch(getCategories({ month: 2, year: 2023 }));
+    // eslint-disable-next-line
   }, []);
 
   if (!categories.length) {
