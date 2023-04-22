@@ -1,26 +1,25 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { useEffect, useState } from 'react';
 import style from './InfoDynamics.module.scss';
 import floorPlan from '../../../assets/img/floor_plan-x1.png';
-import { uploadImage } from 'redux/Dynamics/dinamicsOperation';
 
 const InfoDynamics = () => {
-  const [image, setImage] = useState(floorPlan);
-  const formData = new FormData();
-  const dispatch = useDispatch();
-  const asd = useSelector(state=>state.dinamics);
-  console.log("InfoDynamics  asd:", asd)
+  const [image] = useState(floorPlan);
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/png': ['.png', '.jpg'],
+    },
+  });
+  // const file = acceptedFiles;
+  console.log(acceptedFiles[0]);
 
-  formData.append('image', image);
-
-  const handleLoadImg = event => {
-    setImage(event.target?.files[0]);
-    console.dir(event.target?.files);
-  };
-
-  const handleSubmitImage = () => {
-    dispatch(uploadImage());
-  };
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      const formData = new FormData();
+      formData.append('image', acceptedFiles[0]);
+      console.log(formData);
+    }
+  }, [acceptedFiles]);
 
   return (
     <div className={style.containerInfo}>
@@ -42,16 +41,12 @@ const InfoDynamics = () => {
           <span>22</span> out of <span>60</span> sq.m accumulated
         </p>
       </div>
-      <label htmlFor="" className={style.picture}>
-        <img src={image} alt="" />
-        <input
-          // style={{ visibility: 'hidden' }}
-          type="file"
-          name="user_img"
-          onChange={handleLoadImg}
-        />
-        <button onClick={handleSubmitImage}>Submit Image</button>
-      </label>
+      <div className={style.picture}>
+        <div {...getRootProps({ className: 'dropzone' })}>
+          <input {...getInputProps()} />
+          <img src={image} alt="" />
+        </div>
+      </div>
     </div>
   );
 };

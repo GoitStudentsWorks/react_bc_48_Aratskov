@@ -14,7 +14,7 @@ const dinamicsSlice = createSlice({
     extraReducers: builder => {
       builder
         .addCase(uploadImage.fulfilled, (state, { payload }) => {
-        console.log(payload);
+          return { ...state };
       })
     },
 });

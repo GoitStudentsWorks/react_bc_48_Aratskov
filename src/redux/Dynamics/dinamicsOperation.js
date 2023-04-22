@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
 export const uploadImage = createAsyncThunk(
   'dynamics/patch',
-  async ({ image }, thunkAPI) => {
+  async (image, thunkAPI) => {
     try {
       const value = thunkAPI.getState().auth.token;
       token.set(value);
