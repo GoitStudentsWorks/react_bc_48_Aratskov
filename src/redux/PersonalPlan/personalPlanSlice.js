@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getPersonalPlan,
   postPersonalPlan,
-    postPersonalPlanPre,
+  postPersonalPlanPre,
   putPersonalPlan,
 } from './personalPlanOperationg';
 
@@ -16,8 +16,8 @@ const personalPlanSlice = createSlice({
     footage: '',
     procent: '',
     year: '',
-      month: '',
-    _id:null,
+    month: '',
+    error: false,
   },
 
   extraReducers: builder => {
@@ -40,24 +40,26 @@ const personalPlanSlice = createSlice({
           ...payload,
         };
       })
-        .addCase(getPersonalPlan.rejected, (state) => {
-            return {
-                ...state, salary: '',
-    passiveIncome: '',
-    savings: '',
-    cost: '',
-    footage: '',
-    procent: '',
-    year: '',
-      month: '',
-            }
-        })
+      .addCase(getPersonalPlan.rejected, (state, { payload }) => {
+        return {
+          ...state,
+          salary: '',
+          passiveIncome: '',
+          savings: '',
+          cost: '',
+          footage: '',
+          procent: '',
+          year: '',
+          month: '',
+          error: payload,
+        };
+      })
       .addCase(putPersonalPlan.fulfilled, (state, { payload }) => {
         return {
           ...state,
           ...payload,
         };
-      })
+      });
   },
 });
 

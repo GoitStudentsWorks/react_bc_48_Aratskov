@@ -19,8 +19,6 @@ import {
 import style from './OwnPlanPage.module.scss';
 import { useEffect } from 'react';
 
-import { persistor } from 'redux/store';
-
 const validation = yup
   .number('It`s must be a number')
   .required('This line is required')
@@ -41,9 +39,6 @@ const initialValues = {
 const OwnPlanPage = () => {
   const dispatch = useDispatch();
 
-  const id = persistor.getState()
-  console.log(id);
-
   const plan = useSelector(selectPersonalPlan);
   const year = useSelector(selectYear);
   const month = useSelector(selectMonth);
@@ -61,7 +56,7 @@ const OwnPlanPage = () => {
 
     onSubmit: values => {
       const { salary, passiveIncome, savings, cost, footage, procent } = values;
-      if (plan._id) return;
+      // if (plan._id) return;
       dispatch(
         postPersonalPlanPre({
           salary: Number(salary),
@@ -77,7 +72,7 @@ const OwnPlanPage = () => {
 
   useEffect(() => {
     formik.setValues(plan);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plan]);
 
   const handleClick = () => {
@@ -111,25 +106,31 @@ const OwnPlanPage = () => {
   };
 
   useEffect(() => {
-    dispatch(getPersonalPlan());
+    dispatch(getPersonalPlan()); 
   }, [dispatch]);
 
+  
+ const { salary, passiveIncome, savings, cost, footage, procent } = plan;
+  
+
   return (
+     <div className={style.wrapper}>
     <div className="container">
-      <div className={style.wrapper}>
+     
         <form className={style.form} onSubmit={formik.handleSubmit}>
           <ul className={style.list}>
             <li className={style.item}>
               <Input
                 id="salary"
                 name="salary"
+                defaultValue={salary}
                 value={formik.values.salary}
                 placeholder="Enter text"
                 label="1. RFP of both spouses, &#8372;"
                 onChange={formik.handleChange}
               />
               {formik.submitCount > 0 && formik.errors.salary && (
-                <p style={{ color: 'white' }}>{formik.errors.salary}</p>
+                <p style={{ color: 'red' }}>{formik.errors.salary}</p>
               )}
             </li>
             <li className={style.item}>
@@ -142,59 +143,59 @@ const OwnPlanPage = () => {
                 onChange={formik.handleChange}
               />
               {formik.submitCount > 0 && formik.errors.passiveIncome && (
-                <p style={{ color: 'white' }}>{formik.errors.passiveIncome}</p>
+                <p style={{ color: 'red' }}>{formik.errors.passiveIncome}</p>
               )}
             </li>
             <li className={style.item}>
               <Input
                 id="savings"
                 name="savings"
-                value={formik.values.savings}
+                value={ formik.values.savings}
                 placeholder="Enter text"
                 label="3. Savings, &#8372;"
                 onChange={formik.handleChange}
               />
               {formik.submitCount > 0 && formik.errors.savings && (
-                <p style={{ color: 'white' }}>{formik.errors.savings}</p>
+                <p style={{ color: 'red' }}>{formik.errors.savings}</p>
               )}
             </li>
             <li className={style.item}>
               <Input
                 id="cost"
                 name="cost"
-                value={formik.values.cost}
+                value={ formik.values.cost}
                 placeholder="Enter text"
                 label="4. Specify the cost of your future apartment, &#8372;"
                 onChange={formik.handleChange}
               />
               {formik.submitCount > 0 && formik.errors.cost && (
-                <p style={{ color: 'white' }}>{formik.errors.cost}</p>
+                <p style={{ color: 'red' }}>{formik.errors.cost}</p>
               )}
             </li>
             <li className={style.item}>
               <Input
                 id="footage"
                 name="footage"
-                value={formik.values.footage}
+                value={ formik.values.footage}
                 placeholder="Enter text"
                 label="5. Specify the number of sq.m. of your future apartment"
                 onChange={formik.handleChange}
               />
               {formik.submitCount > 0 && formik.errors.footage && (
-                <p style={{ color: 'white' }}>{formik.errors.footage}</p>
+                <p style={{ color: 'red' }}>{formik.errors.footage}</p>
               )}
             </li>
             <li className={style.item}>
               <Input
                 id="procent"
                 name="procent"
-                value={formik.values.procent}
+                value={ formik.values.procent}
                 placeholder="Enter text"
                 label="6. Accumulation, %"
                 onChange={formik.handleChange}
               />
               {formik.submitCount > 0 && formik.errors.procent && (
-                <p style={{ color: 'white' }}>{formik.errors.procent}</p>
+                <p style={{ color: 'red' }}>{formik.errors.procent}</p>
               )}
               <p className={style.description}>
                 Specify the percentage that you would like to accumulate per
@@ -203,9 +204,9 @@ const OwnPlanPage = () => {
               </p>
             </li>
           </ul>
-          <Button type="submit" className={style.prevPlanButton}>
+          {!plan._id && <Button type="submit" className={style.prevPlanButton}>
             Pre Plan
-          </Button>
+          </Button>}
           <ResultForm
             title="You will have an apartment in:"
             year={year}
