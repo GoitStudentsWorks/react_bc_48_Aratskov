@@ -1,48 +1,83 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
+import StatisticsService from 'services/statistic.service';
 
 axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
-export const getTransaction = createAsyncThunk(
-  'transaction/get',
-  //   async (_, thunkApi) => {
-  //     const { token } = thunkApi.getState().auth;
-  //     try {
-  //       const { data } = await axios.get('/cashflow', {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
-  //       return data;
-  //     } catch (error) {
-  //       //   const { status } = error.response.request;
-  //       //   if (status === 401) {
-  //       //     Notify.failure('User not found');
-  //       //   } else if (status === 404) {
-  //       //     Notify.failure('Not Found!');
-  //       //   } else if (status === 500) {
-  //       //     Notify.failure('Server error');
-  //       //   }
-  //       return thunkApi.rejectWithValue(error.message);
-  //     }
-  //   },
-
-  async (credentials, { rejectWithValue }) => {
+export const getTransactions = createAsyncThunk(
+  'statistics/getTransactions',
+  async (payload, thunkApi) => {
+    const { month, year } = payload;
     try {
-      const data = await axios.get('/cashflow', credentials);
-      console.log(data.data);
-      return data.data;
+      const { data } = await StatisticsService.getTransactions(month, year);
+
+      if (typeof data === 'string') return [];
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      const { status } = error.response.request;
+      if (status === 401) {
+        Notify.failure('User not found');
+      } else if (status === 404) {
+        Notify.failure('Not Found!');
+      } else if (status === 500) {
+        Notify.failure('Server error');
+      }
+      return thunkApi.rejectWithValue(error.message);
     }
   },
   {
     condition(_, { getState }) {
-      const { items } = getState().transaction;
+      const { transactions } = getState().statistics;
 
-      if (!items.length) return true;
+      if (!transactions.length) return true;
       return false;
     },
+  }
+);
+
+export const getCategories = createAsyncThunk(
+  'statistics/getCategories',
+  async (payload, thunkApi) => {
+    const { month, year } = payload;
+    try {
+      const { data } = await StatisticsService.getCategories(month, year);
+      if (typeof data === 'string') return [];
+      return data;
+    } catch (error) {
+      const { status } = error.response.request;
+      if (status === 401) {
+        Notify.failure('User not found');
+      } else if (status === 404) {
+        Notify.failure('Not Found!');
+      } else if (status === 500) {
+        Notify.failure('Server error');
+      }
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition(_, { getState }) {
+      const { categories } = getState().statistics;
+
+      if (!categories.length) return true;
+      return false;
+    },
+  }
+);
+
+export const deleteTransaction = createAsyncThunk(
+  'statistics/deleteTransaction',
+  async (payload, { dispatch }) => {
+    await StatisticsService.deleteTransaction(payload);
+    await dispatch(getTransactions({ month: 12, year: 2023 }));
+  }
+);
+
+export const updateTransaction = createAsyncThunk(
+  'statistics/updateTransaction',
+  async payload => {
+    const { id, data } = payload;
+    await StatisticsService.updateTransaction(id, data);
   }
 );
