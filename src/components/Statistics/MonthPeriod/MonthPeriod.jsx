@@ -4,29 +4,23 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { forwardRef, useState } from 'react';
 import { getYear } from 'date-fns';
-
-// import { Range } from 'immutable';
-// import { DayPicker } from 'react-day-picker';
-
-// const MonthPeriod = () => {
-//   return <DayPicker />;
-// };
-
-// export default MonthPeriod;
-
+import { useDispatch } from 'react-redux';
 
 const MonthPeriod = () => {
   const [date, setDate] = useState(new Date());
+  const dispatch = useDispatch();
+
+  const monthNumber = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  dispatch({
+    type: 'statistics/addDate',
+    payload: { monthNumber: monthNumber, year: year },
+  });
 
   // const date = new Date('Wed Apr 19 2023 20:06:29');
   // const dayOfMonth = date.getDate();
-  const monthNumber = date.getMonth() + 1;
   // const monthName = date.toLocaleString('en-US', { month: 'short' });
-  const year = date.getFullYear();
-  // console.log(`Day: ${dayOfMonth}`);
-  console.log(`Month: ${monthNumber}`);
-  // console.log(`Month: ${monthName}`);
-  console.log(`Year: ${year}`);
 
   console.log('startDate', date);
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -37,7 +31,6 @@ const MonthPeriod = () => {
       </svg>
     </button>
   ));
-  // const years = Range(2020, getYear(new Date()) + 1, 1);
 
   return (
     <>
@@ -50,17 +43,12 @@ const MonthPeriod = () => {
           showMonthYearPicker
           id="12"
           monthsShown="1"
-          ////////////////////////////////////
           calendarClassName={s.calendar}
           popperClassName={s.d}
           wrapperClassName={s.v}
-          // dayModifiers={s.a}
-          // monthClassName={s.a}
-          ////////////////////////////////////
           showPopperArrow={false}
           renderCustomHeader={({
             date,
-            // changeYear,
             decreaseYear,
             increaseYear,
             prevMonthButtonDisabled,
@@ -74,21 +62,7 @@ const MonthPeriod = () => {
               >
                 {'<'}
               </button>
-
-              {/* <select
-                style={{ border: 'none', backgroundColor: '#F3F3F3' }}
-                value={getYear(date)}
-                onChange={({ target: { value } }) => changeYear(value)}
-              >
-                {years.map(option => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select> */}
-
               {getYear(date)}
-
               <button
                 onClick={increaseYear}
                 disabled={nextMonthButtonDisabled}
