@@ -6,7 +6,6 @@ import {
   getTransactionsSelector,
 } from 'redux/Statistics/StatisticsSelectors';
 import {
-  getCategories,
   getTransactions,
 } from 'redux/Statistics/StatisticsOperations';
 import s from './ExpensesList.module.css';
@@ -25,6 +24,7 @@ const ExpensesList = () => {
   useEffect(() => {
     if (transactions.length) return;
     dispatch(getTransactions({ month, year }));
+    // eslint-disable-next-line
   }, []);
 
   return (

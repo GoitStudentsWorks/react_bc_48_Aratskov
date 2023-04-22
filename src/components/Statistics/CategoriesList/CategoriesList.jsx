@@ -20,6 +20,7 @@ const CategoriesList = () => {
   useEffect(() => {
     if (categories.length) return;
     dispatch(getCategories({ month, year }));
+    // eslint-disable-next-line
   }, []);
 
   return (
