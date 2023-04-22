@@ -1,18 +1,8 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import authReducer from './Auth/authSlice';
-
-// export const store = configureStore({
-//   reducer: {
-//     auth: authReducer,
-//   },
-//   devTools: process.env.NODE_ENV !== 'production',
-// });
-
-
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './Auth/authSlice';
-import planReducer from './PersonalPlan/personalPlanSlice'
+import planReducer from './PersonalPlan/personalPlanSlice';
 import { burgerReducer } from './BurgerMenu/burgerSlice';
+import cashflowSlice from './Cashflow/cashflowSlice';
 
 import {
   persistStore,
@@ -26,6 +16,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import dinamicsReducer from './Dynamics/dinamicsSlice';
+import statisticsReducer from './Statistics/StatisticsSlise';
 
 const persistContactsConfig = {
   key: 'auth',
@@ -42,10 +33,11 @@ export const store = configureStore({
   reducer: {
     auth: persistedContactsReducer,
     plan: planReducer,
+    cashflow: cashflowSlice,
 
     burger: burgerReducer,
     dinamics: dinamicsReducer,
-
+    statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

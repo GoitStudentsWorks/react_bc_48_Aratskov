@@ -1,4 +1,3 @@
-// import PlanInputsList from 'components/PlanInputsList/PlanInputsList';
 import { Button } from 'components/Button/Button';
 import Input from 'components/Input/Input';
 import ResultForm from 'components/ResultForm/ResultForm';
@@ -15,9 +14,12 @@ import {
   postPersonalPlanPre,
   postPersonalPlan,
   getPersonalPlan,
+  putPersonalPlan,
 } from 'redux/PersonalPlan/personalPlanOperationg';
 import style from './OwnPlanPage.module.scss';
 import { useEffect } from 'react';
+
+import { persistor } from 'redux/store';
 
 const validation = yup
   .number('It`s must be a number')
@@ -39,6 +41,9 @@ const initialValues = {
 const OwnPlanPage = () => {
   const dispatch = useDispatch();
 
+  const id = persistor.getState()
+  console.log(id);
+
   const plan = useSelector(selectPersonalPlan);
   const year = useSelector(selectYear);
   const month = useSelector(selectMonth);
@@ -56,8 +61,30 @@ const OwnPlanPage = () => {
 
     onSubmit: values => {
       const { salary, passiveIncome, savings, cost, footage, procent } = values;
+      if (plan._id) return;
       dispatch(
         postPersonalPlanPre({
+          salary: Number(salary),
+          passiveIncome: Number(passiveIncome),
+          savings: Number(savings),
+          cost: Number(cost),
+          footage: Number(footage),
+          procent: Number(procent),
+        })
+      );
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues(plan);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plan]);
+
+  const handleClick = () => {
+    if (!plan._id) {
+      const { salary, passiveIncome, savings, cost, footage, procent } = plan;
+      dispatch(
+        postPersonalPlan({
           salary,
           passiveIncome,
           savings,
@@ -66,26 +93,25 @@ const OwnPlanPage = () => {
           procent,
         })
       );
-    },
-  });
-
-  const handleClick = () => {
-    const { salary, passiveIncome, savings, cost, footage, procent } = plan;
-    dispatch(
-      postPersonalPlan({
-        salary,
-        passiveIncome,
-        savings,
-        cost,
-        footage,
-        procent,
-      })
-    );
+      return;
+    } else {
+      const { salary, passiveIncome, savings, cost, footage, procent } =
+        formik.values;
+      dispatch(
+        putPersonalPlan({
+          salary,
+          passiveIncome,
+          savings,
+          cost,
+          footage,
+          procent,
+        })
+      );
+    }
   };
 
   useEffect(() => {
     dispatch(getPersonalPlan());
-  
   }, [dispatch]);
 
   return (

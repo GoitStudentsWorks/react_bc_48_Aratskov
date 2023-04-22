@@ -1,7 +1,21 @@
 import Input from 'components/Input/Input';
 import style from './TransactionDataList.module.scss';
+import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
+import { useSelector } from 'react-redux';
+import { selectCategories } from 'redux/Cashflow/cashflowSelectors';
+import { useState } from 'react';
 
 const TransactionDataList = ({ onChange, category, comment, sum }) => {
+  const categories = useSelector(selectCategories);
+  const [selectedCategory, setSelectedCategory] = useState({
+    name: 'other',
+    title: 'Other',
+  });
+
+  const handleCategoryChange = category => {
+    setSelectedCategory(category);
+  };
+
   return (
     <ul className={style.list}>
       <li className={style.item}>
@@ -13,19 +27,19 @@ const TransactionDataList = ({ onChange, category, comment, sum }) => {
         />
       </li>
       <li className={style.item}>
-        <Input
+        <SelectWithLabel
           name="category"
-          value={category}
-          placeholder="Other"
+          value={selectedCategory}
+          options={categories}
           label="Per category"
-          onChange={onChange}
+          onChange={handleCategoryChange}
         />
       </li>
       <li className={style.item}>
         <Input
           name="comment"
           value={comment}
-          placeholder="Concert tickets"
+          placeholder="Enter comment"
           label="Expense comment"
           onChange={onChange}
         />
