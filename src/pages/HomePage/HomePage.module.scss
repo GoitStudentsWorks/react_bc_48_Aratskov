@@ -25,13 +25,13 @@
   }
 
   @include tablet {
-    margin-top: 72px;
-    margin-bottom: 124px;
+    padding-top: 72px;
+    padding-bottom: 124px;
   }
 
   @include desktop {
-    margin-top: 89px;
-    padding-top: 53px;
+    padding-top: 89px;
+    // padding-top: 53px;
   }
 }
 
