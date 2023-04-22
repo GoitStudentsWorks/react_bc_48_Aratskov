@@ -4,10 +4,11 @@ import {
   loginUser,
   logoutUser,
   getCurrentUser,
+  getBalanceUser,
 } from './authOperations';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, balance: 0 },
   token: null,
   isLoggedIn: false,
   isLoading: false,
@@ -20,34 +21,34 @@ const authSlice = createSlice({
   reducers: {
     logOut() {
       return { ...initialState };
-    }},
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoggedIn = true;
         state.error = null;
         state.isLoading = false;
         state.user = { ...payload };
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        const { name, email } = payload.user;
-
         state.error = null;
         state.isLoading = false;
         state.token = payload.token;
         state.isLoggedIn = true;
-        state.user = { name, email };
+        state.user = { ...payload.user };
       })
       .addCase(logoutUser.fulfilled, state => {
         return initialState;
       })
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
-        const { name, email } = payload.user;
         state.error = null;
         state.isLoading = false;
-        state.user = { name, email };
+        state.user = { ...payload.user };
         state.isLoggedIn = true;
+      })
+      .addCase(getBalanceUser.fulfilled, (state, { payload }) => {
+        state.user.balance = payload;
       })
       .addMatcher(
         action =>
@@ -60,14 +61,12 @@ const authSlice = createSlice({
         action =>
           action.type.startsWith('user') && action.type.endsWith('/rejected'),
         (state, { payload }) => {
-          console.log(payload);
           state.isLoading = false;
           state.error = payload;
         }
       );
   },
 });
-
 
 export const { logOut } = authSlice.actions;
 export default authSlice.reducer;

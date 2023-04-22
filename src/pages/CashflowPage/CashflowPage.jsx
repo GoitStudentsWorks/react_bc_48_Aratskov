@@ -1,5 +1,6 @@
 import TransactionDataList from 'components/TransactionDataList/TransactionDataList';
 import { useFormik } from 'formik';
+import style from './CashflowPage.module.scss'
 
 import { Button } from 'components/Button/Button';
  import { usePopup } from 'hooks/usePopup';
@@ -28,8 +29,9 @@ const CashflowPage = () => {
   //     />
   //   </form>
 
-     <div>
-      <TransactionDataList />
+    <div className='container'>
+      <div className={style.wrapper}>
+         <TransactionDataList />
       <Button
         onClick={showPopup}
         nativeProps={{ style: { width: 150, marginBottom: 20 } }}
@@ -42,6 +44,8 @@ const CashflowPage = () => {
         Add balance
       </Button>
       <ModalAddBalance show={show} onClose={closePopup} />
+      </div>
+     
     </div> 
   );
 };

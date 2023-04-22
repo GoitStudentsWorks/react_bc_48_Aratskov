@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { Notify } from 'notiflix';
 import StatisticsService from 'services/statistic.service';
 

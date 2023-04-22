@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
 
 export const ModalEditTransaction = ({ show, onClose }) => {
+  // eslint-disable-next-line no-unused-vars
   const [category, setCategory] = useState([
     { label: 'Other' },
     { label: 'Grossery' },

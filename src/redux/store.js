@@ -1,6 +1,24 @@
+
+// import { configureStore } from '@reduxjs/toolkit';
+// import authReducer from './Auth/authSlice';
+// import planReducer from './PersonalPlan/personalPlanSlice';
+
+// import { configureStore } from '@reduxjs/toolkit';
+// import authReducer from './Auth/authSlice';
+
+// export const store = configureStore({
+//   reducer: {
+//     auth: authReducer,
+//   },
+//   devTools: process.env.NODE_ENV !== 'production',
+// });
+
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './Auth/authSlice';
 import planReducer from './PersonalPlan/personalPlanSlice';
+import { burgerReducer } from './BurgerMenu/burgerSlice';
+import cashflowSlice from './Cashflow/cashflowSlice';
+
 
 import {
   persistStore,
@@ -31,6 +49,9 @@ export const store = configureStore({
   reducer: {
     auth: persistedContactsReducer,
     plan: planReducer,
+    cashflow: cashflowSlice,
+
+    burger: burgerReducer,
     dinamics: dinamicsReducer,
     statistics: statisticsReducer,
   },

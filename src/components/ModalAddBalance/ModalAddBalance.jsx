@@ -2,10 +2,14 @@ import { BasicInput } from 'components/BasicInput/BasicInput';
 import { Button } from 'components/Button/Button';
 import Modal from 'components/Modal/Modal';
 import s from './ModalAddBalance.module.scss';
+import { useDispatch } from 'react-redux';
+import { getBalanceUser } from 'redux/Auth/authOperations';
 
 export const ModalAddBalance = ({ show, onClose }) => {
+  const dispatch = useDispatch();
   const addBalance = value => {
-    console.log('add balance: ', value);
+    // console.log('add balance: ', value);
+    dispatch(getBalanceUser(Number(value)));
   };
 
   const handleSubmit = e => {
@@ -13,7 +17,7 @@ export const ModalAddBalance = ({ show, onClose }) => {
     const form = e.currentTarget;
     const input = form.elements.input.value;
     form.reset();
-    console.log('input:', input);
+    // console.log('input:', input);
     addBalance(input);
     onClose();
   };

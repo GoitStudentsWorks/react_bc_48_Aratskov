@@ -51,7 +51,10 @@ export const loginUser = createAsyncThunk(
         Notify.failure(`Email or password is wrong`);
       } else if (status === 400) {
         Notify.failure(`Error`);
+      } else if (status === 500) {
+        Notify.failure('Server error');
       }
+
       return rejectWithValue(error.message);
     }
   }
@@ -91,6 +94,25 @@ export const getCurrentUser = createAsyncThunk(
     condition(_, { getState }) {
       const { token } = getState().auth;
       return Boolean(token);
+    },
+  }
+);
+
+export const getBalanceUser = createAsyncThunk(
+  'user/balance',
+  async (balance, { rejectWithValue }) => {
+    try {
+      const res = await axios.put('/user/addBalance', { balance });
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { balance } = getState().auth.user;
+      if (balance) return false;
+      return true;
     },
   }
 );
