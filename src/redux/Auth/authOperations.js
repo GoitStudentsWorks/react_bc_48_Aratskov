@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
 
 import { logOut } from './authSlice';
-
+import { unsetPlanState } from 'redux/PersonalPlan/personalPlanSlice';
 axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
 const token = {
@@ -73,10 +73,11 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   'user/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const res = await axios.get('/user/logout');
       token.unset();
+      dispatch(unsetPlanState())
       return res.data;
     } catch (error) {
       return rejectWithValue(error.message);

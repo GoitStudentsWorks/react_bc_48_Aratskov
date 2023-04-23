@@ -35,10 +35,6 @@ export const getPersonalPlan = createAsyncThunk(
       const data = await axios.get('/personal-plan');
       return data.data;
     } catch (error) {
-        console.log(error.response.status);
-        if (error.response.status === 400) {
-            Notify.failure('You don`t have personal plan yet')
-        }
       return rejectWithValue(error.message);
     }
   }
@@ -55,7 +51,3 @@ export const putPersonalPlan = createAsyncThunk(
     }
   }
 );
-
-// export const unsetPlanState = () => {
-//     state.plan=initialState
-// }
