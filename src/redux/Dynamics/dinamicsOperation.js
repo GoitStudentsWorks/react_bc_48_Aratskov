@@ -35,3 +35,19 @@ export const userChartInfo = createAsyncThunk(
     }
   }
 );
+
+export const userChartInfoByMonth = createAsyncThunk(
+  'dynamics/by-month',
+  async (__, thunkAPI) => {
+    try {
+      const imageToken = thunkAPI.getState().auth.token;
+      token.set(imageToken);
+
+      const data = await axios.get('/dynamics/by-month?year=2&month=2');
+      console.log('data', data.data);
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
