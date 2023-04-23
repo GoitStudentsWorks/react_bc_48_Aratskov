@@ -1,6 +1,6 @@
 .containerInfo {
   display: flex;
-  gap: 46px;
+  justify-content: space-between;
 }
 
 .periodOfAccumulating {

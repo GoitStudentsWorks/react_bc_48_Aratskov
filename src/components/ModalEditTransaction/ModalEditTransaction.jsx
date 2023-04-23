@@ -8,31 +8,39 @@ import svg from '../../assets/icons/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 
-export const ModalEditTransaction = ({ show, onClose }) => {
+export const ModalEditTransaction = ({
+  show,
+  onClose,
+  categoryName,
+  commentName,
+  sumName,
+}) => {
   // eslint-disable-next-line no-unused-vars
   const [category, setCategory] = useState([
     { label: 'Other' },
     { label: 'Grossery' },
     { label: 'Food' },
   ]);
-  const [comment, setComment] = useState('Bag');
-  const [sum, setSum] = useState(1500);
-  // const [selectedOption, setSelectedOption] = useState(category[0]);
-  const categories = useSelector(selectCategoriesWithIcons);
+
+  const [comment, setComment] = useState(commentName);
+  const [sum, setSum] = useState(sumName);
+  const [selectedOption, setSelectedOption] = useState(categoryName);
+
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log('category:', category, 'comment:', comment, 'sum:', sum);
+    // console.log('category:', category, 'comment:', comment, 'sum:', sum);
     form.reset();
     onClose();
   };
 
-  const [selectedCategory, setSelectedCategory] = useState({
-    name: 'other',
-    title: 'Other',
-    icon: `${svg}#icon-settings`,
-  });
+
+  const handleChange = selectedOption => {
+    // console.log('selectedOption:', selectedOption);
+    setSelectedOption(selectedOption);
+  };
+
 
   // const handleChange = selectedOption => {
   //   console.log('selectedOption:', selectedOption);

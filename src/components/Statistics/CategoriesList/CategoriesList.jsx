@@ -15,8 +15,8 @@ const CategoriesList = () => {
 
   useEffect(() => {
     if (categories.length) return;
-    if (date.langth > 0) {
-      dispatch(getCategories({ month: date[0].month, year: date[0].year }));
+    if (date !== null) {
+      dispatch(getCategories(date));
     } else {
       dispatch(getCategories({ month: 4, year: 2023 }));
     }
