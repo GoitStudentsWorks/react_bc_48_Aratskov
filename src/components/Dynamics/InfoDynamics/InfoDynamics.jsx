@@ -10,7 +10,7 @@ import {
 import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 
 const InfoDynamics = () => {
-  const [image] = useState(floorPlan);
+  const [image, setImage] = useState(selector.image || floorPlan);
   const dispatch = useDispatch();
   const selector = useSelector(state => state.dinamics);
   console.log('selector:', selector);
@@ -29,6 +29,7 @@ const InfoDynamics = () => {
       console.log(formData);
       dispatch(uploadImage(formData));
       dispatch(userChartInfo());
+      setImage(selector.image);
     }
   }, [acceptedFiles, dispatch]);
 
