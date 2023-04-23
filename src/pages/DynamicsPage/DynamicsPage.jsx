@@ -29,11 +29,12 @@ ChartJS.register(
 
 const DynamicsPage = () => {
   const dispatch = useDispatch();
-  const selector = useSelector(state => state.chartData);
-  console.log('DynamicsPage  selector:', selector);
+  const selector = useSelector(state => state.dinamics);
+  // console.log('DynamicsPage  selector:', selector.statByYear[0]);
   useEffect(() => {
     dispatch(userChartInfo());
-  });
+  }, []);
+
   const data = {
     labels: [
       'Oct',
@@ -129,10 +130,6 @@ const DynamicsPage = () => {
     height: '222px',
   };
 
-  const handleFetchFromBack = () => {
-    console.log('fetch');
-  };
-
   return (
     <>
       <div className="container">
@@ -161,7 +158,6 @@ const DynamicsPage = () => {
           </div>
         </div>
       </div>
-      <button onClick={handleFetchFromBack}>Axios Get</button>
     </>
   );
 };

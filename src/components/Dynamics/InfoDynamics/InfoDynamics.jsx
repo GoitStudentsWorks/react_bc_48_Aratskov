@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   uploadImage,
   userChartInfo,
-  userChartInfoByMonth,
 } from 'redux/Dynamics/dinamicsOperation';
 import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 
@@ -14,7 +13,6 @@ const InfoDynamics = () => {
   const [image] = useState(floorPlan);
   const dispatch = useDispatch();
   const selector = useSelector(state => state.dinamics);
-  const selectorByMonth = useSelector(state => console.log('By month', state));
   console.log('selector:', selector);
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
@@ -31,10 +29,8 @@ const InfoDynamics = () => {
       console.log(formData);
       dispatch(uploadImage(formData));
       dispatch(userChartInfo());
-      dispatch(userChartInfoByMonth());
     }
-    // eslint-disable-next-line
-  }, [acceptedFiles]);
+  }, [acceptedFiles, dispatch]);
 
   return (
     <div className={style.containerInfo}>
