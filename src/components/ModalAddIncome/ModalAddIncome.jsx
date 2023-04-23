@@ -2,9 +2,13 @@ import { BasicInput } from 'components/BasicInput/BasicInput';
 import { Button } from 'components/Button/Button';
 import Modal from 'components/Modal/Modal';
 import s from './ModalAddIncome.module.scss';
+import { useDispatch } from 'react-redux';
+import { addTransaction } from 'redux/Cashflow/cashflowOperations';
 
 export const ModalAddIncome = ({ show, onClose }) => {
+  const dispatch = useDispatch();
   const addIncome = value => {
+    dispatch(addTransaction({ type: 'income', sum: Number(value) }));
     console.log('add income: ', value);
   };
 

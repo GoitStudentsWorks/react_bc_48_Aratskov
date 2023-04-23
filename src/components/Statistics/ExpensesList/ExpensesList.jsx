@@ -1,112 +1,53 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExpensesListItem from './ExpensesListItem/ExpensesListItem';
-import { getTransactionsSelector } from 'redux/Statistics/StatisticsSelectors';
+import {
+  getStatisticsDate,
+  getTransactionsSelector,
+} from 'redux/Statistics/StatisticsSelectors';
 import { getTransactions } from 'redux/Statistics/StatisticsOperations';
 import s from './ExpensesList.module.css';
-
-
-// import {
-//   selectIsLoading,
-//   selectTransactions,
-// } from 'redux/Statistics/StatisticsSelectors';
-
-
-// const initialState = [
-//   {
-//     name: 'Products',
-//     prise: '4800',
-//     categorie: 'Houseweafawef',
-//     id: 1,
-//     month: 10,
-//   },
-//   {
-//     name: 'Products',
-//     prise: '4800',
-//     categorie: 'Houseweafawef',
-//     id: 2,
-//     month: 11,
-//   },
-//   {
-//     name: 'Products',
-//     prise: '4800',
-//     categorie: 'Houseweafawef',
-//     id: 3,
-//     month: 12,
-//   },
-//   {
-//     name: 'Products',
-//     prise: '4800',
-//     categorie: 'Houseweafawef',
-//     id: 4,
-//     month: 12,
-//   },
-//   {
-//     name: 'Products1',
-//     prise: '4811',
-//     categorie: 'House1',
-//     id: 5,
-//     month: 11,
-//   },
-//   {
-//     name: 'Products2',
-//     prise: '4822',
-//     categorie: 'House2',
-//     id: 6,
-//     month: 10,
-//   },
-//   {
-//     name: 'Products2wqedawed',
-//     prise: '4822',
-//     categorie: 'House2',
-//     id: 7,
-//     month: 12,
-//   },
-//   {
-//     name: 'Products2',
-//     prise: '4822',
-//     categorie: 'House2',
-//     id: 7,
-//     month: 11,
-//   },
-//   {
-//     name: 'Products2',
-//     prise: '4822',
-//     categorie: 'House2',
-//     id: 8,
-//     month: 10,
-//   },
-// ];
-
 
 const ExpensesList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(getTransactionsSelector);
 
+  const date = useSelector(getStatisticsDate);
+
+  // const month = 0;
+  // const year = 0;
+  // if (date.langth > 0) {
+  //   month = date[0].monthNumber;
+  //   year = date[0].year;
+  // }
+
   useEffect(() => {
     if (transactions.length) return;
-    dispatch(getTransactions({ month: 2, year: 2023 }));
-    // eslint-disable-next-line
+    if (date.langth > 0) {
+      dispatch(
+        getTransactions({ month: date[0].monthNumber, year: date[0].year })
+      );
+    } // eslint-disable-next-line
   }, []);
-
-  if (!transactions.length) {
-    return <div>No date</div>;
-  }
 
   return (
     <div className={s.style}>
-      <ul>
-        {transactions.map(({ _id, category, comment, sum, date }) => (
-          <ExpensesListItem
-            key={_id}
-            id={_id}
-            category={category}
-            comment={comment}
-            sum={sum}
-            date={date}
-          />
-        ))}
-      </ul>
+      {!transactions.length ? (
+        <div className={s.noty}>You have not added any transactions!</div>
+      ) : (
+        <ul>
+          {transactions.map(({ _id, category, comment, sum, date }) => (
+            <ExpensesListItem
+              key={_id}
+              id={_id}
+              category={category}
+              comment={comment}
+              sum={sum}
+              date={date}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

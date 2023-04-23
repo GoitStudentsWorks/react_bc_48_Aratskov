@@ -1,10 +1,24 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Notify } from 'notiflix';
 import StatisticsService from 'services/statistic.service';
 
-axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
+// export const addDate = ({ monthNumber, year }) => ({
+//   type: 'statistics/addDate',
+//   payload: { monthNumber, year },
+// });
+
+export const addDate = createAction(
+  'statistics/addDate',
+  ({ monthNumber, year }) => {
+    return {
+      payload: {
+        monthNumber,
+        year,
+      },
+    };
+  }
+);
 
 export const getTransactions = createAsyncThunk(
   'statistics/getTransactions',
@@ -71,14 +85,18 @@ export const deleteTransaction = createAsyncThunk(
   'statistics/deleteTransaction',
   async (payload, { dispatch }) => {
     await StatisticsService.deleteTransaction(payload);
-    await dispatch(getTransactions({ month: 12, year: 2023 }));
+    await dispatch(
+      getTransactions({
+        // month: 12, year: 2023
+      })
+    );
   }
 );
 
 export const updateTransaction = createAsyncThunk(
   'statistics/updateTransaction',
-  async payload => {
-    const { id, data } = payload;
-    await StatisticsService.updateTransaction(id, data);
+  async (payload, { dispatch }) => {
+    await StatisticsService.updateTransaction(payload);
+    await dispatch(getTransactions());
   }
 );

@@ -3,6 +3,7 @@ import authReducer from './Auth/authSlice';
 import planReducer from './PersonalPlan/personalPlanSlice';
 import { burgerReducer } from './BurgerMenu/burgerSlice';
 import cashflowSlice from './Cashflow/cashflowSlice';
+import statisticsReducer from './Statistics/StatisticsSlise';
 
 import {
   persistStore,
@@ -16,7 +17,6 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import dinamicsReducer from './Dynamics/dinamicsSlice';
-import statisticsReducer from './Statistics/StatisticsSlise';
 
 const persistContactsConfig = {
   key: 'auth',

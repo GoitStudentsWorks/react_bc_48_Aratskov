@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
 
 import { logOut } from './authSlice';
-
+import { unsetPlanState } from 'redux/PersonalPlan/personalPlanSlice';
 axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
 export const token = {
@@ -25,10 +25,21 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       const { status } = error.response.request;
-      if (status === 409) {
-        Notify.failure(`${credentials.email} already exists`);
-      } else if (status === 500) {
-        Notify.failure(`${credentials.name} already exists`);
+      // if (status === 409) {
+      //   Notify.failure(`${credentials.email} already exists`);
+      // } else if (status === 500) {
+      //   Notify.failure(`${credentials.name} already exists`);
+      // }
+
+      switch (status) {
+        case 500:
+          Notify.failure('Sorry, server error occured👻');
+          break;
+        case 401:
+          Notify.failure('Sorry, you are not authorized👻');
+          break;
+        default:
+          Notify.failure('Sorry, bad reqest👻');
       }
 
       return rejectWithValue(error.message);
@@ -62,10 +73,11 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   'user/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const res = await axios.get('/user/logout');
       token.unset();
+      dispatch(unsetPlanState())
       return res.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -105,6 +117,18 @@ export const getBalanceUser = createAsyncThunk(
       const res = await axios.put('/user/addBalance', { balance });
       return res.data;
     } catch (error) {
+      const { status } = error.response.request;
+      switch (status) {
+        case 500:
+          Notify.failure('Sorry, server error occured👻');
+          break;
+        case 401:
+          Notify.failure('Sorry, you are not authorized👻');
+          break;
+        default:
+          Notify.failure('Sorry, bad reqest👻');
+      }
+
       return rejectWithValue(error.message);
     }
   },

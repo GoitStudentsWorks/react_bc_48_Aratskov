@@ -9,13 +9,12 @@ import { deleteTransaction } from 'redux/Statistics/StatisticsOperations';
 const ExpensesListItem = ({ category, comment, sum, date, id }) => {
   const { show, showPopup, closePopup } = usePopup();
   const dispatch = useDispatch();
-
-  console.log(id, 'id');
-
-  const onDeleteTransactionHandler = useCallback(id => {
-    console.log(id, 'qwe');
-    dispatch(deleteTransaction(id));
-  }, [dispatch]);
+  const onDeleteTransactionHandler = useCallback(
+    id => {
+      dispatch(deleteTransaction(id));
+    },
+    [dispatch]
+  );
 
   console.log();
   return (

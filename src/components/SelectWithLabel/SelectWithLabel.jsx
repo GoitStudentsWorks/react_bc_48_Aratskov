@@ -12,7 +12,12 @@ export const SelectWithLabel = ({ label, ...props }) => {
   );
 
   const customOptionLabel = data => (
-    <div>
+    <div className={s.optionWrapper}>
+      {data.icon && (
+        <svg className={s.svg}>
+          <use href={data.icon}></use>
+        </svg>
+      )}
       <span>{data.title}</span>
     </div>
   );
@@ -21,6 +26,7 @@ export const SelectWithLabel = ({ label, ...props }) => {
     <Select
       components={{ ValueContainer }}
       formatOptionLabel={customOptionLabel}
+      isSearchable={false}
       styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,
@@ -52,7 +58,7 @@ export const SelectWithLabel = ({ label, ...props }) => {
         }),
         option: (baseStyles, state) => ({
           ...baseStyles,
-          backgroundColor: '#f3f3f3',
+          backgroundColor: state.isFocused ? '#B7D7FC' : '#f3f3f3',
           color: '#242424',
         }),
       }}
