@@ -5,20 +5,27 @@ import clsx from 'clsx';
 import s from './ExpensesLimits.module.scss';
 import { ModalAddIncome } from 'components/ModalAddIncome/ModalAddIncome';
 
+import { getPresevingSelect } from 'redux/Cashflow/cashflowSelectors';
+import { useSelector } from 'react-redux';
+
 const ExpensesLimits = () => {
+  const { monthLimit, dailyLimit, totalByMounth, totalByDay } =
+    useSelector(getPresevingSelect);
+
   const { show, showPopup, closePopup } = usePopup();
+
   return (
     <div className={s.wrapper}>
       <div className={s.innerWrapper}>
         <LabledInput
           label="Daily limit"
-          value="-600$"
+          value={`${Math.round(dailyLimit - totalByDay)} ₴`}
           className={clsx(s.firstInput, s.inputWrapper)}
           inputClassName={s.input}
         />
         <LabledInput
           label="Monthly limit"
-          value="-5000$"
+          value={`${Math.round(monthLimit - totalByMounth)} ₴`}
           className={clsx(s.secondInput, s.inputWrapper)}
           inputClassName={s.input}
         />

@@ -1,64 +1,125 @@
 import Input from 'components/Input/Input';
 import style from './TransactionDataList.module.scss';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 import { useState } from 'react';
 import { getCurrentBalance } from 'redux/Auth/authSelectors';
 import svg from '../../assets/icons/sprite.svg';
+import ExpensesLimits from 'components/ExpensesLimits/ExpensesLimits';
+import { addTransaction } from 'redux/Cashflow/cashflowOperations';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import s from '../Input/Input.module.scss';
 
-const TransactionDataList = ({ onChange, category, comment, sum }) => {
+const schema = yup.object().shape({
+  comment: yup
+    .string()
+    .min(1, 'Comment should contain at least 1 character')
+    .max(80)
+    .required('This field is required'),
+  sum: yup
+    .number()
+    .positive('enter only a positive number')
+    .required('This field is required'),
+  category: yup.string(),
+});
+
+const TransactionDataList = () => {
+  const dispatch = useDispatch();
   const categories = useSelector(selectCategoriesWithIcons);
   const balance = useSelector(getCurrentBalance);
-  console.log(balance);
+
   const [selectedCategory, setSelectedCategory] = useState({
     name: 'other',
     title: 'Other',
     icon: `${svg}#icon-settings`,
   });
+  const initialValues = {
+    comment: '',
+    sum: '',
+    category: '',
+  };
+
+  const handleSubmit = (values, { setSubmitting, setFieldError }) => {
+    setSubmitting(false);
+    dispatch(
+      addTransaction({
+        ...values,
+        category: selectedCategory.name,
+        type: 'expense',
+      })
+    );
+  };
 
   const handleCategoryChange = category => {
     setSelectedCategory(category);
   };
 
   return (
-    <ul className={style.list}>
-      <li className={style.item}>
-        <Input
-          name={category}
-          value={`${balance} UAH`}
-          placeholder="Account balance: UAH 80,000"
-          label="From account"
-        />
-      </li>
-      <li className={style.item}>
-        <SelectWithLabel
-          name="category"
-          value={selectedCategory}
-          options={categories}
-          label="Per category"
-          onChange={handleCategoryChange}
-        />
-      </li>
-      <li className={style.item}>
-        <Input
-          name="comment"
-          value={comment}
-          placeholder="Enter comment"
-          label="Expense comment"
-          onChange={onChange}
-        />
-      </li>
-      <li className={style.item}>
-        <Input
-          name="sum"
-          value={sum}
-          placeholder="00.00"
-          label="Sum"
-          onChange={onChange}
-        />
-      </li>
-    </ul>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={schema}
+    >
+      <Form className={style.wrapper}>
+        <div className={style.list}>
+          <div className={style.item}>
+            <Input
+              name="balance"
+              value={balance? `${balance}UAH` : "0 UAH"}
+              placeholder="Account balance: UAH 80,000"
+              label="From account"
+              onChange={() => balance}
+            />
+          </div>
+
+          <div className={style.item}>
+            <SelectWithLabel
+              name="category"
+              value={selectedCategory}
+              options={categories}
+              label="Per category"
+              onChange={handleCategoryChange}
+            />
+          </div>
+
+          <div className={style.item}>
+            <div className={s.wrapp}>
+              <Field
+                className={s.input}
+                type="text"
+                name="comment"
+                placeholder="Enter comment"
+              />
+              <label htmlFor="comment" className={s.label}>
+                Expense comment
+              </label>
+            </div>
+
+            <ErrorMessage name="comment"></ErrorMessage>
+          </div>
+
+          <div className={style.item}>
+            <div className={s.wrapp}>
+              <Field
+                name="sum"
+                className={s.input}
+                type="text"
+                placeholder="00.00"
+              />
+              <label htmlFor="sum" className={s.label}>
+                Sum
+              </label>
+            </div>
+
+            <ErrorMessage name="sum"></ErrorMessage>
+          </div>
+        </div>
+
+        <ExpensesLimits />
+      </Form>
+    </Formik>
   );
 };
 export default TransactionDataList;

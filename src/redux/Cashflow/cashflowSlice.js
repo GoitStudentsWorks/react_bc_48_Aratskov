@@ -13,6 +13,7 @@ const initialState = {
     totalByMounth: 0,
     totalByDay: 0,
   },
+  error: null,
 };
 
 const cashflowSlice = createSlice({
@@ -24,7 +25,11 @@ const cashflowSlice = createSlice({
         state.category = payload;
       })
       .addCase(getPresevingDate.fulfilled, (state, { payload }) => {
-        state.presaving = payload;
+        const { monthLimit, dailyLimit, totalByDay, totalByMounth } = payload;
+        state.presaving.monthLimit = Math.round(monthLimit);
+        state.presaving.dailyLimit = Math.round(dailyLimit);
+        state.presaving.totalByDay = totalByDay;
+        state.presaving.totalByMounth = totalByMounth;
       })
       .addCase(addTransaction, (state, { payload }) => {
         const { sum, type } = payload;
@@ -39,15 +44,13 @@ const cashflowSlice = createSlice({
           action.type.startsWith('cashflow') &&
           action.type.endsWith('/pending'),
         state => {
-          state.isLoading = true;
         }
       )
       .addMatcher(
         action =>
           action.type.startsWith('cashflow') &&
-          action.type.endsWith('/pending'),
+          action.type.endsWith('/rejected'),
         (state, { payload }) => {
-          state.isLoading = false;
           state.error = payload;
         }
       );
