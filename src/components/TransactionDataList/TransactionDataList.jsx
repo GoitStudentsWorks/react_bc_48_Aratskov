@@ -2,18 +2,19 @@ import Input from 'components/Input/Input';
 import style from './TransactionDataList.module.scss';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
 import { useSelector } from 'react-redux';
-import { selectCategories } from 'redux/Cashflow/cashflowSelectors';
+import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 import { useState } from 'react';
 import { getCurrentBalance } from 'redux/Auth/authSelectors';
-
+import svg from '../../assets/icons/sprite.svg';
 
 const TransactionDataList = ({ onChange, category, comment, sum }) => {
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectCategoriesWithIcons);
   const balance = useSelector(getCurrentBalance);
-console.log(balance)
+  console.log(balance);
   const [selectedCategory, setSelectedCategory] = useState({
     name: 'other',
     title: 'Other',
+    icon: `${svg}#icon-settings`,
   });
 
   const handleCategoryChange = category => {
