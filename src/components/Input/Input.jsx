@@ -1,4 +1,5 @@
 import style from './Input.module.scss';
+import PropTypes from 'prop-types';
 
 const Input = ({
   id,
@@ -27,6 +28,18 @@ const Input = ({
       </label>
     </div>
   );
+};
+
+Input.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  classNameWrapp: PropTypes.string,
+  classNameInput: PropTypes.string,
+  classNameLabel: PropTypes.string,
 };
 
 export default Input;

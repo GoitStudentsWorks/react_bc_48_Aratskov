@@ -1,11 +1,15 @@
+import { useSelector } from 'react-redux';
 import { Button } from 'components/Button/Button';
 import { LabledInput } from 'components/LabledInput/LabledInput';
 import s from './ResultForm.module.scss';
 import { ModalAddBalance } from 'components/ModalAddBalance/ModalAddBalance';
 import { usePopup } from 'hooks/usePopup';
+import { getBalanceStatus } from 'redux/Auth/authSelectors';
 
 const ResultForm = ({ title, year, month, onClick }) => {
   const { show, showPopup, closePopup } = usePopup();
+  const balance = useSelector(getBalanceStatus);
+
   return (
     <div className={s.wrapper}>
       {title && <h2 className={s.title}>{title}</h2>}
@@ -33,7 +37,7 @@ const ResultForm = ({ title, year, month, onClick }) => {
           >
             Fits
           </Button>
-          <Button variant="link" onClick={showPopup}>
+          <Button variant="link" onClick={showPopup} disabled={balance}>
             Add Balance
           </Button>
         </div>
