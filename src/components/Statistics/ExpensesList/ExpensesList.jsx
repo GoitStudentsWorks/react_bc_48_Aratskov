@@ -21,8 +21,9 @@ const ExpensesList = () => {
     } else {
       dispatch(getTransactions({ month: 4, year: 2023 }));
     }
+  // eslint-disable-next-line
+}, []);
 
-  }, []);
 
   return (
     <div className={s.style}>

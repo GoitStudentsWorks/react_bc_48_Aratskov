@@ -19,6 +19,8 @@ const StatisticsPage = lazy(() =>
 const CategoriesList = lazy(() =>
   import('./Statistics/CategoriesList/CategoriesList')
 );
+const GhostBox = lazy(()=> import('../pages/NotFound/GhostBox'))
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -40,7 +42,8 @@ export const App = () => {
           <Route path="transactions" element={<ExpensesList />} />
           <Route path="categories" element={<CategoriesList />} />
         </Route>
-        <Route path="*" element={<Navigate to="/plan" />} />
+        <Route path='error' element={<GhostBox/>}/>
+        <Route path="*" element={<Navigate to="/error" />} />
       </Route>
     </Routes>
   );
