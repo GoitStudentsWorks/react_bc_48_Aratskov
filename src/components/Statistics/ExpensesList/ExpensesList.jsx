@@ -9,24 +9,6 @@ const ExpensesList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(getTransactionsSelector);
 
-  // const date = useSelector(getStatisticsDate);
-
-  // const month = 0;
-  // const year = 0;
-  // if (date.langth > 0) {
-  //   month = date[0].monthNumber;
-  //   year = date[0].year;
-  // }
-
-  // useEffect(() => {
-  //   if (transactions.length) return;
-  //   if (date.langth > 0) {
-  //     dispatch(
-  //       getTransactions({ month: date[0].monthNumber, year: date[0].year })
-  //     );
-  //   } // eslint-disable-next-line
-  // }, []);
-
   useEffect(() => {
     if (transactions.length) return;
     dispatch(getTransactions({ month: 4, year: 2023 }));

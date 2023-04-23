@@ -4,7 +4,7 @@ import { getCategories, getTransactions } from './StatisticsOperations';
 const statiaticsSlice = createSlice({
   name: 'statistics',
   initialState: {
-    date: [],
+    date: {},
     transactions: [],
     categories: [],
     isLoading: false,
@@ -14,8 +14,8 @@ const statiaticsSlice = createSlice({
   reducers: {
     addDate: (state, action) => {
       if (action && action.type === 'statistics/addDate') {
-        state.date.splice(0, state.date.length, action.payload);
-        // console.log('Slise-date', state.date);
+        state.date = action.payload;
+        console.log('Slise-date', state.date);
       }
     },
   },
