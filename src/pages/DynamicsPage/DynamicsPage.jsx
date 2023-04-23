@@ -14,6 +14,9 @@ import { Bar } from 'react-chartjs-2';
 import Accumulate from 'components/Dynamics/AccumulateMore/AccumulateMore';
 import InfoDynamics from 'components/Dynamics/InfoDynamics/InfoDynamics';
 import DynamicTitle from 'components/Dynamics/DynamicsTitle/DynamicsTitle';
+import { useDispatch, useSelector } from 'react-redux';
+import { userChartInfo } from 'redux/Dynamics/dinamicsOperation';
+import { useEffect } from 'react';
 
 ChartJS.register(
   CategoryScale,
@@ -25,6 +28,12 @@ ChartJS.register(
 );
 
 const DynamicsPage = () => {
+  const dispatch = useDispatch();
+  const selector = useSelector(state => state.chartData);
+  console.log('DynamicsPage  selector:', selector);
+  useEffect(() => {
+    dispatch(userChartInfo());
+  });
   const data = {
     labels: [
       'Oct',
@@ -120,32 +129,39 @@ const DynamicsPage = () => {
     height: '222px',
   };
 
+  const handleFetchFromBack = () => {
+    console.log('fetch');
+  };
+
   return (
     <>
-      <div className={style.container}>
-        <div className={style.diagramContainer}>
-          <DynamicTitle />
-          {window.innerWidth > 481 ? (
-            <Bar style={chartjsStyle} data={data} options={options} />
-          ) : (
-            <Bar
-              style={chartjsStyleHorizontal}
-              data={data}
-              options={optionsHorizontal}
-            />
-          )}
-          <div className={style.containerSelect}>
-            <DynamicsSelect />
-            <DynamicsList />
+      <div className="container">
+        <div className={style.container}>
+          <div className={style.diagramContainer}>
+            <DynamicTitle />
+            {window.innerWidth > 481 ? (
+              <Bar style={chartjsStyle} data={data} options={options} />
+            ) : (
+              <Bar
+                style={chartjsStyleHorizontal}
+                data={data}
+                options={optionsHorizontal}
+              />
+            )}
+            <div className={style.containerSelect}>
+              <DynamicsSelect />
+              <DynamicsList />
+            </div>
           </div>
-        </div>
-        <div>
           <div>
-            <InfoDynamics />
-            <Accumulate />
+            <div>
+              <InfoDynamics />
+              <Accumulate />
+            </div>
           </div>
         </div>
       </div>
+      <button onClick={handleFetchFromBack}>Axios Get</button>
     </>
   );
 };

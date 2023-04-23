@@ -1,42 +1,31 @@
-// import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { useEffect, useState } from 'react';
 import style from './InfoDynamics.module.scss';
+import floorPlan from '../../../assets/img/floor_plan-x1.png';
+import { useDispatch } from 'react-redux';
+import { uploadImage } from 'redux/Dynamics/dinamicsOperation';
+import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 
 const InfoDynamics = () => {
-// state => state.contacts.items;
-  const [image, setImage] = useState(null);
-  // const image = useSelector(state => state.dinamics.image)
-  // const dispatch = useDispatch();
+  const [image] = useState(floorPlan);
+  const dispatch = useDispatch();
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/png': [],
+      'image/jpg': [],
+    },
+  });
+  // const file = acceptedFiles;
+  console.log(acceptedFiles[0]);
 
-  // const onImageChange = event => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     let img = event.target.files[0];
-  //     this.setState({
-  //       image: URL.createObjectURL(img)
-  //     });
-  //   }
-  // };
-
-  const handleLoadImg = event => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL?.createObjectURL(event.target?.files[0]));
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      const formData = new FormData();
+      formData.append('image', acceptedFiles[0]);
+      console.log(formData);
+      dispatch(uploadImage(formData));
     }
-    console.dir(event.target?.files);
-  };
-console.log(image);
-  // function FileUploadSingle() {
-  // const [file, setFile] = useState<File>();
-
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files) {
-  //     setFile(e.target.files[0]);
-  //   }
-  // };
-
-  // const handleUploadClick = () => {
-  //   if (!file) {
-  //     return;
-  //   }
+  }, [acceptedFiles]);
 
   return (
     <div className={style.containerInfo}>
@@ -47,18 +36,26 @@ console.log(image);
             Accumulated, %: <span className={style.accumulatValue}>28%</span>
           </p>
           <p className={style.accumulatText}>
-            Accumulated, UAH: <span className={style.accumulatValue}>60 000 &#8372;</span>
+            Accumulated, UAH:{' '}
+            <span className={style.accumulatValue}>60 000 &#8372;</span>
           </p>
           <p className={style.accumulatText}>
             And this: <span className={style.accumulatValue}>22 кв. м</span>
           </p>
         </div>
-          <p className={style.accumulatBar}>
-            <span>22</span> out of <span>60</span> sq.m accumulated
-          </p>
+        <p className={style.accumulatBar}>
+          <span>22</span> out of <span>60</span> sq.m accumulated
+        </p>
+        <div style={{ width: '200px', height: '8px' }}>
+          <ProgressBar planInProcent={55} />
+        </div>
       </div>
-      <div className={style.picture} >
-        <input type="file" onClick={handleLoadImg}/>
+
+      <div className={style.picture}>
+        <div {...getRootProps({ className: 'dropzone' })}>
+          <input {...getInputProps()} />
+          <img src={image} alt="" />
+        </div>
       </div>
     </div>
   );
