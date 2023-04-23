@@ -1,6 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Notify } from 'notiflix';
+import {
+  getCategories,
+  getTransactions,
+} from 'redux/Statistics/StatisticsOperations';
 
 export const getCategoryList = createAsyncThunk(
   'cashflow/category',
@@ -28,9 +32,13 @@ export const getPresevingDate = createAsyncThunk(
 
 export const addTransaction = createAsyncThunk(
   'cashflow/transaction',
-  async (transaction, { rejectWithValue }) => {
+  async (transaction, { dispatch, rejectWithValue, getState }) => {
     try {
       const { data } = await axios.post('/cashflow', transaction);
+
+      const { date } = getState().statistics;
+      await dispatch(getTransactions(date));
+      await dispatch(getCategories(date));
       return data;
     } catch (error) {
       const { status } = error.response.request;
