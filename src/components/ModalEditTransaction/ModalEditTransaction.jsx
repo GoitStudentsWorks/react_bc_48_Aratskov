@@ -4,9 +4,9 @@ import Input from '../Input/Input';
 import s from './ModalEditTransaction.module.scss';
 import { useState } from 'react';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
-import svg from '../../assets/icons/sprite.svg';
-import { useSelector } from 'react-redux';
-import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
+// import svg from '../../assets/icons/sprite.svg';
+// import { useSelector } from 'react-redux';
+// import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 
 export const ModalEditTransaction = ({
   show,
@@ -15,7 +15,7 @@ export const ModalEditTransaction = ({
   commentName,
   sumName,
 }) => {
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line
   const [category, setCategory] = useState([
     { label: 'Other' },
     { label: 'Grossery' },
@@ -24,6 +24,7 @@ export const ModalEditTransaction = ({
 
   const [comment, setComment] = useState(commentName);
   const [sum, setSum] = useState(sumName);
+  // eslint-disable-next-line
   const [selectedOption, setSelectedOption] = useState(categoryName);
 
 
@@ -35,20 +36,21 @@ export const ModalEditTransaction = ({
     onClose();
   };
 
-
+  // eslint-disable-next-line
   const handleChange = selectedOption => {
     // console.log('selectedOption:', selectedOption);
     setSelectedOption(selectedOption);
   };
 
 
+
   // const handleChange = selectedOption => {
   //   console.log('selectedOption:', selectedOption);
   //   setSelectedOption(selectedOption);
   // };
-  const handleCategoryChange = category => {
-    setSelectedCategory(category);
-  };
+  // const handleCategoryChange = category => {
+  //   setSelectedCategory(category);
+  // };
   return (
     <Modal
       show={show}
@@ -60,10 +62,10 @@ export const ModalEditTransaction = ({
         <div className={s.inputWrapper}>
           <SelectWithLabel
             name="category"
-            value={selectedCategory}
-            options={categories}
+            // value={selectedCategory}
+            // options={categories}
             label="Per category"
-            onChange={handleCategoryChange}
+            // onChange={handleCategoryChange}
           />
 
           <Input

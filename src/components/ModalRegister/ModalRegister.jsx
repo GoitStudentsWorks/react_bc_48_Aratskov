@@ -8,7 +8,6 @@ import s from '../ModalLogin/ModalLogin.module.scss';
 import { useState } from 'react';
 import icons from '../../assets/icons/sprite.svg';
 
-
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()

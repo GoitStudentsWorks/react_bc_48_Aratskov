@@ -70,7 +70,11 @@ function ModalLogin() {
                 </p>
                 <svg className={s.eye} onClick={toggleShowPassword}>
                   <use
-                    href={showPassword ? `${icons}#icon-eye` : `${icons}#icon-antiEye`}
+                    href={
+                      showPassword
+                        ? `${icons}#icon-eye`
+                        : `${icons}#icon-antiEye`
+                    }
                   ></use>
                 </svg>
               </label>
