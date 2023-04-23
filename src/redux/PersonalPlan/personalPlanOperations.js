@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix';
+// import { Notify } from 'notiflix';
 
 axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 
