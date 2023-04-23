@@ -32,7 +32,6 @@
     align-items: normal;
     margin-bottom: 0;
   }
-  
 }
 
 .item {
@@ -47,3 +46,9 @@
   }
 }
 
+.error {
+  position: absolute;
+  bottom: -15px;
+  color: #ff2e00;
+  font-size: 12px;
+}

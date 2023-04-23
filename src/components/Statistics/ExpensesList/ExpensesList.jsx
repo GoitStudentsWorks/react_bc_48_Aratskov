@@ -30,6 +30,7 @@ const ExpensesList = () => {
   useEffect(() => {
     if (transactions.length) return;
     dispatch(getTransactions({ month: 4, year: 2023 }));
+    // eslint-disable-next-line
   }, []);
 
   return (
