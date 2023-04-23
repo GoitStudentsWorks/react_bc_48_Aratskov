@@ -51,9 +51,9 @@ const ExpensesListItem = ({ category, comment, sum, date, id }) => {
                   <ModalEditTransaction
                     show={show}
                     onClose={closePopup}
-                    category={category}
-                    comment={comment}
-                    sum={sum}
+                    categoryName={category}
+                    commentName={comment}
+                    sumName={sum}
                   />
                 </div>
               </li>
