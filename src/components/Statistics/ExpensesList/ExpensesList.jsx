@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExpensesListItem from './ExpensesListItem/ExpensesListItem';
-import {
-  getStatisticsDate,
-  getTransactionsSelector,
-} from 'redux/Statistics/StatisticsSelectors';
+import { getTransactionsSelector } from 'redux/Statistics/StatisticsSelectors';
 import { getTransactions } from 'redux/Statistics/StatisticsOperations';
 import s from './ExpensesList.module.css';
 
@@ -12,7 +9,7 @@ const ExpensesList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(getTransactionsSelector);
 
-  const date = useSelector(getStatisticsDate);
+  // const date = useSelector(getStatisticsDate);
 
   // const month = 0;
   // const year = 0;
@@ -21,13 +18,19 @@ const ExpensesList = () => {
   //   year = date[0].year;
   // }
 
+  // useEffect(() => {
+  //   if (transactions.length) return;
+  //   if (date.langth > 0) {
+  //     dispatch(
+  //       getTransactions({ month: date[0].monthNumber, year: date[0].year })
+  //     );
+  //   } // eslint-disable-next-line
+  // }, []);
+
   useEffect(() => {
     if (transactions.length) return;
-    if (date.langth > 0) {
-      dispatch(
-        getTransactions({ month: date[0].monthNumber, year: date[0].year })
-      );
-    } // eslint-disable-next-line
+    dispatch(getTransactions({ month: 4, year: 2023 }));
+    // eslint-disable-next-line
   }, []);
 
   return (

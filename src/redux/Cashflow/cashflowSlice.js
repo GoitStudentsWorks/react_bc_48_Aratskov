@@ -28,16 +28,16 @@ const cashflowSlice = createSlice({
         const { monthLimit, dailyLimit, totalByDay, totalByMounth } = payload;
         state.presaving.monthLimit = Math.round(monthLimit);
         state.presaving.dailyLimit = Math.round(dailyLimit);
-        state.presaving.totalByDay = totalByDay;
-        state.presaving.totalByMounth = totalByMounth;
+        state.presaving.totalByDay = Number(totalByDay);
+        state.presaving.totalByMounth = Number(totalByMounth);
       })
       .addCase(addTransaction, (state, { payload }) => {
         const { sum, type } = payload;
         if (type === 'expense') {
           state.presaving.dailyLimit -= sum;
-        } else {
-          return state;
-        }
+        } 
+        return state;
+        
       })
       .addMatcher(
         action =>

@@ -1,5 +1,7 @@
 import svg from '../../assets/icons/sprite.svg';
 
+export const getPresevingSelect = state => state.cashflow.presaving;
+
 export const selectCategories = state => state.cashflow.category;
 export const selectCategoriesWithIcons = state => {
   const categories = selectCategories(state);
@@ -36,4 +38,3 @@ export const selectCategoriesWithIcons = state => {
     return categoryWithIcon;
   });
 };
-export const getPresevingSelect = state => state.cashflow.presaving;

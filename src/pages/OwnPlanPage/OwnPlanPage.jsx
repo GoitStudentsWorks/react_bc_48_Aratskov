@@ -10,6 +10,7 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   postPersonalPlanPre,
   postPersonalPlan,
@@ -56,7 +57,6 @@ const OwnPlanPage = () => {
 
     onSubmit: values => {
       const { salary, passiveIncome, savings, cost, footage, procent } = values;
-      // if (plan._id) return;
       dispatch(
         postPersonalPlanPre({
           salary: Number(salary),
@@ -69,11 +69,6 @@ const OwnPlanPage = () => {
       );
     },
   });
-
-  useEffect(() => {
-    formik.setValues(plan);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan]);
 
   const handleClick = () => {
     if (!plan._id) {
@@ -106,24 +101,23 @@ const OwnPlanPage = () => {
   };
 
   useEffect(() => {
-    dispatch(getPersonalPlan()); 
+    formik.setValues(plan);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plan]);
+
+  useEffect(() => {
+    dispatch(getPersonalPlan());
   }, [dispatch]);
 
-  
-//  const { salary, passiveIncome, savings, cost, footage, procent } = plan;
-  
-
   return (
-     <div className={style.wrapper}>
-    <div className="container">
-     
+    <div className={style.wrapper}>
+      <div className="container">
         <form className={style.form} onSubmit={formik.handleSubmit}>
           <ul className={style.list}>
             <li className={style.item}>
               <Input
                 id="salary"
                 name="salary"
-                // defaultValue={salary}
                 value={formik.values.salary}
                 placeholder="Enter text"
                 label="1. RFP of both spouses, &#8372;"
@@ -150,7 +144,7 @@ const OwnPlanPage = () => {
               <Input
                 id="savings"
                 name="savings"
-                value={ formik.values.savings}
+                value={formik.values.savings}
                 placeholder="Enter text"
                 label="3. Savings, &#8372;"
                 onChange={formik.handleChange}
@@ -163,7 +157,7 @@ const OwnPlanPage = () => {
               <Input
                 id="cost"
                 name="cost"
-                value={ formik.values.cost}
+                value={formik.values.cost}
                 placeholder="Enter text"
                 label="4. Specify the cost of your future apartment, &#8372;"
                 onChange={formik.handleChange}
@@ -176,7 +170,7 @@ const OwnPlanPage = () => {
               <Input
                 id="footage"
                 name="footage"
-                value={ formik.values.footage}
+                value={formik.values.footage}
                 placeholder="Enter text"
                 label="5. Specify the number of sq.m. of your future apartment"
                 onChange={formik.handleChange}
@@ -189,7 +183,7 @@ const OwnPlanPage = () => {
               <Input
                 id="procent"
                 name="procent"
-                value={ formik.values.procent}
+                value={formik.values.procent}
                 placeholder="Enter text"
                 label="6. Accumulation, %"
                 onChange={formik.handleChange}
@@ -204,9 +198,11 @@ const OwnPlanPage = () => {
               </p>
             </li>
           </ul>
-          {!plan._id && <Button type="submit" className={style.prevPlanButton}>
-            Pre Plan
-          </Button>}
+          {!plan._id && (
+            <Button type="submit" className={style.prevPlanButton}>
+              Pre Plan
+            </Button>
+          )}
           <ResultForm
             title="You will have an apartment in:"
             year={year}

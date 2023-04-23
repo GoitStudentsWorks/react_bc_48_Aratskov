@@ -33,6 +33,7 @@ const InfoDynamics = () => {
       dispatch(userChartInfo());
       dispatch(userChartInfoByMonth());
     }
+    // eslint-disable-next-line
   }, [acceptedFiles]);
 
   return (

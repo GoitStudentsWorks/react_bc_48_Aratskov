@@ -18,13 +18,25 @@ const CategoriesList = () => {
   // const year = 2023;
   // // date[0].year;
 
+  // useEffect(() => {
+  //   if (categories.length) return;
+  //   if (date.langth > 0) {
+  //     dispatch(
+  //       getCategories({ month: date[0].monthNumber, year: date[0].year })
+  //     );
+  //   } // eslint-disable-next-line
+  // }, []);
+
   useEffect(() => {
     if (categories.length) return;
     if (date.langth > 0) {
       dispatch(
         getCategories({ month: date[0].monthNumber, year: date[0].year })
       );
-    } // eslint-disable-next-line
+    } else {
+      dispatch(getCategories({ month: 4, year: 2023 }));
+    }
+    // eslint-disable-next-line
   }, []);
 
   return (

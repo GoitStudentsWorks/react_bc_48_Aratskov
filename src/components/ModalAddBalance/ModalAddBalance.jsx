@@ -8,7 +8,6 @@ import { getBalanceUser } from 'redux/Auth/authOperations';
 export const ModalAddBalance = ({ show, onClose }) => {
   const dispatch = useDispatch();
   const addBalance = value => {
-    // console.log('add balance: ', value);
     dispatch(getBalanceUser(Number(value)));
   };
 
@@ -17,7 +16,6 @@ export const ModalAddBalance = ({ show, onClose }) => {
     const form = e.currentTarget;
     const input = form.elements.input.value;
     form.reset();
-    // console.log('input:', input);
     addBalance(input);
     onClose();
   };

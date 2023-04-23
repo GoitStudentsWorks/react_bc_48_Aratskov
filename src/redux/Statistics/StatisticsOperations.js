@@ -3,11 +3,6 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
 import StatisticsService from 'services/statistic.service';
 
-// export const addDate = ({ monthNumber, year }) => ({
-//   type: 'statistics/addDate',
-//   payload: { monthNumber, year },
-// });
-
 export const addDate = createAction(
   'statistics/addDate',
   ({ monthNumber, year }) => {
