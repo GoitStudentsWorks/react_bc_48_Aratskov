@@ -48,7 +48,13 @@ const ExpensesListItem = ({ category, comment, sum, date, id }) => {
                   <svg className={s.icon}>
                     <use href={`${icons}#icon-pen`}></use>
                   </svg>
-                  <ModalEditTransaction show={show} onClose={closePopup} />
+                  <ModalEditTransaction
+                    show={show}
+                    onClose={closePopup}
+                    categoryName={category}
+                    commentName={comment}
+                    sumName={sum}
+                  />
                 </div>
               </li>
               <li className={s.iconPos}>

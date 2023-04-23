@@ -5,13 +5,13 @@ axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
 export default class StatisticsService {
   static getTransactions(month, year) {
     return axios.get(`/cashflow`, {
-      // params: { month, year },
+      params: { month, year },
     });
   }
 
   static getCategories(month, year) {
     return axios.get(`/cashflow/stat`, {
-      // params: { month, year },
+      params: { month, year },
     });
   }
 

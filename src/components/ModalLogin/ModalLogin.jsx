@@ -5,6 +5,8 @@ import { loginUser } from 'redux/Auth/authOperations';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import s from './ModalLogin.module.scss';
+import { useState } from 'react';
+import icons from '../../assets/icons/sprite.svg';
 
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -17,6 +19,9 @@ const schema = Yup.object().shape({
 function ModalLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const initialValues = {
     email: '',
@@ -55,7 +60,7 @@ function ModalLogin() {
               <label htmlFor="password" className={s.label}>
                 Password
                 <Field
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   placeholder="Enter your password"
                   className={s.input}
@@ -63,6 +68,15 @@ function ModalLogin() {
                 <p className={s.error}>
                   <ErrorMessage name="password" />
                 </p>
+                <svg className={s.eye} onClick={toggleShowPassword}>
+                  <use
+                    href={
+                      showPassword
+                        ? `${icons}#icon-eye`
+                        : `${icons}#icon-antiEye`
+                    }
+                  ></use>
+                </svg>
               </label>
             </div>
             <button type="submit" disabled={isSubmitting} className={s.btn}>

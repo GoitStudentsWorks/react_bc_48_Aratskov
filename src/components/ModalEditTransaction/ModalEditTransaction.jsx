@@ -4,43 +4,53 @@ import Input from '../Input/Input';
 import s from './ModalEditTransaction.module.scss';
 import { useState } from 'react';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
-import svg from '../../assets/icons/sprite.svg';
-import { useSelector } from 'react-redux';
-import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
+// import svg from '../../assets/icons/sprite.svg';
+// import { useSelector } from 'react-redux';
+// import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 
-export const ModalEditTransaction = ({ show, onClose }) => {
-  // eslint-disable-next-line no-unused-vars
+export const ModalEditTransaction = ({
+  show,
+  onClose,
+  categoryName,
+  commentName,
+  sumName,
+}) => {
+  // eslint-disable-next-line
   const [category, setCategory] = useState([
     { label: 'Other' },
     { label: 'Grossery' },
     { label: 'Food' },
   ]);
-  const [comment, setComment] = useState('Bag');
-  const [sum, setSum] = useState(1500);
-  // const [selectedOption, setSelectedOption] = useState(category[0]);
-  const categories = useSelector(selectCategoriesWithIcons);
+
+  const [comment, setComment] = useState(commentName);
+  const [sum, setSum] = useState(sumName);
+  // eslint-disable-next-line
+  const [selectedOption, setSelectedOption] = useState(categoryName);
+
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log('category:', category, 'comment:', comment, 'sum:', sum);
+    // console.log('category:', category, 'comment:', comment, 'sum:', sum);
     form.reset();
     onClose();
   };
 
-  const [selectedCategory, setSelectedCategory] = useState({
-    name: 'other',
-    title: 'Other',
-    icon: `${svg}#icon-settings`,
-  });
+  // eslint-disable-next-line
+  const handleChange = selectedOption => {
+    // console.log('selectedOption:', selectedOption);
+    setSelectedOption(selectedOption);
+  };
+
+
 
   // const handleChange = selectedOption => {
   //   console.log('selectedOption:', selectedOption);
   //   setSelectedOption(selectedOption);
   // };
-  const handleCategoryChange = category => {
-    setSelectedCategory(category);
-  };
+  // const handleCategoryChange = category => {
+  //   setSelectedCategory(category);
+  // };
   return (
     <Modal
       show={show}
@@ -52,10 +62,10 @@ export const ModalEditTransaction = ({ show, onClose }) => {
         <div className={s.inputWrapper}>
           <SelectWithLabel
             name="category"
-            value={selectedCategory}
-            options={categories}
+            // value={selectedCategory}
+            // options={categories}
             label="Per category"
-            onChange={handleCategoryChange}
+            // onChange={handleCategoryChange}
           />
 
           <Input

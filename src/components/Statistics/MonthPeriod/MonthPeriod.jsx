@@ -16,12 +16,15 @@ const MonthPeriod = () => {
   const handleDateChange = date => {
     setDate(date);
 
-    const monthNumber = date.getMonth() + 1;
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    // console.log('startDatemonthNumber', monthNumber);
-    // console.log('startDateyear', year);
 
-    dispatch(addDate({ monthNumber, year }));
+    dispatch(addDate({ month, year }));
+
+    // dispatch(getTransactions({ month, year }));
+    // dispatch(getCategories({ month, year }));
+
+    // dispatch(addDate({ month, year }));
   };
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -37,7 +40,6 @@ const MonthPeriod = () => {
     <>
       <div>
         <DatePicker
-          // onChange={() => handleDateChange()}
           customInput={<ExampleCustomInput />}
           selected={date}
           onChange={date => handleDateChange(date)}
