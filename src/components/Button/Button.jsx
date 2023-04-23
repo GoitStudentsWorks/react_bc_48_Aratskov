@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export const Button = ({
   variant = 'primary',
   type = 'button',
+  disabled,
   onClick,
   className,
   children,
@@ -12,6 +13,7 @@ export const Button = ({
 }) => {
   return (
     <button
+      disabled={disabled}
       type={type}
       onClick={onClick}
       className={clsx(className, s.button, s[variant])}

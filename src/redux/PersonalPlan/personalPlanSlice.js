@@ -15,7 +15,8 @@ const initialState = {
   procent: '',
   year: '',
   month: '',
-  error: false,
+  error: null,
+  isLoading: false,
 };
 
 const personalPlanSlice = createSlice({
@@ -32,32 +33,54 @@ const personalPlanSlice = createSlice({
         return {
           ...state,
           ...payload,
+          isLoading: false,
         };
       })
       .addCase(postPersonalPlan.fulfilled, (state, { payload }) => {
         return {
           ...state,
           ...payload,
+          isLoading: false,
         };
       })
       .addCase(getPersonalPlan.fulfilled, (state, { payload }) => {
         return {
           ...state,
           ...payload,
-        };
-      })
-      .addCase(getPersonalPlan.rejected, (state, { payload }) => {
-        return {
-          ...state,
-          error: payload,
+          isLoading: false,
         };
       })
       .addCase(putPersonalPlan.fulfilled, (state, { payload }) => {
         return {
           ...state,
           ...payload,
+          isLoading: false,
         };
-      });
+      })
+
+      // .addMatcher(
+      //   action =>
+      //     action.type.startsWith('plan') && action.type.endsWith('/fulfilled'),
+      //   (state, { payload }) => {
+      //     state = payload;
+      //     state.isLoading = false;
+      //   }
+      // )
+      .addMatcher(
+        action =>
+          action.type.startsWith('plan') && action.type.endsWith('/pending'),
+        state => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        action =>
+          action.type.startsWith('plan') && action.type.endsWith('/rejected'),
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.error = payload;
+        }
+      );
   },
 });
 
