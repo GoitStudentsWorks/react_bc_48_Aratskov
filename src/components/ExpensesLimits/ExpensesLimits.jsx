@@ -9,7 +9,7 @@ import { getPresevingSelect } from 'redux/Cashflow/cashflowSelectors';
 import { useSelector } from 'react-redux';
 
 const ExpensesLimits = () => {
-  const { monthLimit, dailyLimit, totalByMounth, totalByDay } =
+  const { monthLimit, dailyLimit } =
     useSelector(getPresevingSelect);
 
   const { show, showPopup, closePopup } = usePopup();
@@ -19,13 +19,13 @@ const ExpensesLimits = () => {
       <div className={s.innerWrapper}>
         <LabledInput
           label="Daily limit"
-          value={`${Math.round(dailyLimit - totalByDay)} ₴`}
+          value={`${Math.round(dailyLimit)} ₴`}
           className={clsx(s.firstInput, s.inputWrapper)}
           inputClassName={s.input}
         />
         <LabledInput
           label="Monthly limit"
-          value={`${Math.round(monthLimit - totalByMounth)} ₴`}
+          value={`${Math.round(monthLimit)} ₴`}
           className={clsx(s.secondInput, s.inputWrapper)}
           inputClassName={s.input}
         />
