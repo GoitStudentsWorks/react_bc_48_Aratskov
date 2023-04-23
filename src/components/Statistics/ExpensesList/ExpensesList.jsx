@@ -5,9 +5,7 @@ import {
   getStatisticsDate,
   getTransactionsSelector,
 } from 'redux/Statistics/StatisticsSelectors';
-import {
-  getTransactions,
-} from 'redux/Statistics/StatisticsOperations';
+import { getTransactions } from 'redux/Statistics/StatisticsOperations';
 import s from './ExpensesList.module.css';
 
 const ExpensesList = () => {
@@ -16,15 +14,20 @@ const ExpensesList = () => {
 
   const date = useSelector(getStatisticsDate);
 
-  const month = date[0].monthNumber;
-  // console.log(month);
-  const year = date[0].year;
-  // console.log(year);
+  // const month = 0;
+  // const year = 0;
+  // if (date.langth > 0) {
+  //   month = date[0].monthNumber;
+  //   year = date[0].year;
+  // }
 
   useEffect(() => {
     if (transactions.length) return;
-    dispatch(getTransactions({ month, year }));
-    // eslint-disable-next-line
+    if (date.langth > 0) {
+      dispatch(
+        getTransactions({ month: date[0].monthNumber, year: date[0].year })
+      );
+    } // eslint-disable-next-line
   }, []);
 
   return (

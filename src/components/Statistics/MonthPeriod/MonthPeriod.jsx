@@ -5,24 +5,25 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { forwardRef, useState } from 'react';
 import { getYear } from 'date-fns';
 import { useDispatch } from 'react-redux';
+import { addDate } from 'redux/Statistics/StatisticsOperations';
 
 const MonthPeriod = () => {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
 
-  const monthNumber = date.getMonth() + 1;
-  const year = date.getFullYear();
+  // console.log('startDate', date);
 
-  dispatch({
-    type: 'statistics/addDate',
-    payload: { monthNumber: monthNumber, year: year },
-  });
+  const handleDateChange = date => {
+    setDate(date);
 
-  // const date = new Date('Wed Apr 19 2023 20:06:29');
-  // const dayOfMonth = date.getDate();
-  // const monthName = date.toLocaleString('en-US', { month: 'short' });
+    const monthNumber = date.getMonth() + 1;
+    const year = date.getFullYear();
+    // console.log('startDatemonthNumber', monthNumber);
+    // console.log('startDateyear', year);
 
-  console.log('startDate', date);
+    dispatch(addDate({ monthNumber, year }));
+  };
+
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button className={s.style} onClick={onClick} ref={ref}>
       {value}
@@ -36,9 +37,10 @@ const MonthPeriod = () => {
     <>
       <div>
         <DatePicker
+          // onChange={() => handleDateChange()}
           customInput={<ExampleCustomInput />}
           selected={date}
-          onChange={date => setDate(date)}
+          onChange={date => handleDateChange(date)}
           dateFormat="MMMM, yyyy"
           showMonthYearPicker
           id="12"
