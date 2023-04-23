@@ -16,6 +16,7 @@ import InfoDynamics from 'components/Dynamics/InfoDynamics/InfoDynamics';
 import DynamicTitle from 'components/Dynamics/DynamicsTitle/DynamicsTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { userChartInfo } from 'redux/Dynamics/dinamicsOperation';
+import { useEffect } from 'react';
 
 ChartJS.register(
   CategoryScale,
@@ -28,9 +29,11 @@ ChartJS.register(
 
 const DynamicsPage = () => {
   const dispatch = useDispatch();
-  const selector = useSelector(state => state.chartData)
-  console.log("DynamicsPage  selector:", selector)
-  dispatch(userChartInfo())
+  const selector = useSelector(state => state.chartData);
+  console.log('DynamicsPage  selector:', selector);
+  useEffect(() => {
+    dispatch(userChartInfo());
+  });
   const data = {
     labels: [
       'Oct',
@@ -128,7 +131,7 @@ const DynamicsPage = () => {
 
   const handleFetchFromBack = () => {
     console.log('fetch');
-  }
+  };
 
   return (
     <>

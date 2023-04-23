@@ -4,7 +4,7 @@ import style from './InfoDynamics.module.scss';
 import floorPlan from '../../../assets/img/floor_plan-x1.png';
 import { useDispatch } from 'react-redux';
 import { uploadImage } from 'redux/Dynamics/dinamicsOperation';
-import { ProgressBar } from 'react-toastify/dist/components';
+import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 
 const InfoDynamics = () => {
   const [image] = useState(floorPlan);
@@ -46,9 +46,9 @@ const InfoDynamics = () => {
         <p className={style.accumulatBar}>
           <span>22</span> out of <span>60</span> sq.m accumulated
         </p>
-        {/* <div style={{ width: '200px', height: '8px' }}>
+        <div style={{ width: '200px', height: '8px' }}>
           <ProgressBar planInProcent={55} />
-        </div> */}
+        </div>
       </div>
 
       <div className={style.picture}>
