@@ -15,11 +15,13 @@ const ExpensesList = () => {
 
   useEffect(() => {
     if (transactions.length) return;
+
     if (date !== null) {
       dispatch(getTransactions(date));
     } else {
       dispatch(getTransactions({ month: 4, year: 2023 }));
     }
+
   }, []);
 
   return (

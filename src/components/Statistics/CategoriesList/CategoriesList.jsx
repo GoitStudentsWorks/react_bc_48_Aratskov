@@ -20,6 +20,7 @@ const CategoriesList = () => {
     } else {
       dispatch(getCategories({ month: 4, year: 2023 }));
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

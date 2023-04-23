@@ -4,6 +4,9 @@ import Input from '../Input/Input';
 import s from './ModalEditTransaction.module.scss';
 import { useState } from 'react';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
+import svg from '../../assets/icons/sprite.svg';
+import { useSelector } from 'react-redux';
+import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 
 export const ModalEditTransaction = ({
   show,
@@ -18,9 +21,11 @@ export const ModalEditTransaction = ({
     { label: 'Grossery' },
     { label: 'Food' },
   ]);
+
   const [comment, setComment] = useState(commentName);
   const [sum, setSum] = useState(sumName);
   const [selectedOption, setSelectedOption] = useState(categoryName);
+
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -30,11 +35,20 @@ export const ModalEditTransaction = ({
     onClose();
   };
 
+
   const handleChange = selectedOption => {
     // console.log('selectedOption:', selectedOption);
     setSelectedOption(selectedOption);
   };
 
+
+  // const handleChange = selectedOption => {
+  //   console.log('selectedOption:', selectedOption);
+  //   setSelectedOption(selectedOption);
+  // };
+  const handleCategoryChange = category => {
+    setSelectedCategory(category);
+  };
   return (
     <Modal
       show={show}
@@ -45,11 +59,13 @@ export const ModalEditTransaction = ({
       <form action="" onSubmit={handleSubmit}>
         <div className={s.inputWrapper}>
           <SelectWithLabel
+            name="category"
+            value={selectedCategory}
+            options={categories}
             label="Per category"
-            value={selectedOption}
-            options={category}
-            onChange={handleChange}
+            onChange={handleCategoryChange}
           />
+
           <Input
             label="Expense comment"
             value={comment}
