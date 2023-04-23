@@ -29,10 +29,12 @@ ChartJS.register(
 
 const DynamicsPage = () => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line
   const selector = useSelector(state => state.dinamics);
   // console.log('DynamicsPage  selector:', selector.statByYear[0]);
   useEffect(() => {
     dispatch(userChartInfo());
+    // eslint-disable-next-line
   }, []);
 
   const data = {
