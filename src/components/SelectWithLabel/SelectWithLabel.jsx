@@ -26,6 +26,7 @@ export const SelectWithLabel = ({ label, ...props }) => {
     <Select
       components={{ ValueContainer }}
       formatOptionLabel={customOptionLabel}
+      isSearchable={false}
       styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,
