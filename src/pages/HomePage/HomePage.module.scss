@@ -86,6 +86,12 @@
 
   color: #ffffff;
 
+  animation-name: scaleBlured;
+  animation-duration: 2000ms;
+  animation-timing-function: cubic-bezier(1, 0.5, 0.5, 0.5);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
   @include tablet {
     font-size: 20px;
     padding: 16px 24px;
@@ -94,6 +100,15 @@
   @include desktop {
     font-size: 20px;
     padding: 16px 24px;
+  }
+}
+
+@keyframes scaleBlured {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
   }
 }
 
@@ -168,9 +183,11 @@
   text-transform: uppercase;
   font-feature-settings: 'liga' off;
   color: var(--main-text);
+  display: inline-block;
 
   @include desktop {
-    width: 646px;
+    width: 690px;
+    display: inline;
   }
 }
 
@@ -182,19 +199,25 @@
 
   font-size: 28px;
   line-height: 1;
+  margin-bottom: 8px;
+  display: block;
+
   @include mobile {
     font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
   }
   @include tablet {
     font-size: 48px;
+    display: inline;
   }
   @include desktop {
     font-size: 48px;
+    display: inline;
   }
 }
 
 .titleTwo {
-  padding: 10px;
   font-size: 24px;
   line-height: 1.42;
 
@@ -205,14 +228,17 @@
   @include tablet {
     font-size: 48px;
     line-height: 1;
+    display: inline-block;
+    padding: 10px;
   }
   @include desktop {
     font-size: 48px;
     line-height: 1;
+    padding: 10px;
   }
 }
 
-.text {
+.titleText {
   // font-family: var(--second-fonts);
   // font-weight: 500;
   font-size: 24px;
@@ -222,10 +248,15 @@
   @include tablet {
     font-size: 44px;
     line-height: 1.28;
+    display: block;
+    margin-top:20px
   }
 
   @include desktop {
     font-size: 44px;
     line-height: 1.28;
+    width: 500px;
+    display: block;
+    margin-top:20px
   }
 }
