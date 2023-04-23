@@ -61,7 +61,7 @@ const OwnPlanPage = () => {
 
     onSubmit: values => {
       const { salary, passiveIncome, savings, cost, footage, procent } = values;
-      if (plan._id) return;
+      // if (plan._id) return;
       dispatch(
         postPersonalPlanPre({
           salary: Number(salary),
