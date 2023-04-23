@@ -9,7 +9,6 @@ export const ModalAddIncome = ({ show, onClose }) => {
   const dispatch = useDispatch();
   const addIncome = value => {
     dispatch(addTransaction({ type: 'income', sum: Number(value) }));
-    console.log('add income: ', value);
   };
 
   const handleSubmit = e => {
@@ -17,7 +16,6 @@ export const ModalAddIncome = ({ show, onClose }) => {
     const form = e.currentTarget;
     const input = form.elements.input.value;
     form.reset();
-    console.log('input:', input);
     addIncome(input);
     onClose();
   };

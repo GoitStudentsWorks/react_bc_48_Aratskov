@@ -28,10 +28,9 @@ export const getPresevingDate = createAsyncThunk(
 
 export const addTransaction = createAsyncThunk(
   'cashflow/transaction',
-  async (sum, { rejectWithValue }) => {
-    console.log(sum);
+  async (transaction, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/cashflow', sum);
+      const { data } = await axios.post('/cashflow', transaction);
       return data;
     } catch (error) {
       const { status } = error.response.request;

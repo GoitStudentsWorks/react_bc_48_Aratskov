@@ -35,9 +35,9 @@ const cashflowSlice = createSlice({
         const { sum, type } = payload;
         if (type === 'expense') {
           state.presaving.dailyLimit -= sum;
-        } else {
-          return state;
-        }
+        } 
+        return state;
+        
       })
       .addMatcher(
         action =>
