@@ -5,7 +5,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { forwardRef, useState } from 'react';
 import { getYear } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import { addDate } from 'redux/Statistics/StatisticsOperations';
+import {
+  addDate,
+  getCategories,
+  getTransactions,
+} from 'redux/Statistics/StatisticsOperations';
 
 const MonthPeriod = () => {
   const [date, setDate] = useState(new Date());
@@ -18,9 +22,12 @@ const MonthPeriod = () => {
 
     const monthNumber = date.getMonth() + 1;
     const year = date.getFullYear();
+
+    dispatch(getTransactions({ month: monthNumber, year: 2023 }));
+    dispatch(getCategories({ month: monthNumber, year: 2023 }));
+
     // console.log('startDatemonthNumber', monthNumber);
     // console.log('startDateyear', year);
-
     dispatch(addDate({ monthNumber, year }));
   };
 
