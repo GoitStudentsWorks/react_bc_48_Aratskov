@@ -3,17 +3,14 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
 import StatisticsService from 'services/statistic.service';
 
-export const addDate = createAction(
-  'statistics/addDate',
-  ({ monthNumber, year }) => {
-    return {
-      payload: {
-        monthNumber,
-        year,
-      },
-    };
-  }
-);
+export const addDate = createAction('statistics/addDate', ({ month, year }) => {
+  return {
+    payload: {
+      month,
+      year,
+    },
+  };
+});
 
 export const getTransactions = createAsyncThunk(
   'statistics/getTransactions',
@@ -78,15 +75,14 @@ export const getCategories = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'statistics/deleteTransaction',
-  async (payload, { dispatch }) => {
+  async (payload, { dispatch, getState }) => {
     await StatisticsService.deleteTransaction(payload);
-    await dispatch(
-      getTransactions({
-        // month: 12, year: 2023
-      })
-    );
+    const { date } = getState().statistics;
+    await dispatch(getTransactions(date));
   }
 );
+
+setTimeout(deleteTransaction, 0);
 
 export const updateTransaction = createAsyncThunk(
   'statistics/updateTransaction',

@@ -5,11 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { forwardRef, useState } from 'react';
 import { getYear } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import {
-  addDate,
-  getCategories,
-  getTransactions,
-} from 'redux/Statistics/StatisticsOperations';
+import { addDate } from 'redux/Statistics/StatisticsOperations';
 
 const MonthPeriod = () => {
   const [date, setDate] = useState(new Date());
@@ -20,15 +16,15 @@ const MonthPeriod = () => {
   const handleDateChange = date => {
     setDate(date);
 
-    const monthNumber = date.getMonth() + 1;
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    dispatch(getTransactions({ month: monthNumber, year: 2023 }));
-    dispatch(getCategories({ month: monthNumber, year: 2023 }));
+    dispatch(addDate({ month, year }));
 
-    // console.log('startDatemonthNumber', monthNumber);
-    // console.log('startDateyear', year);
-    dispatch(addDate({ monthNumber, year }));
+    // dispatch(getTransactions({ month, year }));
+    // dispatch(getCategories({ month, year }));
+
+    // dispatch(addDate({ month, year }));
   };
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -44,7 +40,6 @@ const MonthPeriod = () => {
     <>
       <div>
         <DatePicker
-          // onChange={() => handleDateChange()}
           customInput={<ExampleCustomInput />}
           selected={date}
           onChange={date => handleDateChange(date)}
