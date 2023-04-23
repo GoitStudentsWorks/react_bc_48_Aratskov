@@ -30,7 +30,7 @@ export const ModalAddIncome = ({ show, onClose }) => {
           <Button variant="primary" type="submit">
             Add
           </Button>
-          <Button variant="secondary" className={s.test} onClick={onClose}>
+          <Button variant="secondary" onClick={onClose}>
             Cancel
           </Button>
         </div>
