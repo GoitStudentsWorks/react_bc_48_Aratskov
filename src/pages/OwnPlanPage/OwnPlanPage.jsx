@@ -15,7 +15,7 @@ import {
   postPersonalPlan,
   getPersonalPlan,
   putPersonalPlan,
-} from 'redux/PersonalPlan/personalPlanOperationg';
+} from 'redux/PersonalPlan/personalPlanOperations';
 import style from './OwnPlanPage.module.scss';
 import { useEffect } from 'react';
 
@@ -110,7 +110,7 @@ const OwnPlanPage = () => {
   }, [dispatch]);
 
   
- const { salary, passiveIncome, savings, cost, footage, procent } = plan;
+//  const { salary, passiveIncome, savings, cost, footage, procent } = plan;
   
 
   return (
@@ -123,7 +123,7 @@ const OwnPlanPage = () => {
               <Input
                 id="salary"
                 name="salary"
-                defaultValue={salary}
+                // defaultValue={salary}
                 value={formik.values.salary}
                 placeholder="Enter text"
                 label="1. RFP of both spouses, &#8372;"

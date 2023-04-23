@@ -4,22 +4,28 @@ import {
   postPersonalPlan,
   postPersonalPlanPre,
   putPersonalPlan,
-} from './personalPlanOperationg';
+} from './personalPlanOperations';
+
+const initialState = {
+  salary: '',
+  passiveIncome: '',
+  savings: '',
+  cost: '',
+  footage: '',
+  procent: '',
+  year: '',
+  month: '',
+  error: false,
+};
 
 const personalPlanSlice = createSlice({
   name: 'plan',
-  initialState: {
-    salary: '',
-    passiveIncome: '',
-    savings: '',
-    cost: '',
-    footage: '',
-    procent: '',
-    year: '',
-    month: '',
-    error: false,
+  initialState,
+  reducers: {
+    unsetPlanState() {
+      return { ...initialState };
+    },
   },
-
   extraReducers: builder => {
     builder
       .addCase(postPersonalPlanPre.fulfilled, (state, { payload }) => {
@@ -43,14 +49,6 @@ const personalPlanSlice = createSlice({
       .addCase(getPersonalPlan.rejected, (state, { payload }) => {
         return {
           ...state,
-          salary: '',
-          passiveIncome: '',
-          savings: '',
-          cost: '',
-          footage: '',
-          procent: '',
-          year: '',
-          month: '',
           error: payload,
         };
       })
@@ -63,4 +61,5 @@ const personalPlanSlice = createSlice({
   },
 });
 
+export const { unsetPlanState } = personalPlanSlice.actions;
 export default personalPlanSlice.reducer;
