@@ -25,6 +25,7 @@ const InfoDynamics = () => {
       console.log(formData);
       dispatch(uploadImage(formData));
     }
+    // eslint-disable-next-line
   }, [acceptedFiles]);
 
   return (
