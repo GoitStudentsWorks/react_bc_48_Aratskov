@@ -5,7 +5,7 @@ const CategoriesListItem = ({ category, amount, percentage }) => {
       <li className={s.main}>
         <ul className={s.li}>
           <li>{category}</li>
-          <li>{amount} UAH</li>
+          <li>- {amount} UAH</li>
         </ul>
 
         <div className={s.persent}>

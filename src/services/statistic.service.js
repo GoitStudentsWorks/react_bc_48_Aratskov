@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://flat-backend.p.goit.global/api';
+
 export default class StatisticsService {
   static getTransactions(month, year) {
     return axios.get(`/cashflow`, {
@@ -17,9 +19,7 @@ export default class StatisticsService {
     return axios.delete(`/cashflow/${id}`);
   }
 
-  static updateTransaction(id, data) {
-    return axios.put(`/cashflow`, data, {
-      params: { id },
-    });
+  static updateTransaction(id) {
+    return axios.put(`/cashflow/${id}`);
   }
 }

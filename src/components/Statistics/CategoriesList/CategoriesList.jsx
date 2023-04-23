@@ -13,14 +13,18 @@ const CategoriesList = () => {
   const categories = useSelector(getCategoriesSelector);
   const date = useSelector(getStatisticsDate);
 
-  const month = date[0].monthNumber;
-  // console.log(month);
-  const year = date[0].year;
-  // console.log(year);
+  // const month = 12;
+  // // date[0].monthNumber;
+  // const year = 2023;
+  // // date[0].year;
+
   useEffect(() => {
     if (categories.length) return;
-    dispatch(getCategories({ month, year }));
-    // eslint-disable-next-line
+    if (date.langth > 0) {
+      dispatch(
+        getCategories({ month: date[0].monthNumber, year: date[0].year })
+      );
+    } // eslint-disable-next-line
   }, []);
 
   return (
