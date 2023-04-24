@@ -35,7 +35,7 @@ export const postPersonalPlan = createAsyncThunk(
   'plan/post',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/personal-pla', credentials);
+      const { data } = await axios.post('/personal-plan', credentials);
      if(data._id) Notify.success('Congratulations🏡 Your personal plan has been saved');
       return data;
     } catch (error) {
@@ -69,6 +69,9 @@ export const getPersonalPlan = createAsyncThunk(
       const status = error.response.status;
 
       switch (status) {
+        case 400:
+          Notify.info("You don't have a personal plan yet👻");
+          break;
         case 401:
           Notify.failure('Please, log in👻');
           break;

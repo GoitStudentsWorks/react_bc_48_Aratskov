@@ -9,7 +9,7 @@ const SharedLayout = () => {
   return (
     <>
       <Header />
-      <Suspense fallback={<div style={{color:"#f3f3f3", textAlign:"center"}}>Loading..</div>}>
+      <Suspense fallback={null}>
         <main >
           {!burg&&<Outlet />}
           {burg&&<ModalBurger />}
