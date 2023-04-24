@@ -1,30 +1,26 @@
-import { createContext} from "react";
-import BackdropModal from "components/BackdropModal/BackdropModal";
-import { selectorIsLoading } from "redux/Loader/loaderSelectors";
-import { useSelector } from "react-redux";
+import { createContext } from 'react';
+import BackdropModal from 'components/BackdropModal/BackdropModal';
+import { selectorIsLoading } from 'redux/Loader/loaderSelectors';
+import { useSelector } from 'react-redux';
 
-
-import { Dna } from  'react-loader-spinner'
-
+import { Dna } from 'react-loader-spinner';
 
 const LoaderContext = createContext();
 
 const Loader = () => {
   return (
-    <BackdropModal
-    >
+    <BackdropModal>
       <Dna
-  visible={true}
-  height="280"
-  width="280"
-  ariaLabel="dna-loading"
-  wrapperStyle={{}}
-  wrapperClass="dna-wrapper"
-/>
+        visible={true}
+        height="280"
+        width="280"
+        ariaLabel="dna-loading"
+        wrapperStyle={{}}
+        wrapperClass="dna-wrapper"
+      />
     </BackdropModal>
   );
 };
-
 
 const LoaderProvider = ({ children }) => {
   const isLoading = useSelector(selectorIsLoading);
@@ -32,7 +28,7 @@ const LoaderProvider = ({ children }) => {
   return (
     <LoaderContext.Provider value={isLoading}>
       <>{children}</>
-      {(isLoading) && <Loader />}
+      {isLoading && <Loader />}
     </LoaderContext.Provider>
   );
 };
