@@ -25,13 +25,14 @@ const ExpensesList = () => {
     // eslint-disable-next-line
   }, [dispatch]);
 
+  const reversedTransactions = [...transactions].reverse();
   return (
     <div className={s.style}>
       {!transactions.length ? (
         <div className={s.noty}>You have not added any transactions!</div>
       ) : (
         <ul>
-          {transactions.map(({ _id, category, comment, sum, date }) => (
+          {reversedTransactions.map(({ _id, category, comment, sum, date }) => (
             <ExpensesListItem
               key={_id}
               id={_id}
