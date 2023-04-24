@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 
 const Accumulate = () => {
   const { squareМeters } = useSelector(state => state.dinamics);
-  const { cost, footage } = useSelector(state => state.plan);
+  const { cost, footage = 1 } = useSelector(state => state.plan);
   const pricePerOneSqMeter = cost / footage;
+
 
   const oneMoreSqMeter = (pricePerOneSqMeter, squareМeters) => {
     const needAccumulate = Math.round(pricePerOneSqMeter * (Math.ceil(squareМeters) - squareМeters));

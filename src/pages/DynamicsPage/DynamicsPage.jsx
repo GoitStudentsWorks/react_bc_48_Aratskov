@@ -17,6 +17,7 @@ import DynamicTitle from 'components/Dynamics/DynamicsTitle/DynamicsTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { userChartInfo } from 'redux/Dynamics/dinamicsOperation';
 import { useEffect } from 'react';
+import { getPersonalPlan } from 'redux/PersonalPlan/personalPlanOperations';
 
 ChartJS.register(
   CategoryScale,
@@ -35,6 +36,7 @@ const DynamicsPage = () => {
   const { statByYear, accumulatedProc } = selector;
   // console.log("DynamicsPage  statByYear:", statByYear[0].month)
   useEffect(() => {
+    dispatch(getPersonalPlan());
     dispatch(userChartInfo());
   }, [dispatch]);
 

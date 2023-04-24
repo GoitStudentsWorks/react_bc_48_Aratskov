@@ -41,7 +41,7 @@ export const userChartInfoByMonth = createAsyncThunk(
       const imageToken = thunkAPI.getState().auth.token;
       token.set(imageToken);
 
-      const data = await axios.get('/dynamics/by-month?year=2&month=2');
+      const data = await axios.get('/dynamics/by-month?year=1&month=4');
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
