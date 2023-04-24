@@ -6,9 +6,18 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTransaction } from 'redux/Statistics/StatisticsOperations';
 
-const ExpensesListItem = ({ category, comment, sum, date, id }) => {
+const ExpensesListItem = ({
+  category,
+  comment,
+  sum,
+  date,
+  id,
+  update,
+  setUpdate,
+}) => {
   const { show, showPopup, closePopup } = usePopup();
   const dispatch = useDispatch();
+
   const onDeleteTransactionHandler = useCallback(
     id => {
       dispatch(deleteTransaction(id));
@@ -16,7 +25,6 @@ const ExpensesListItem = ({ category, comment, sum, date, id }) => {
     [dispatch]
   );
 
-  console.log();
   return (
     <>
       <li className={s.list}>
@@ -54,6 +62,9 @@ const ExpensesListItem = ({ category, comment, sum, date, id }) => {
                     categoryName={category}
                     commentName={comment}
                     sumName={sum}
+                    id={id}
+                    update={update}
+                    setUpdate={setUpdate}
                   />
                 </div>
               </li>

@@ -7,12 +7,13 @@ import {
 } from 'redux/Statistics/StatisticsSelectors';
 import { getTransactions } from 'redux/Statistics/StatisticsOperations';
 import s from './ExpensesList.module.css';
-
+import { useState } from 'react';
 const ExpensesList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(getTransactionsSelector);
   const date = useSelector(getStatisticsDate);
 
+  const [update, setUpdate] = useState(false);
   useEffect(() => {
     if (transactions.length) return;
 
@@ -21,9 +22,8 @@ const ExpensesList = () => {
     } else {
       dispatch(getTransactions({ month: 4, year: 2023 }));
     }
-  // eslint-disable-next-line
-}, []);
-
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   return (
     <div className={s.style}>
@@ -39,6 +39,8 @@ const ExpensesList = () => {
               comment={comment}
               sum={sum}
               date={date}
+              update={update}
+              setUpdate={setUpdate}
             />
           ))}
         </ul>
