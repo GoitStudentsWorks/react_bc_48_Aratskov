@@ -33,15 +33,14 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<PublicRoute component={<HomePage />} />} />
-        <Route
-          path="login"
-          element={<PublicRoute component={<ModalLogin />} />}
-        />
-        <Route
-          path="register"
-          element={<PublicRoute component={<ModalRegister />} />}
-        />
+        {/* <Route index element={<PublicRoute component={<HomePage />}/>} />
+        <Route path="login" element={<PublicRoute component={<ModalLogin />}/>} />
+        <Route path="register" element={<PublicRoute component={<ModalRegister />}/>} /> */}
+
+        <Route path="/" element={<PublicRoute component={<HomePage />} />}>
+          <Route path="login" element={<ModalLogin />} />
+          <Route path="register" element={<ModalRegister />} />
+        </Route>
         <Route
           path="plan"
           element={<PrivateRoute component={<OwnPlanPage />} />}

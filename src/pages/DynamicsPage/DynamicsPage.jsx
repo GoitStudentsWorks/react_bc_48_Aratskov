@@ -31,42 +31,49 @@ const DynamicsPage = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line
   const selector = useSelector(state => state.dinamics);
-  // console.log('DynamicsPage  selector:', selector.statByYear[0]);
+  const { statByYear, accumulatedProc } = selector;
   useEffect(() => {
     dispatch(userChartInfo());
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
+
+  const labels = [
+    'Oct',
+    'Nov',
+    'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+  ];
 
   const data = {
-    labels: [
-      'Oct',
-      'Nov',
-      'Dec',
-      'Jan',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Aug',
-      'Sep',
-    ],
+    labels,
     datasets: [
       {
         label: 'Accumulated',
-        data: [
-          400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300,
-          800,
-        ],
+        data:
+          // [400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800],
+          labels.map((label) => statByYear[0].income * (accumulatedProc / 100)),
         backgroundColor: 'rgba(99, 89, 233, 1)',
       },
       {
         label: 'Expenses',
-        data: [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
+        data:
+          // [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
+          labels.map((label) => statByYear[0].expense),
         backgroundColor: 'rgba(58, 106, 245, 1)',
       },
       {
         label: 'Income',
-        data: [800, 500, 800, 450, 750, 850, 950, 1000, 450, 600, 1000, 750],
+        data:
+          // [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
+          labels.map((label) => statByYear[0].income),
+            // '0' + (index + 1) === statByYear[0].income && statByYear[0].month),
         backgroundColor: 'rgba(243, 243, 243, 1)',
       },
     ],

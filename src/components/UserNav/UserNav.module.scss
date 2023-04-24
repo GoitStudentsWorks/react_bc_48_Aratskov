@@ -26,4 +26,8 @@ line-height: 1.16;
         font-size: 14px;
 
     }
+    transition: 250ms linear transform;
+    &:hover{
+      transform: scale(1.2);
+    }
 }
