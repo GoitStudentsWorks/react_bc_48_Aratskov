@@ -66,8 +66,9 @@ const TransactionDataList = () => {
         <div className={style.list}>
           <div className={style.item}>
             <Input
+              id="balance"
               name="balance"
-              value={balance ? `${balance} UAH` : '0 UAH'}
+              value={balance ? `${balance} $` : '0 $'}
               placeholder="Account balance: UAH 80,000"
               label="From account"
               onChange={() => balance}
@@ -87,6 +88,7 @@ const TransactionDataList = () => {
           <div className={style.item}>
             <div className={s.wrapp}>
               <Field
+                id="comment"
                 className={s.input}
                 type="text"
                 name="comment"
@@ -104,10 +106,11 @@ const TransactionDataList = () => {
           <div className={style.item}>
             <div className={s.wrapp}>
               <Field
+                id="sum"
                 name="sum"
                 className={s.input}
                 type="text"
-                placeholder="0 UAH"
+                placeholder="0 $"
               />
               <label htmlFor="sum" className={s.label}>
                 Sum

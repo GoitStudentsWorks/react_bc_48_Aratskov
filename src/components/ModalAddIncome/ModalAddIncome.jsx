@@ -7,16 +7,18 @@ import { addTransaction } from 'redux/Cashflow/cashflowOperations';
 
 export const ModalAddIncome = ({ show, onClose }) => {
   const dispatch = useDispatch();
-  const addIncome = value => {
-    dispatch(addTransaction({ type: 'income', sum: Number(value) }));
-  };
+  // const addIncome = value => {
+  //   dispatch(addTransaction({ type: 'income', sum: Number(value) }));
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
     const input = form.elements.input.value;
+    dispatch(addTransaction({ type: 'income', sum: Number(input) }))
     form.reset();
-    addIncome(input);
+
+    // addIncome(input);
     onClose();
   };
 
