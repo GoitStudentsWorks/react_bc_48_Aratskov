@@ -1,20 +1,13 @@
-import s from './CashflowPage.module.scss'
+import s from './CashflowPage.module.scss';
 import TransactionDataList from 'components/TransactionDataList/TransactionDataList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import {
-  getCategoryList,
-  getPresevingDate,
-} from 'redux/Cashflow/cashflowOperations';
+import { getPresevingDate } from 'redux/Cashflow/cashflowOperations';
 import { getCurrentBalance } from 'redux/Auth/authSelectors';
 
 const CashflowPage = () => {
   const dispatch = useDispatch();
   const balance = useSelector(getCurrentBalance);
-
-  useEffect(() => {
-    dispatch(getCategoryList());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getPresevingDate());
@@ -24,8 +17,8 @@ const CashflowPage = () => {
   return (
     <section className={s.wrapper}>
       <div className="container">
-      <TransactionDataList />
-    </div>
+        <TransactionDataList />
+      </div>
     </section>
   );
 };

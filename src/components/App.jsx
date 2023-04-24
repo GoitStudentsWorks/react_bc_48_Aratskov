@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getCurrentUser } from 'redux/Auth/authOperations';
 import { PublicRoute } from './Route/PublicRoute';
 import { PrivateRoute } from './Route/PrivateRoute';
+import { getCategoryList } from 'redux/Cashflow/cashflowOperations';
 
 const CashflowPage = lazy(() => import('../pages/CashflowPage/CashflowPage'));
 const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage/OwnPlanPage'));
@@ -26,6 +27,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
+    dispatch(getCategoryList());
   }, [dispatch]);
 
   return (
