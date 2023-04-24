@@ -1,6 +1,15 @@
+import { useEffect } from 'react';
 import style from './DynamicsList.module.css';
+import { useDispatch } from 'react-redux';
+import { userChartInfoByMonth } from 'redux/Dynamics/dinamicsOperation';
 
 const DynamicsList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userChartInfoByMonth());
+  }, [dispatch]);
+
   return (
     <>
       <ul className={style.list}>

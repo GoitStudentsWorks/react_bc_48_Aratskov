@@ -12,7 +12,6 @@ export const uploadImage = createAsyncThunk(
       token.set(imageToken);
       
       const data = await axios.patch('/dynamics/flatImage', image);
-      console.log('data', data);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -28,7 +27,6 @@ export const userChartInfo = createAsyncThunk(
       token.set(imageToken);
 
       const data = await axios.get('/dynamics');
-      console.log('data', data.data);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,8 +41,7 @@ export const userChartInfoByMonth = createAsyncThunk(
       const imageToken = thunkAPI.getState().auth.token;
       token.set(imageToken);
 
-      const data = await axios.get('/dynamics/by-month?year=2&month=2');
-      console.log('data', data.data);
+      const data = await axios.get('/dynamics/by-month?year=1&month=4');
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
