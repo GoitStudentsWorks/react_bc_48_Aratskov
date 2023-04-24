@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getCurrentUser } from 'redux/Auth/authOperations';
 import { PublicRoute } from './Route/PublicRoute';
 import { PrivateRoute } from './Route/PrivateRoute';
+import { getCategoryList } from 'redux/Cashflow/cashflowOperations';
 
 const CashflowPage = lazy(() => import('../pages/CashflowPage/CashflowPage'));
 const OwnPlanPage = lazy(() => import('../pages/OwnPlanPage/OwnPlanPage'));
@@ -19,30 +20,48 @@ const StatisticsPage = lazy(() =>
 const CategoriesList = lazy(() =>
   import('./Statistics/CategoriesList/CategoriesList')
 );
-const GhostBox = lazy(()=> import('../pages/NotFound/GhostBox'))
-
+const GhostBox = lazy(() => import('../pages/NotFound/GhostBox'));
 
 export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCurrentUser());
+    dispatch(getCategoryList());
   }, [dispatch]);
 
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<PublicRoute component={<HomePage />}/>} />
-        <Route path="login" element={<PublicRoute component={<ModalLogin />}/>} />
-        <Route path="register" element={<PublicRoute component={<ModalRegister />}/>} />
-        <Route path="plan" element={<PrivateRoute component={<OwnPlanPage />}/>} />
-        <Route path="cash-flow" element={<PrivateRoute component={<CashflowPage />}/>} />
-        <Route path="dynamics" element={<PrivateRoute component={<DynamicsPage />}/>} />
-        <Route path="statistics" element={<PrivateRoute component={<StatisticsPage />}/>}>
+        <Route index element={<PublicRoute component={<HomePage />} />} />
+        <Route
+          path="login"
+          element={<PublicRoute component={<ModalLogin />} />}
+        />
+        <Route
+          path="register"
+          element={<PublicRoute component={<ModalRegister />} />}
+        />
+        <Route
+          path="plan"
+          element={<PrivateRoute component={<OwnPlanPage />} />}
+        />
+        <Route
+          path="cash-flow"
+          element={<PrivateRoute component={<CashflowPage />} />}
+        />
+        <Route
+          path="dynamics"
+          element={<PrivateRoute component={<DynamicsPage />} />}
+        />
+        <Route
+          path="statistics"
+          element={<PrivateRoute component={<StatisticsPage />} />}
+        >
           <Route path="transactions" element={<ExpensesList />} />
           <Route path="categories" element={<CategoriesList />} />
         </Route>
-        <Route path='error' element={<GhostBox/>}/>
+        <Route path="error" element={<GhostBox />} />
         <Route path="*" element={<Navigate to="/error" />} />
       </Route>
     </Routes>
