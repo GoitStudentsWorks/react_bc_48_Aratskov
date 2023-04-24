@@ -28,7 +28,7 @@ const InfoDynamics = () => {
     }
   }, [acceptedFiles, dispatch]);
 
-  const footageProcent = Math.round(
+  const footageProcent = Math?.round(
     (+selector.squareМeters / selectorFootage.footage) * 100
   );
 
@@ -54,12 +54,12 @@ const InfoDynamics = () => {
           <p className={style.accumulatText}>
             And this:{' '}
             <span className={style.accumulatValue}>
-              {+selector.squareМeters} кв. м
+              {selector.squareМeters && +selector.squareМeters} кв. м
             </span>
           </p>
         </div>
         <p className={style.accumulatBar}>
-          <span>{+selector.squareМeters}</span> out of{' '}
+          <span>{selector.squareМeters && +selector.squareМeters}</span> out of{' '}
           <span>{selectorFootage.footage}</span> sq.m accumulated
         </p>
         <div style={{ height: '8px' }}>

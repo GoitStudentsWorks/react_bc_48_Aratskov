@@ -6,7 +6,12 @@ import { useState } from 'react';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
-import { updateTransaction } from 'redux/Statistics/StatisticsOperations';
+
+// import { updateTransaction } from 'redux/Statistics/StatisticsOperations';
+
+import { addTransaction } from 'redux/Cashflow/cashflowOperations';
+// import { useSelector } from 'react-redux';
+
 
 export const ModalEditTransaction = ({
   show,
@@ -16,6 +21,7 @@ export const ModalEditTransaction = ({
   sumName,
   id,
 }) => {
+
   const dispatch = useDispatch();
   const [comment, setComment] = useState(commentName);
   const [sum, setSum] = useState(sumName);
@@ -35,6 +41,28 @@ export const ModalEditTransaction = ({
   });
 
   const categories = useSelector(selectCategoriesWithIcons);
+
+
+  // const categories = useSelector(selectCategoriesWithIcons);
+  // const [selectedCategory, setSelectedCategory] = useState(() => {
+  //   return categories.find(category => category.name === categoryName);
+  // });
+
+  // const [comment, setComment] = useState(commentName);
+  // const [sum, setSum] = useState(sumName);
+  // const dispatch = useDispatch();
+
+  // const handleSubmit = (values, { setSubmitting, setFieldError }) => {
+  //   setSubmitting(false);
+  //   dispatch(
+  //     addTransaction({
+  //       ...values,
+  //       category: selectedCategory.name,
+  //       type: 'expense',
+  //     })
+  //   );
+  // };
+
 
   const handleCategoryChange = category => {
     setSelectedCategory(category);

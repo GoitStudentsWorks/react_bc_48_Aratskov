@@ -36,6 +36,7 @@ const cashflowSlice = createSlice({
         if (type === 'expense') {
           state.presaving.dailyLimit -= sum;
         } 
+        
         return state;
         
       })

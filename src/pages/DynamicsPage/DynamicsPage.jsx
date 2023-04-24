@@ -17,6 +17,7 @@ import DynamicTitle from 'components/Dynamics/DynamicsTitle/DynamicsTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { userChartInfo } from 'redux/Dynamics/dinamicsOperation';
 import { useEffect } from 'react';
+import { getPersonalPlan } from 'redux/PersonalPlan/personalPlanOperations';
 
 ChartJS.register(
   CategoryScale,
@@ -31,15 +32,15 @@ const DynamicsPage = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line
   const selector = useSelector(state => state.dinamics);
+  // eslint-disable-next-line
   const { statByYear, accumulatedProc } = selector;
+  // console.log("DynamicsPage  statByYear:", statByYear[0].month)
   useEffect(() => {
+    dispatch(getPersonalPlan());
     dispatch(userChartInfo());
   }, [dispatch]);
 
   const labels = [
-    'Oct',
-    'Nov',
-    'Dec',
     'Jan',
     'Feb',
     'Mar',
@@ -49,6 +50,9 @@ const DynamicsPage = () => {
     'Jul',
     'Aug',
     'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   const data = {
@@ -56,24 +60,36 @@ const DynamicsPage = () => {
     datasets: [
       {
         label: 'Accumulated',
-        data:
-          // [400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800],
-          labels.map((label) => statByYear[0].income * (accumulatedProc / 100)),
+        data: labels?.map((label, index) => {
+          if (statByYear) {
+            return (
+              index + 1 === +statByYear[0].month &&
+              statByYear[0]?.income * (accumulatedProc / 100)
+            );
+          }
+          return [];
+        }),
         backgroundColor: 'rgba(99, 89, 233, 1)',
       },
       {
         label: 'Expenses',
-        data:
-          // [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
-          labels.map((label) => statByYear[0].expense),
+        data: labels?.map((label, index) => {
+          if (statByYear) {
+            return index + 1 === +statByYear[0].month && statByYear[0]?.expense;
+          }
+          return [];
+        }),
         backgroundColor: 'rgba(58, 106, 245, 1)',
       },
       {
         label: 'Income',
-        data:
-          // [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
-          labels.map((label) => statByYear[0].income),
-            // '0' + (index + 1) === statByYear[0].income && statByYear[0].month),
+        data: labels?.map((label, index) => {
+          if (statByYear) {
+            return index + 1 === +statByYear[0].month && statByYear[0]?.income;
+          }
+          return [];
+        }),
+
         backgroundColor: 'rgba(243, 243, 243, 1)',
       },
     ],

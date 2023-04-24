@@ -4,7 +4,7 @@ import planReducer from './PersonalPlan/personalPlanSlice';
 import { burgerReducer } from './BurgerMenu/burgerSlice';
 import cashflowSlice from './Cashflow/cashflowSlice';
 import statisticsReducer from './Statistics/StatisticsSlise';
-
+import loaderReducer from "./Loader/loaderSlice"
 import {
   persistStore,
   persistReducer,
@@ -38,6 +38,7 @@ export const store = configureStore({
     burger: burgerReducer,
     dinamics: dinamicsReducer,
     statistics: statisticsReducer,
+    isLoading: loaderReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
