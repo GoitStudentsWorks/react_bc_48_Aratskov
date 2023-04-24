@@ -7,11 +7,7 @@ import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
 
-// import { updateTransaction } from 'redux/Statistics/StatisticsOperations';
-
-import { addTransaction } from 'redux/Cashflow/cashflowOperations';
-// import { useSelector } from 'react-redux';
-
+import { updateTransaction } from 'redux/Statistics/StatisticsOperations';
 
 export const ModalEditTransaction = ({
   show,
@@ -21,7 +17,6 @@ export const ModalEditTransaction = ({
   sumName,
   id,
 }) => {
-
   const dispatch = useDispatch();
   const [comment, setComment] = useState(commentName);
   const [sum, setSum] = useState(sumName);
@@ -42,7 +37,6 @@ export const ModalEditTransaction = ({
 
   const categories = useSelector(selectCategoriesWithIcons);
 
-
   // const categories = useSelector(selectCategoriesWithIcons);
   // const [selectedCategory, setSelectedCategory] = useState(() => {
   //   return categories.find(category => category.name === categoryName);
@@ -62,7 +56,6 @@ export const ModalEditTransaction = ({
   //     })
   //   );
   // };
-
 
   const handleCategoryChange = category => {
     setSelectedCategory(category);
