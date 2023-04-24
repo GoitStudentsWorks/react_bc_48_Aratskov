@@ -31,6 +31,7 @@ const DynamicsPage = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line
   const selector = useSelector(state => state.dinamics);
+  // eslint-disable-next-line
   const { statByYear, accumulatedProc } = selector;
   useEffect(() => {
     dispatch(userChartInfo());
