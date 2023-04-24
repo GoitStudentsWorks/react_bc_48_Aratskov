@@ -6,8 +6,12 @@ import { useState } from 'react';
 import { SelectWithLabel } from 'components/SelectWithLabel/SelectWithLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategoriesWithIcons } from 'redux/Cashflow/cashflowSelectors';
+
+// import { updateTransaction } from 'redux/Statistics/StatisticsOperations';
+
 import { addTransaction } from 'redux/Cashflow/cashflowOperations';
 // import { useSelector } from 'react-redux';
+
 
 export const ModalEditTransaction = ({
   show,
@@ -15,26 +19,50 @@ export const ModalEditTransaction = ({
   categoryName,
   commentName,
   sumName,
+  id,
 }) => {
-  const categories = useSelector(selectCategoriesWithIcons);
-  const [selectedCategory, setSelectedCategory] = useState(() => {
-    return categories.find(category => category.name === categoryName);
-  });
 
+  const dispatch = useDispatch();
   const [comment, setComment] = useState(commentName);
   const [sum, setSum] = useState(sumName);
-  const dispatch = useDispatch();
 
-  const handleSubmit = (values, { setSubmitting, setFieldError }) => {
-    setSubmitting(false);
+  const handleSubmit = () => {
     dispatch(
-      addTransaction({
-        ...values,
-        category: selectedCategory.name,
-        type: 'expense',
+      updateTransaction({
+        id: id,
+        data: { comment, sum, category: 'other' },
       })
     );
+    onClose();
   };
+
+  const [selectedCategory, setSelectedCategory] = useState({
+    title: categoryName,
+  });
+
+  const categories = useSelector(selectCategoriesWithIcons);
+
+
+  // const categories = useSelector(selectCategoriesWithIcons);
+  // const [selectedCategory, setSelectedCategory] = useState(() => {
+  //   return categories.find(category => category.name === categoryName);
+  // });
+
+  // const [comment, setComment] = useState(commentName);
+  // const [sum, setSum] = useState(sumName);
+  // const dispatch = useDispatch();
+
+  // const handleSubmit = (values, { setSubmitting, setFieldError }) => {
+  //   setSubmitting(false);
+  //   dispatch(
+  //     addTransaction({
+  //       ...values,
+  //       category: selectedCategory.name,
+  //       type: 'expense',
+  //     })
+  //   );
+  // };
+
 
   const handleCategoryChange = category => {
     setSelectedCategory(category);
@@ -46,7 +74,7 @@ export const ModalEditTransaction = ({
       onClose={onClose}
       className={s.popup}
     >
-      <form action="" onSubmit={handleSubmit}>
+      <form>
         <div className={s.inputWrapper}>
           <SelectWithLabel
             name="category"
@@ -73,7 +101,7 @@ export const ModalEditTransaction = ({
             }}
           />
         </div>
-        <Button variant="primary" type="submit" className={s.btnBox}>
+        <Button variant="primary" className={s.btnBox} onClick={handleSubmit}>
           Edit
         </Button>
       </form>

@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCategories, getTransactions } from './StatisticsOperations';
+import {
+  getCategories,
+  getTransactions,
+  updateTransaction,
+} from './StatisticsOperations';
 
 const statiaticsSlice = createSlice({
   name: 'statistics',
@@ -9,6 +13,7 @@ const statiaticsSlice = createSlice({
     categories: [],
     isLoading: false,
     error: null,
+    isOpenEditModal: false,
   },
 
   reducers: {
@@ -22,6 +27,7 @@ const statiaticsSlice = createSlice({
 
   extraReducers: builder => {
     builder
+
       .addCase(getTransactions.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -46,6 +52,16 @@ const statiaticsSlice = createSlice({
       .addCase(getCategories.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+
+      .addCase(updateTransaction.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addCase(updateTransaction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
