@@ -57,22 +57,22 @@ const DynamicsPage = () => {
       {
         label: 'Accumulated',
         data:
-          // [400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800],
-          labels.map((label) => statByYear[0].income * (accumulatedProc / 100)),
+          [400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800, 400, 300, 800],
+          // labels.map((label) => statByYear[0].income * (accumulatedProc / 100)),
         backgroundColor: 'rgba(99, 89, 233, 1)',
       },
       {
         label: 'Expenses',
         data:
-          // [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
-          labels.map((label) => statByYear[0].expense),
+          [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
+          // labels.map((label) => statByYear[0].expense),
         backgroundColor: 'rgba(58, 106, 245, 1)',
       },
       {
         label: 'Income',
         data:
-          // [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
-          labels.map((label) => statByYear[0].income),
+          [600, 700, 500, 600, 700, 500, 600, 700, 500, 600, 700, 500],
+          // labels.map((label) => statByYear[0].income),
             // '0' + (index + 1) === statByYear[0].income && statByYear[0].month),
         backgroundColor: 'rgba(243, 243, 243, 1)',
       },
