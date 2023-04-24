@@ -58,14 +58,6 @@ const personalPlanSlice = createSlice({
         };
       })
 
-      // .addMatcher(
-      //   action =>
-      //     action.type.startsWith('plan') && action.type.endsWith('/fulfilled'),
-      //   (state, { payload }) => {
-      //     state = payload;
-      //     state.isLoading = false;
-      //   }
-      // )
       .addMatcher(
         action =>
           action.type.startsWith('plan') && action.type.endsWith('/pending'),

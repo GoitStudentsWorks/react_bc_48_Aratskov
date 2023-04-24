@@ -6,6 +6,8 @@ import manMobileX from 'assets/img/man_mob.png';
 import manMobileXx from 'assets/img/man_mob-2x.png';
 import st from './HomePage.module.scss';
 
+import { Outlet } from 'react-router-dom';
+
 const BluredItem = ({ children }) => {
   return (
     <>
@@ -64,11 +66,13 @@ const HomePage = () => {
             <h1 className={st.title}>
               <span className={st.titleBlue}>Planner</span>
               <span className={st.titleTwo}> for joint</span>
-              <span className={st.text}>savings for an apartment</span>
+              <span className={st.titleText}> savings for an apartment</span>
             </h1>
           </div>
         </div>
       </div>
+
+      <Outlet/>
     </>
   );
 };

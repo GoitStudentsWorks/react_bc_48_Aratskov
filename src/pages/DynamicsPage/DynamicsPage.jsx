@@ -29,6 +29,7 @@ ChartJS.register(
 
 const DynamicsPage = () => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line
   const selector = useSelector(state => state.dinamics);
   const { statByYear, accumulatedProc } = selector;
   useEffect(() => {

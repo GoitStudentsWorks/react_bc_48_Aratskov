@@ -19,8 +19,7 @@ const StatisticsPage = lazy(() =>
 const CategoriesList = lazy(() =>
   import('./Statistics/CategoriesList/CategoriesList')
 );
-const GhostBox = lazy(()=> import('../pages/NotFound/GhostBox'))
-
+const GhostBox = lazy(() => import('../pages/NotFound/GhostBox'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,17 +31,34 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<PublicRoute component={<HomePage />}/>} />
+        {/* <Route index element={<PublicRoute component={<HomePage />}/>} />
         <Route path="login" element={<PublicRoute component={<ModalLogin />}/>} />
-        <Route path="register" element={<PublicRoute component={<ModalRegister />}/>} />
-        <Route path="plan" element={<PrivateRoute component={<OwnPlanPage />}/>} />
-        <Route path="cash-flow" element={<PrivateRoute component={<CashflowPage />}/>} />
-        <Route path="dynamics" element={<PrivateRoute component={<DynamicsPage />}/>} />
-        <Route path="statistics" element={<PrivateRoute component={<StatisticsPage />}/>}>
+        <Route path="register" element={<PublicRoute component={<ModalRegister />}/>} /> */}
+
+        <Route path="/" element={<PublicRoute component={<HomePage />} />}>
+          <Route path="login" element={<ModalLogin />} />
+          <Route path="register" element={<ModalRegister />} />
+        </Route>
+        <Route
+          path="plan"
+          element={<PrivateRoute component={<OwnPlanPage />} />}
+        />
+        <Route
+          path="cash-flow"
+          element={<PrivateRoute component={<CashflowPage />} />}
+        />
+        <Route
+          path="dynamics"
+          element={<PrivateRoute component={<DynamicsPage />} />}
+        />
+        <Route
+          path="statistics"
+          element={<PrivateRoute component={<StatisticsPage />} />}
+        >
           <Route path="transactions" element={<ExpensesList />} />
           <Route path="categories" element={<CategoriesList />} />
         </Route>
-        <Route path='error' element={<GhostBox/>}/>
+        <Route path="error" element={<GhostBox />} />
         <Route path="*" element={<Navigate to="/error" />} />
       </Route>
     </Routes>
