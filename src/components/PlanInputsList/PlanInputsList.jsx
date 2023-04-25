@@ -53,7 +53,7 @@ const PlanInputsList = () => {
       savings: validation,
       cost: validation,
       footage: validation,
-      procent: validation,
+      procent: validation.max(100),
     }),
 
     onSubmit: values => {
@@ -114,7 +114,7 @@ const PlanInputsList = () => {
             id="salary"
             name="salary"
             value={formik.values.salary}
-            placeholder="Enter text"
+            placeholder="30 000"
             label="1. RFP of both spouses, &#8372;"
             onChange={formik.handleChange}
           />
@@ -153,7 +153,7 @@ const PlanInputsList = () => {
             id="cost"
             name="cost"
             value={formik.values.cost}
-            placeholder="Enter text"
+            placeholder="900 000"
             label="4. Specify the cost of your future apartment, &#8372;"
             onChange={formik.handleChange}
           />

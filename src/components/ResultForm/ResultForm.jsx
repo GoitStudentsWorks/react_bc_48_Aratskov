@@ -17,13 +17,13 @@ const ResultForm = ({ title, year, month, onClick }) => {
         <LabledInput
           label="Number of years"
           placeholder="0 year"
-          value={year}
+          value={year && `${year} years`}
           className={s.firstInput}
           inputClassName={s.input}
         />
         <LabledInput
           label="Number of months"
-          value={month}
+          value={month && `${month} months`}
           placeholder="0 month"
           className={s.secondInput}
           inputClassName={s.input}

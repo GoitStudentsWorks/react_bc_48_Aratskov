@@ -11,7 +11,9 @@ const OwnPlanPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPersonalPlan());
+   setTimeout(() => {
+     dispatch(getPersonalPlan());
+   }, 0);
   }, [dispatch]);
 
   return (
