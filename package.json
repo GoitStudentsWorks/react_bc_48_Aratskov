@@ -2,7 +2,7 @@
   "name": "project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aratskov.github.io/project/",
+  "homepage": "https://GoitStudentsWorks.github.io/react_bc_48_Aratskov/",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.5",
