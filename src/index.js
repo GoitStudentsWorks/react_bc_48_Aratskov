@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/project">
+        <BrowserRouter basename="/react_bc_48_Aratskov/">
           <LoaderProvider>
             <App />
           </LoaderProvider>
