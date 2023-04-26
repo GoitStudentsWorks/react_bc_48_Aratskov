@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react_bc_48_Aratskov/static/css/main.5683f2a1.css",
-    "main.js": "/react_bc_48_Aratskov/static/js/main.f58c6c44.js",
+    "main.js": "/react_bc_48_Aratskov/static/js/main.8f95cba6.js",
     "static/css/251.0048362d.chunk.css": "/react_bc_48_Aratskov/static/css/251.0048362d.chunk.css",
     "static/js/251.cb2bf488.chunk.js": "/react_bc_48_Aratskov/static/js/251.cb2bf488.chunk.js",
     "static/css/827.8a6f2493.chunk.css": "/react_bc_48_Aratskov/static/css/827.8a6f2493.chunk.css",
@@ -41,7 +41,7 @@
     "static/media/device-2x.png": "/react_bc_48_Aratskov/static/media/device-2x.9c4a9c77c3b276f8c95a.png",
     "index.html": "/react_bc_48_Aratskov/index.html",
     "main.5683f2a1.css.map": "/react_bc_48_Aratskov/static/css/main.5683f2a1.css.map",
-    "main.f58c6c44.js.map": "/react_bc_48_Aratskov/static/js/main.f58c6c44.js.map",
+    "main.8f95cba6.js.map": "/react_bc_48_Aratskov/static/js/main.8f95cba6.js.map",
     "251.0048362d.chunk.css.map": "/react_bc_48_Aratskov/static/css/251.0048362d.chunk.css.map",
     "251.cb2bf488.chunk.js.map": "/react_bc_48_Aratskov/static/js/251.cb2bf488.chunk.js.map",
     "827.8a6f2493.chunk.css.map": "/react_bc_48_Aratskov/static/css/827.8a6f2493.chunk.css.map",
@@ -58,6 +58,6 @@
   },
   "entrypoints": [
     "static/css/main.5683f2a1.css",
-    "static/js/main.f58c6c44.js"
+    "static/js/main.8f95cba6.js"
   ]
 }
